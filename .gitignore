@@ -1,3 +1,6 @@
+# Babel Compiled Output
+generators/
+
 # Logs
 logs
 *.log

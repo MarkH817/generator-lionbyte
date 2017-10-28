@@ -3,4 +3,6 @@ node_js:
   - "node"
   - 7
   - 6
-after_script: 'cat ./coverage/lcov.info | coveralls'
+after_script:
+  - npm run report
+  - 'cat ./coverage/lcov.info | coveralls'

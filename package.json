@@ -20,35 +20,38 @@
     "yeoman-generator"
   ],
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
     "coveralls": "^2.13.1",
-    "jest": "^21.0.0",
-    "jest-cli": "^21.0.0",
+    "cross-env": "^5.1.1",
+    "mocha": "^4.0.1",
     "nsp": "^2.6.3",
+    "nyc": "^11.2.1",
     "standard": "^10.0.3",
     "yeoman-assert": "^3.1.0",
     "yeoman-test": "^1.7.0"
   },
   "dependencies": {
-    "yeoman-generator": "^2.0.1",
     "chalk": "^2.1.0",
+    "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
   },
-  "jest": {
-    "testEnvironment": "node"
-  },
   "scripts": {
+    "build": "babel src -d generators",
     "lint": "standard",
     "lint:fix": "standard --fix",
-    "prepublish": "nsp check",
-    "test": "standard && jest"
+    "prepublishOnly": "nsp check && npm run build",
+    "report": "nyc report --reporter=lcov",
+    "test": "standard && nyc mocha --require babel-register"
   },
   "standard": {
     "globals": [
       "after",
-      "afterAll",
       "afterEach",
       "before",
-      "beforeAll",
       "beforeEach",
       "describe",
       "it"
