@@ -20,10 +20,15 @@ module.exports = class LionByte extends _yeomanGenerator2.default {
     this.log((0, _yosay2.default)('Welcome to the best ' + _chalk2.default.red('generator-lionbyte') + ' generator!'));
 
     const prompts = [{
-      type: 'confirm',
-      name: 'someAnswer',
-      message: 'Would you like to enable this option?',
-      default: true
+      type: 'input',
+      name: 'name',
+      message: 'Your project name',
+      default: this.appname
+    }, {
+      type: 'input',
+      name: 'description',
+      message: 'Project description',
+      default: 'Things...'
     }];
 
     return this.prompt(prompts).then(props => {
@@ -33,14 +38,35 @@ module.exports = class LionByte extends _yeomanGenerator2.default {
   }
 
   writing() {
-    this.fs.copy(this.templatePath('dummyfile.txt'), this.destinationPath('dummyfile.txt'));
-    this.fs.copy(this.templatePath('README.md'), this.destinationPath('README.md'));
+    /* Files */
+    const filenames = ['src/index.js', 'test/index.js', '.babelrc', '.editorconfig', '.gitattributes', '.gitignore'];
+
+    const filesWithParams = ['LICENSE', 'package.json', 'README.md'];
+
+    /* Writing */
+    filenames.map(file => {
+      this.fs.copy(this.templatePath(file), this.destinationPath(file));
+    });
+
+    filesWithParams.map(file => {
+      this.fs.copyTpl(this.templatePath(file), this.destinationPath(file), {
+        name: this.props.name,
+        description: this.props.description,
+        user: {
+          name: this.user.git.name(),
+          email: this.user.git.email()
+        }
+      });
+    });
   }
 
   install() {
-    this.installDependencies({
-      bower: false,
-      npm: true
+    /* Install devDependencies */
+    this.npmInstall(['babel-core', 'babel-preset-env', 'babel-register', 'coveralls', 'chai', 'del', 'gulp', 'gulp-babel', 'gulp-plumber', 'mocha', 'nyc', 'standard'], {
+      saveDev: true
     });
+
+    /* Install dependencies */
+    this.npmInstall([]);
   }
 };
