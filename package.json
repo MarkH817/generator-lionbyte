@@ -27,6 +27,11 @@
     "chai": "^4.1.2",
     "coveralls": "^2.13.1",
     "cross-env": "^5.1.1",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sequence": "^0.4.6",
     "mocha": "^4.0.1",
     "nsp": "^2.6.3",
     "nyc": "^11.2.1",
@@ -40,7 +45,8 @@
     "yosay": "^2.0.1"
   },
   "scripts": {
-    "build": "babel src -d generators",
+    "build": "gulp build",
+    "dev": "gulp",
     "lint": "standard",
     "lint:fix": "standard --fix",
     "prepublishOnly": "nsp check && npm run build",
