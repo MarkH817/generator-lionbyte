@@ -1,0 +1,59 @@
+{
+  "name": "generator-lionbyte",
+  "version": "0.0.0",
+  "description": "Generate a NodeJS project",
+  "homepage": "",
+  "author": {
+    "name": "Mark Hernandez",
+    "email": "markedcode@gmail.com",
+    "url": ""
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
+  "keywords": [
+    "generator",
+    "scaffold",
+    "project",
+    "nodejs",
+    "yeoman-generator"
+  ],
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "jest": "^21.0.0",
+    "jest-cli": "^21.0.0",
+    "nsp": "^2.6.3",
+    "standard": "^10.0.3",
+    "yeoman-assert": "^3.1.0",
+    "yeoman-test": "^1.7.0"
+  },
+  "dependencies": {
+    "yeoman-generator": "^2.0.1",
+    "chalk": "^2.1.0",
+    "yosay": "^2.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "scripts": {
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "prepublish": "nsp check",
+    "test": "jest"
+  },
+  "standard": {
+    "globals": [
+      "after",
+      "afterAll",
+      "afterEach",
+      "before",
+      "beforeAll",
+      "beforeEach",
+      "describe",
+      "it"
+    ]
+  },
+  "repository": "MarkH817/generator-lionbyte",
+  "license": "MIT"
+}
