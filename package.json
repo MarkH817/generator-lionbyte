@@ -40,7 +40,7 @@
     "lint": "standard",
     "lint:fix": "standard --fix",
     "prepublish": "nsp check",
-    "test": "jest"
+    "test": "standard && jest"
   },
   "standard": {
     "globals": [
