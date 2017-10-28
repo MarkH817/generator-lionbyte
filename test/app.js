@@ -6,13 +6,22 @@ describe('generator-lionbyte:app', () => {
   before(() => {
     return helpers.run(path.join(__dirname, '../src/app'))
       .withPrompts({
-        someAnswer: true
+        name: 'test',
+        description: 'testing the generator-lionbyte'
       })
   })
 
   it('creates files', () => {
     assert.file([
-      'dummyfile.txt'
+      'src/index.js',
+      'test/index.js',
+      '.babelrc',
+      '.editorconfig',
+      '.gitattributes',
+      '.gitignore',
+      'LICENSE',
+      'package.json',
+      'README.md'
     ])
   })
 })
