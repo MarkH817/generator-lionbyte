@@ -9,7 +9,9 @@ gulp.task('clean', () => {
 })
 
 gulp.task('templates:app', () => {
-  return gulp.src('src/app/templates/**/*')
+  return gulp.src(['src/app/templates/**/*'], {
+    dot: true
+  })
   .pipe(plumber())
   .pipe(gulp.dest('generators/app/templates'))
 })
