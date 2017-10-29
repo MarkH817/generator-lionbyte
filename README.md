@@ -1,4 +1,8 @@
-# generator-lionbyte [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-lionbyte
+[![NPM version][npm-image]][npm-url]
+[![Build Status](https://travis-ci.org/MarkH817/generator-lionbyte.svg?branch=master)](https://travis-ci.org/MarkH817/generator-lionbyte)
+[![Dependency Status][daviddm-image]][daviddm-url]
+[![Coverage Status](https://coveralls.io/repos/github/MarkH817/generator-lionbyte/badge.svg?branch=master)](https://coveralls.io/github/MarkH817/generator-lionbyte?branch=master)
 > Generate a NodeJS project
 
 ## Installation
@@ -30,9 +34,5 @@ MIT © [Mark Hernandez]()
 
 [npm-image]: https://badge.fury.io/js/generator-lionbyte.svg
 [npm-url]: https://npmjs.org/package/generator-lionbyte
-[travis-image]: https://travis-ci.org/MarkH817/generator-lionbyte.svg?branch=master
-[travis-url]: https://travis-ci.org/MarkH817/generator-lionbyte
 [daviddm-image]: https://david-dm.org/MarkH817/generator-lionbyte.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/MarkH817/generator-lionbyte
-[coveralls-image]: https://coveralls.io/repos/MarkH817/generator-lionbyte/badge.svg
-[coveralls-url]: https://coveralls.io/r/MarkH817/generator-lionbyte
