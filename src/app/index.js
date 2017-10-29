@@ -39,7 +39,8 @@ module.exports = class LionByte extends Generator {
       '.babelrc',
       '.editorconfig',
       '.gitattributes',
-      '.gitignore'
+      '.gitignore',
+      'CHANGELOG.md'
     ]
 
     const filesWithParams = [

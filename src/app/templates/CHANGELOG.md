@@ -6,15 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Added CHANGELOG.md to templates
-
-### Changed
-
-### Fixed
-
-## [0.1.0] - 2017-10-28
-### Added
-- Template files for generic NodeJS project
+- Scaffolded project using `generator-lionbyte`
 - Uses `standard` linter
 - Supports ES6+ syntax with `babel-preset-env`
 - Uses `gulp` to automate cleaning, building, and watching files
