@@ -60,6 +60,12 @@
       "beforeEach",
       "describe",
       "it"
+    ],
+    "ignore": [
+      "src/app/templates/**/*.js",
+      "src/common/templates/**/*.js",
+      "src/generic/templates/**/*.js",
+      "src/static-site/templates/**/*.js"
     ]
   },
   "repository": "MarkH817/generator-lionbyte",

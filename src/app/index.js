@@ -42,27 +42,25 @@ module.exports = class LionByte extends Generator {
         this.composeWith(require.resolve('../common'), {
           arguments: [this.props.name, this.props.description]
         })
+
+        /* Run the appropriate subgenerator */
+        switch (this.props.projectType) {
+          case 'static-site':
+            this.composeWith(require.resolve('../static-site'))
+            break
+          default:
+            this.composeWith(require.resolve('../generic'))
+        }
       })
   }
 
   writing () {
     /* Files */
-    const filenames = [
-      '.babelrc'
-    ]
-
     const filesWithParams = [
       'package.json'
     ]
 
     /* Writing */
-    filenames.map(file => {
-      this.fs.copy(
-        this.templatePath(file),
-        this.destinationPath(file)
-      )
-    })
-
     filesWithParams.map(file => {
       this.fs.copyTpl(
         this.templatePath(file),

@@ -1,6 +1,4 @@
 import Generator from 'yeoman-generator'
-import chalk from 'chalk'
-// import yosay from 'yosay'
 
 module.exports = class extends Generator {
   constructor (args, opts) {
@@ -17,13 +15,7 @@ module.exports = class extends Generator {
     })
   }
 
-  prompting () {
-    this.log(`Common ${chalk.cyan('prompting')}`)
-  }
-
   writing () {
-    this.log(`Common ${chalk.cyan('writing')}`)
-
     const filenames = [
       'src/index.js',
       'test/index.js',
@@ -73,6 +65,7 @@ module.exports = class extends Generator {
       'del',
       'gulp',
       'gulp-plumber',
+      'gulp-sequence',
       'mocha',
       'nyc',
       'standard'
