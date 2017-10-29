@@ -6,7 +6,7 @@ module.exports = class LionByte extends Generator {
   prompting () {
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the best ' + chalk.red('generator-lionbyte') + ' generator!'
+      `Welcome to the best ${chalk.red('generator-lionbyte')} generator!`
     ))
 
     const prompts = [
@@ -21,6 +21,16 @@ module.exports = class LionByte extends Generator {
         name: 'description',
         message: 'Project description',
         default: 'Things...'
+      },
+      {
+        type: 'list',
+        name: 'projectType',
+        message: 'What type of NodeJS project are you doing?',
+        choices: [
+          'generic',
+          'static-site'
+        ],
+        default: 'generic'
       }
     ]
 
@@ -28,25 +38,21 @@ module.exports = class LionByte extends Generator {
       .then(props => {
         // To access props later use this.props.someAnswer;
         this.props = props
+
+        this.composeWith(require.resolve('../common'), {
+          arguments: [this.props.name, this.props.description]
+        })
       })
   }
 
   writing () {
     /* Files */
     const filenames = [
-      'src/index.js',
-      'test/index.js',
-      '.babelrc',
-      '.editorconfig',
-      '.gitattributes',
-      '.gitignore',
-      'CHANGELOG.md'
+      '.babelrc'
     ]
 
     const filesWithParams = [
-      'LICENSE',
-      'package.json',
-      'README.md'
+      'package.json'
     ]
 
     /* Writing */
@@ -76,18 +82,7 @@ module.exports = class LionByte extends Generator {
   install () {
     /* Install devDependencies */
     this.npmInstall([
-      'babel-core',
-      'babel-preset-env',
-      'babel-register',
-      'coveralls',
-      'chai',
-      'del',
-      'gulp',
-      'gulp-babel',
-      'gulp-plumber',
-      'mocha',
-      'nyc',
-      'standard'
+      'gulp-babel'
     ], {
       saveDev: true
     })
