@@ -17,7 +17,6 @@ module.exports = class extends Generator {
 
   writing () {
     const filenames = [
-      'src/index.js',
       'test/index.js',
       '.editorconfig',
       '.gitattributes',

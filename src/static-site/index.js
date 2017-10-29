@@ -32,6 +32,7 @@ module.exports = class extends Generator {
 
     const filesWithParams = [
       '.babelrc',
+      'src/index.js',
       'test/ui/basic.js',
       'webpack.common.js'
     ]
@@ -53,6 +54,14 @@ module.exports = class extends Generator {
         }
       )
     })
+
+    /* Add App.js for react projects */
+    if (this.props.react) {
+      this.fs.copy(
+        this.templatePath('src/App.js'),
+        this.destinationPath('src/App.js')
+      )
+    }
   }
 
   install () {

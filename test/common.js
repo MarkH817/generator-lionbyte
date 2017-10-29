@@ -15,7 +15,6 @@ describe('generator-lionbyte:common', function () {
 
   it('creates files', () => {
     assert.file([
-      'src/index.js',
       'test/index.js',
       '.editorconfig',
       '.gitattributes',
