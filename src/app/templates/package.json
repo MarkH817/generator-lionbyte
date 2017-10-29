@@ -22,7 +22,9 @@
       "before",
       "beforeEach",
       "describe",
-      "it"
+      "it"<% if (projectType === 'static-site') { %>,
+      "fixture",
+      "test"<% } %>
     ]
   }
 }

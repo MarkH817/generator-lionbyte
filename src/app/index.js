@@ -71,7 +71,8 @@ module.exports = class LionByte extends Generator {
           user: {
             name: this.user.git.name(),
             email: this.user.git.email()
-          }
+          },
+          projectType: this.props.projectType
         }
       )
     })

@@ -57,6 +57,7 @@ module.exports = class extends Generator {
   install () {
     /* Install devDependencies */
     this.npmInstall([
+      'babel-cli',
       'babel-core',
       'babel-preset-env',
       'babel-register',

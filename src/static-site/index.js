@@ -24,6 +24,7 @@ module.exports = class extends Generator {
       'pages/components/stylesheets.ejs',
       'pages/views/index.ejs',
       'styles/main.less',
+      'test/ui/index.js',
       'gulpfile.babel.js',
       'webpack.dev.js',
       'webpack.prod.js'
@@ -31,6 +32,7 @@ module.exports = class extends Generator {
 
     const filesWithParams = [
       '.babelrc',
+      'test/ui/basic.js',
       'webpack.common.js'
     ]
 
@@ -65,6 +67,8 @@ module.exports = class extends Generator {
       'gulp-less',
       'gulp-postcss',
       'gulp-webpack',
+      'node-static',
+      'testcafe',
       'webpack',
       'webpack-merge'
     ], {
@@ -75,7 +79,8 @@ module.exports = class extends Generator {
     if (this.props.react) {
       /* Install devDependencies */
       this.npmInstall([
-        'babel-preset-react'
+        'babel-preset-react',
+        'testcafe-react-selectors'
       ], {
         saveDev: true
       })
