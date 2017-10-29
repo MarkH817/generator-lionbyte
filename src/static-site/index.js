@@ -64,7 +64,6 @@ module.exports = class extends Generator {
       'gulp-htmlmin',
       'gulp-less',
       'gulp-postcss',
-      'gulp-sourcemaps',
       'gulp-webpack',
       'webpack',
       'webpack-merge'

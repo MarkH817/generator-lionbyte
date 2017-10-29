@@ -2,6 +2,7 @@ import gulp from 'gulp'
 import babel from 'gulp-babel'
 import plumber from 'gulp-plumber'
 import gulpSequence from 'gulp-sequence'
+import sourcemaps from 'gulp-sourcemaps'
 import del from 'del'
 
 gulp.task('clean', () => {
@@ -13,7 +14,9 @@ gulp.task('transpile', () => {
     'src/**/*.js'
   ])
     .pipe(plumber())
+    .pipe(sourcemaps.init())
     .pipe(babel())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/'))
 })
 

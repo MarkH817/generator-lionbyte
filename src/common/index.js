@@ -66,6 +66,7 @@ module.exports = class extends Generator {
       'gulp',
       'gulp-plumber',
       'gulp-sequence',
+      'gulp-sourcemaps',
       'mocha',
       'nyc',
       'standard'
