@@ -6,7 +6,7 @@ module.exports = class LionByte extends Generator {
   prompting () {
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the best ' + chalk.red('generator-lionbyte') + ' generator!'
+      `Welcome to the best ${chalk.red('generator-lionbyte')} generator!`
     ))
 
     const prompts = [
@@ -21,6 +21,16 @@ module.exports = class LionByte extends Generator {
         name: 'description',
         message: 'Project description',
         default: 'Things...'
+      },
+      {
+        type: 'list',
+        name: 'projectType',
+        message: 'What type of NodeJS project are you doing?',
+        choices: [
+          'generic',
+          'static-site'
+        ],
+        default: 'generic'
       }
     ]
 
@@ -28,35 +38,29 @@ module.exports = class LionByte extends Generator {
       .then(props => {
         // To access props later use this.props.someAnswer;
         this.props = props
+
+        this.composeWith(require.resolve('../common'), {
+          arguments: [this.props.name, this.props.description]
+        })
+
+        /* Run the appropriate subgenerator */
+        switch (this.props.projectType) {
+          case 'static-site':
+            this.composeWith(require.resolve('../static-site'))
+            break
+          default:
+            this.composeWith(require.resolve('../generic'))
+        }
       })
   }
 
   writing () {
     /* Files */
-    const filenames = [
-      'src/index.js',
-      'test/index.js',
-      '.babelrc',
-      '.editorconfig',
-      '.gitattributes',
-      '.gitignore',
-      'CHANGELOG.md'
-    ]
-
     const filesWithParams = [
-      'LICENSE',
-      'package.json',
-      'README.md'
+      'package.json'
     ]
 
     /* Writing */
-    filenames.map(file => {
-      this.fs.copy(
-        this.templatePath(file),
-        this.destinationPath(file)
-      )
-    })
-
     filesWithParams.map(file => {
       this.fs.copyTpl(
         this.templatePath(file),
@@ -67,7 +71,8 @@ module.exports = class LionByte extends Generator {
           user: {
             name: this.user.git.name(),
             email: this.user.git.email()
-          }
+          },
+          projectType: this.props.projectType
         }
       )
     })
@@ -76,18 +81,7 @@ module.exports = class LionByte extends Generator {
   install () {
     /* Install devDependencies */
     this.npmInstall([
-      'babel-core',
-      'babel-preset-env',
-      'babel-register',
-      'coveralls',
-      'chai',
-      'del',
-      'gulp',
-      'gulp-babel',
-      'gulp-plumber',
-      'mocha',
-      'nyc',
-      'standard'
+      'gulp-babel'
     ], {
       saveDev: true
     })

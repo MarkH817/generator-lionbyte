@@ -31,6 +31,7 @@
     "gulp-babel": "^7.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-sequence": "^0.4.6",
+    "gulp-sourcemaps": "^2.6.1",
     "mocha": "^4.0.1",
     "nsp": "^2.8.1",
     "nyc": "^11.2.1",
@@ -60,6 +61,12 @@
       "beforeEach",
       "describe",
       "it"
+    ],
+    "ignore": [
+      "src/app/templates/**/*.js",
+      "src/common/templates/**/*.js",
+      "src/generic/templates/**/*.js",
+      "src/static-site/templates/**/*.js"
     ]
   },
   "repository": "MarkH817/generator-lionbyte",
