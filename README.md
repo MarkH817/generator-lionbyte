@@ -27,6 +27,9 @@ yo lionbyte
  * Yeoman can be too opinionated at times but is easily convinced not to be.
  * Feel free to [learn more about Yeoman](http://yeoman.io/).
 
+## Contributing
+See [CONTRIBUTING](./CONTRIBUTING.md)
+
 ## License
 
 MIT © [Mark Hernandez]()
