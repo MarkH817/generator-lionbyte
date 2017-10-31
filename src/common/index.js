@@ -64,6 +64,7 @@ module.exports = class extends Generator {
       'chai',
       'del',
       'gulp',
+      'gulp-babel',
       'gulp-plumber',
       'gulp-sequence',
       'gulp-sourcemaps',
