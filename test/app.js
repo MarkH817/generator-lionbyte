@@ -11,6 +11,7 @@ describe('generator-lionbyte:app', function () {
       .withPrompts({
         name: 'test',
         description: 'testing the generator-lionbyte',
+        'version': '0.0.0',
         projectType: 'generic'
       })
     })
