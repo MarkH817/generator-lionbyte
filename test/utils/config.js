@@ -3,6 +3,7 @@ export const files = [
   '.editorconfig',
   '.gitignore',
   '.gitattributes',
+  '.travis.yml',
   'docs/ISSUE_TEMPLATE.md',
   'docs/PULL_REQUEST_TEMPLATE.md',
   'src/index.js',

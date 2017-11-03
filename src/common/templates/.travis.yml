@@ -1,0 +1,6 @@
+language: node_js
+
+node_js:
+  - "node"
+
+script: npm test<% if (projectType === 'static-site') { %> && npm run build && npm run test:ui<% } %>

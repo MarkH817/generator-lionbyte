@@ -14,6 +14,7 @@ module.exports = class Common extends Generator {
     ]
 
     const tplFiles = [
+      '.travis.yml',
       'LICENSE.md',
       'README.md',
       'CODE_OF_CONDUCT.md'
@@ -43,7 +44,8 @@ module.exports = class Common extends Generator {
           user: {
             name: this.user.git.name(),
             email: this.user.git.email()
-          }
+          },
+          projectType: this.config.get('projectType')
         }
       )
     })
