@@ -35,6 +35,7 @@ module.exports = class extends Generator {
   }
 
   writing () {
+    /* Set basic info */
     let info = {
       name: this.config.get('name'),
       description: this.config.get('description'),
@@ -42,29 +43,10 @@ module.exports = class extends Generator {
       author: {
         name: this.user.git.name(),
         email: this.user.git.email()
-      },
-      license: 'MIT',
-      bin: {},
-      main: 'src/index.js',
-      scripts: {
-        'build': 'gulp build',
-        'dev': 'gulp',
-        'lint': 'standard',
-        'lint:fix': 'standard --fix',
-        'report': 'nyc report --reporter=lcov',
-        'test': 'standard && nyc mocha --require babel-register'
-      },
-      standard: {
-        globals: [
-          'after',
-          'afterEach',
-          'before',
-          'beforeEach',
-          'describe',
-          'it'
-        ]
       }
     }
+    let tpl = this.fs.readJSON(this.templatePath('package.json'))
+    info = Object.assign(info, tpl)
 
     let updatedScripts = {}
 
