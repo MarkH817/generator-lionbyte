@@ -8,9 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Package subgenerator
 - Option to add cli to generic projects
+- Add .travis.yml template
+- Add other community files
+- Add mini.css-react to static-site by default
 
 ### Changed
-- Updates existing package.json data if available
+- Uses existing package.json data if available
+- Improved gulpfiles for readability
 
 ## [0.2.0] - 2017-10-29
 ### Added

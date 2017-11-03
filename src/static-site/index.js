@@ -86,6 +86,11 @@ module.exports = class StaticSite extends Generator {
       saveDev: true
     })
 
+    /* Install dependencies */
+    this.npmInstall([
+      'mini.css'
+    ])
+
     /* Optionally include react */
     if (this.props.react) {
       /* Install devDependencies */
@@ -98,6 +103,7 @@ module.exports = class StaticSite extends Generator {
 
       /* Install dependencies */
       this.npmInstall([
+        'mini.css-react',
         'react',
         'react-dom'
       ])

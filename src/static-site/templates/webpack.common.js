@@ -5,6 +5,7 @@ const options = {
   entry: {
     index: './src/index.js',
     vendor: [<% if (react) { %>
+      'mini.css-react',
       'react',
       'react-dom'<% } %>
     ]
