@@ -57,30 +57,31 @@ module.exports = class LionByte extends Generator {
 
     return this.prompt(prompts)
       .then(props => {
-        // To access props later use this.props.someAnswer;
-        this.props = props
-
-        this.config.set('name', props.name)
-        this.config.set('description', props.description)
-        this.config.set('version', props.version)
-        this.config.set('projectType', props.projectType)
-
-        this.composeWith(require.resolve('../common'), {
-          arguments: [props.name, props.description]
-        })
-
-        /* Run the appropriate subgenerator */
-        switch (props.projectType) {
-          case 'static-site':
-            this.composeWith(require.resolve('../static-site'))
-            break
-          default:
-            this.composeWith(require.resolve('../generic'))
-        }
-
-        /* Run package subgenerator */
-        /* Must be done at end */
-        this.composeWith(require.resolve('../package'))
+        this._compose(props)
       })
+  }
+
+  _compose (props) {
+    this.config.set('name', props.name)
+    this.config.set('description', props.description)
+    this.config.set('version', props.version)
+    this.config.set('projectType', props.projectType)
+
+    this.composeWith(require.resolve('../common'), {
+      arguments: [props.name, props.description]
+    })
+
+    /* Run the appropriate subgenerator */
+    switch (props.projectType) {
+      case 'static-site':
+        this.composeWith(require.resolve('../static-site'))
+        break
+      default:
+        this.composeWith(require.resolve('../generic'))
+    }
+
+    /* Run package subgenerator */
+    /* Must be done at end */
+    this.composeWith(require.resolve('../package'))
   }
 }
