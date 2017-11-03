@@ -11,3 +11,5 @@ export const files = [
   'package.json',
   'gulpfile.babel.js'
 ]
+
+export const timeout = 10000
