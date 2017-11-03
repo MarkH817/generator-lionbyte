@@ -15,24 +15,23 @@ import browserSync from 'browser-sync'
 import cssnano from 'cssnano'
 import del from 'del'
 
+const modes = ['dev', 'prod']
+
 gulp.task('clean', () => {
   return del('dist/**/*')
 })
 
-gulp.task('js:dev', () => {
-  return gulp.src('src/*.js')
-    .pipe(plumber())
-    .pipe(gulpWebpack(configDev, webpack))
-    .pipe(gulp.dest('dist/js'))
-    .pipe(browserSync.stream())
-})
+modes.map(mode => {
+  gulp.task(`js:${mode}`, () => {
+    let config = configDev
+    if (mode === 'prod') config = configProd
 
-gulp.task('js:prod', () => {
-  return gulp.src('src/*.js')
-    .pipe(plumber())
-    .pipe(gulpWebpack(configProd, webpack))
-    .pipe(gulp.dest('dist/js'))
-    .pipe(browserSync.stream())
+    return gulp.src('src/*.js')
+      .pipe(plumber())
+      .pipe(gulpWebpack(config, webpack))
+      .pipe(gulp.dest('dist/js'))
+      .pipe(browserSync.stream())
+  })
 })
 
 gulp.task('styles', () => {
@@ -74,11 +73,8 @@ gulp.task('watch', () => {
   })
 
   gulp.watch('src/**/*.js', ['js:dev'])
-
   gulp.watch('styles/**/*.less', ['styles'])
-
   gulp.watch('pages/**/*.ejs', ['pages'])
-
   gulp.watch('dist/**/*.html', browserSync.reload)
 })
 
