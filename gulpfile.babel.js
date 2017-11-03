@@ -5,48 +5,28 @@ import gulpSequence from 'gulp-sequence'
 import sourcemaps from 'gulp-sourcemaps'
 import del from 'del'
 
+const generators = [
+  'app',
+  'common',
+  'generic',
+  'package',
+  'static-site'
+]
+
 gulp.task('clean', () => {
   return del('generators/**/*')
 })
 
-gulp.task('templates:app', () => {
-  return gulp.src(['src/app/templates/**/*'], {
-    dot: true
+/* Create template subtasks */
+generators.map(gen => {
+  gulp.task(`templates:${gen}`, () => {
+    return gulp.src([`src/${gen}/templates/**/*`], {dot: true})
+      .pipe(plumber())
+      .pipe(gulp.dest(`generators/${gen}/templates`))
   })
-  .pipe(plumber())
-  .pipe(gulp.dest('generators/app/templates'))
 })
 
-gulp.task('templates:common', () => {
-  return gulp.src(['src/common/templates/**/*'], {
-    dot: true
-  })
-  .pipe(plumber())
-  .pipe(gulp.dest('generators/common/templates'))
-})
-
-gulp.task('templates:generic', () => {
-  return gulp.src(['src/generic/templates/**/*'], {
-    dot: true
-  })
-  .pipe(plumber())
-  .pipe(gulp.dest('generators/generic/templates'))
-})
-
-gulp.task('templates:static-site', () => {
-  return gulp.src(['src/static-site/templates/**/*'], {
-    dot: true
-  })
-  .pipe(plumber())
-  .pipe(gulp.dest('generators/static-site/templates'))
-})
-
-gulp.task('templates', [
-  'templates:app',
-  'templates:common',
-  'templates:generic',
-  'templates:static-site'
-])
+gulp.task('templates', generators.map(gen => `templates:${gen}`))
 
 gulp.task('transpile', () => {
   return gulp.src([
@@ -64,9 +44,7 @@ gulp.task('build', gulpSequence('clean', ['transpile', 'templates']))
 
 gulp.task('watch', () => {
   gulp.watch('src/**/*.js', ['transpile'])
-  gulp.watch('src/app/templates/**/*', ['templates:app'])
-  gulp.watch('src/common/templates/**/*', ['templates:common'])
-  gulp.watch('src/static-site/templates/**/*', ['templates:static-site'])
+  generators.map(gen => gulp.watch(`src/${gen}/templates/**/*`, [`templates:${gen}`]))
 })
 
 gulp.task('default', gulpSequence('build', 'watch'))
