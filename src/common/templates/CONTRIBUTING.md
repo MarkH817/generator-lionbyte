@@ -9,7 +9,7 @@ Ensure that both `node` and `npm` are installed on your machine.
 Make sure that you have the [StandardJS](https://standardjs.com/#are-there-text-editor-plugins) and [Editorconfig](http://editorconfig.org/) plugins installed for your respective text editors!
 
 ## Scripts
-- `npm run build` - Compiles `src` and outputs to `generators`
+- `npm run build` - Compiles `src` and outputs to `dist`
 - `npm run dev` - Watches `src` and rebuilds on file changes
 - `npm run lint` - Runs `standard` linter and outputs style errors. Used in `npm test`
 - `npm run lint:fix` - Fixes *most* of the style errors
@@ -17,9 +17,9 @@ Make sure that you have the [StandardJS](https://standardjs.com/#are-there-text-
 - `npm test` - Runs linter and test suite with code coverage details
 
 ## Local Testing
-Running `npm test` is pretty good for basic testing. To see how the generator runs, run `npm link` to "`install`" this generator to your global package list. (You might need to also run `npm i -g yo` if you haven't already.)
+Running `npm test` is pretty good for basic testing. To see how the package runs, run `npm link` to "`install`" this package to your global package list.
 
-`npm run build` compiles the code down to whatever version of node you are using. To speed up  development *even more*, open another terminal and run `npm run dev`. This watches the `src` directory and recompiles the code as you save.
+`npm run build` compiles the code down to es5. To speed up  development *even more*, open another terminal and run `npm run dev`. This watches the `src` directory and recompiles the code as you save.
 
 If your changes fail the test suite, either fix your code or refactor the tests to reflect the additions/changes. Also try to keep code coverage at least 90%.
 
