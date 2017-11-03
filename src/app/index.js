@@ -60,89 +60,27 @@ module.exports = class LionByte extends Generator {
         // To access props later use this.props.someAnswer;
         this.props = props
 
+        this.config.set('name', props.name)
+        this.config.set('description', props.description)
+        this.config.set('version', props.version)
+        this.config.set('projectType', props.projectType)
+
         this.composeWith(require.resolve('../common'), {
-          arguments: [this.props.name, this.props.description]
+          arguments: [props.name, props.description]
         })
 
         /* Run the appropriate subgenerator */
-        switch (this.props.projectType) {
+        switch (props.projectType) {
           case 'static-site':
             this.composeWith(require.resolve('../static-site'))
             break
           default:
             this.composeWith(require.resolve('../generic'))
         }
+
+        /* Run package subgenerator */
+        /* Must be done at end */
+        this.composeWith(require.resolve('../package'))
       })
-  }
-
-  writing () {
-    /* Default package.json */
-    let info = {
-      name: this.props.name,
-      description: this.props.description,
-      version: this.props.version,
-      author: {
-        name: this.user.git.name(),
-        email: this.user.git.email()
-      },
-      license: 'MIT',
-      main: 'src/index.js',
-      scripts: {
-        'build': 'gulp build',
-        'dev': 'gulp',
-        'lint': 'standard',
-        'lint:fix': 'standard --fix',
-        'report': 'nyc report --reporter=lcov',
-        'test': 'standard && nyc mocha --require babel-register'
-      },
-      standard: {
-        globals: [
-          'after',
-          'afterEach',
-          'before',
-          'beforeEach',
-          'describe',
-          'it'
-        ]
-      }
-    }
-
-    /* Project types
-    *  Additional info for each type
-    */
-    switch (this.props.projectType) {
-      case 'static-site':
-        let updatedScripts = Object.assign(info.scripts, {
-          'build:prod': 'gulp build:prod',
-          'test:ui': 'babel-node test/ui'
-        })
-        let updatedGlobals = [
-          ...info.standard.globals,
-          'fixture',
-          'test'
-        ]
-        let updatedStandard = Object.assign(info.standard, {
-          globals: updatedGlobals
-        })
-        info = Object.assign(info, {
-          scripts: updatedScripts,
-          standard: updatedStandard
-        })
-        break
-      default:
-    }
-
-    /* Check if package already exists */
-    /* If so, update file info instead */
-    if (this.fs.exists(this.destinationPath('package.json'))) {
-      let prev = this.fs.readJSON(this.destinationPath('package.json'))
-      info = Object.assign(prev, info)
-    }
-
-    /* Writing */
-    this.fs.writeJSON(
-      this.destinationPath('package.json'),
-      info
-    )
   }
 }
