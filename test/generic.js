@@ -22,6 +22,7 @@ describe('generator-lionbyte:generic', function () {
     it('creates files', () => {
       assert.file([
         'src/cli.js',
+        '.npmignore',
         ...files
       ])
     })
@@ -40,7 +41,10 @@ describe('generator-lionbyte:generic', function () {
     })
 
     it('creates files', () => {
-      assert.file(files)
+      assert.file([
+        '.npmignore',
+        ...files
+      ])
     })
   })
 })

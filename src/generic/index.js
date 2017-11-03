@@ -22,7 +22,8 @@ module.exports = class extends Generator {
     const filenames = [
       'src/index.js',
       '.babelrc',
-      'gulpfile.babel.js'
+      'gulpfile.babel.js',
+      '.npmignore'
     ]
 
     /* Writing */
