@@ -1,6 +1,6 @@
 import Generator from 'yeoman-generator'
 
-module.exports = class extends Generator {
+module.exports = class StaticSite extends Generator {
   prompting () {
     const prompts = [
       {
@@ -17,8 +17,8 @@ module.exports = class extends Generator {
       })
   }
 
-  writing () {
-    const filenames = [
+  _files () {
+    let staticFiles = [
       'pages/components/header.ejs',
       'pages/components/metas.ejs',
       'pages/components/stylesheets.ejs',
@@ -30,22 +30,32 @@ module.exports = class extends Generator {
       'webpack.prod.js'
     ]
 
-    const filesWithParams = [
+    if (this.props.react) {
+      staticFiles = [...staticFiles, 'src/App.js']
+    }
+
+    let tplFiles = [
       '.babelrc',
       'src/index.js',
       'test/ui/basic.js',
       'webpack.common.js'
     ]
 
+    return {staticFiles, tplFiles}
+  }
+
+  writing () {
+    const list = this._files()
+
     /* Writing */
-    filenames.map(file => {
+    list.staticFiles.map(file => {
       this.fs.copy(
         this.templatePath(file),
         this.destinationPath(file)
       )
     })
 
-    filesWithParams.map(file => {
+    list.tplFiles.map(file => {
       this.fs.copyTpl(
         this.templatePath(file),
         this.destinationPath(file),
@@ -54,14 +64,6 @@ module.exports = class extends Generator {
         }
       )
     })
-
-    /* Add App.js for react projects */
-    if (this.props.react) {
-      this.fs.copy(
-        this.templatePath('src/App.js'),
-        this.destinationPath('src/App.js')
-      )
-    }
   }
 
   install () {

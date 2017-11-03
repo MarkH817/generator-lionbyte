@@ -1,6 +1,6 @@
 import Generator from 'yeoman-generator'
 
-module.exports = class extends Generator {
+module.exports = class Generic extends Generator {
   prompting () {
     const prompts = [
       {
@@ -18,28 +18,31 @@ module.exports = class extends Generator {
       })
   }
 
-  writing () {
-    const filenames = [
+  _files () {
+    let staticFiles = [
       'src/index.js',
       '.babelrc',
       'gulpfile.babel.js',
       '.npmignore'
     ]
 
+    if (this.props.cli) {
+      staticFiles = [...staticFiles, 'src/cli.js']
+    }
+
+    return {staticFiles}
+  }
+
+  writing () {
+    const list = this._files()
+
     /* Writing */
-    filenames.map(file => {
+    list.staticFiles.map(file => {
       this.fs.copy(
         this.templatePath(file),
         this.destinationPath(file)
       )
     })
-
-    if (this.props.cli) {
-      this.fs.copy(
-        this.templatePath('src/cli.js'),
-        this.destinationPath('src/cli.js')
-      )
-    }
   }
 
   install () {

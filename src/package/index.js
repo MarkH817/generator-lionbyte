@@ -1,6 +1,6 @@
 import Generator from 'yeoman-generator'
 
-module.exports = class extends Generator {
+module.exports = class Package extends Generator {
   prompting () {
     let prompts = []
 
@@ -34,6 +34,67 @@ module.exports = class extends Generator {
     return sorted
   }
 
+  _projectAdjustments (info, type) {
+    let result = Object.assign({}, info)
+
+    let scripts = {}
+    let globals = []
+    let standard = {}
+
+    switch (type) {
+      case 'static-site':
+        scripts = Object.assign(result.scripts, {
+          'build:prod': 'gulp build:prod',
+          'test:ui': 'babel-node test/ui'
+        })
+
+        globals = [
+          ...result.standard.globals,
+          'fixture',
+          'test'
+        ].sort()
+
+        standard = Object.assign(result.standard, {globals})
+
+        result = Object.assign(result, {
+          scripts: this._sortObj(scripts),
+          standard: this._sortObj(standard)
+        })
+        break
+      default:
+        if (this.props.command) {
+          result = Object.assign(result, {
+            bin: {
+              [this.props.command]: 'dist/cli'
+            }
+          })
+        }
+
+        scripts = Object.assign(result.scripts, {
+          'start': 'babel-node src/index'
+        })
+
+        result = Object.assign(result, {
+          scripts: this._sortObj(scripts)
+        })
+        break
+    }
+
+    return result
+  }
+
+  _packageUpdate (info) {
+    let result = Object.assign({}, info)
+
+    if (this.fs.exists(this.destinationPath('package.json'))) {
+      let prev = this.fs.readJSON(this.destinationPath('package.json'))
+      result.bin = this._sortObj(Object.assign(prev.bin, info.bin))
+      result = Object.assign(prev, result)
+    }
+
+    return result
+  }
+
   writing () {
     /* Set basic info */
     let info = {
@@ -48,55 +109,10 @@ module.exports = class extends Generator {
     let tpl = this.fs.readJSON(this.templatePath('package.json'))
     info = Object.assign(info, tpl)
 
-    let updatedScripts = {}
-
-    switch (this.config.get('projectType')) {
-      case 'static-site':
-        updatedScripts = Object.assign(info.scripts, {
-          'build:prod': 'gulp build:prod',
-          'test:ui': 'babel-node test/ui'
-        })
-
-        let updatedGlobals = [
-          ...info.standard.globals,
-          'fixture',
-          'test'
-        ].sort()
-
-        let updatedStandard = Object.assign(info.standard, {
-          globals: updatedGlobals
-        })
-
-        info = Object.assign(info, {
-          scripts: this._sortObj(updatedScripts),
-          standard: this._sortObj(updatedStandard)
-        })
-        break
-      default:
-        if (this.props.command) {
-          info = Object.assign(info, {
-            bin: {
-              [this.props.command]: 'dist/cli'
-            }
-          })
-        }
-
-        updatedScripts = Object.assign(info.scripts, {
-          'start': 'babel-node src/index'
-        })
-
-        info = Object.assign(info, {
-          scripts: this._sortObj(updatedScripts)
-        })
-        break
-    }
+    info = this._projectAdjustments(info, this.config.get('projectType'))
 
     /* Update package.json if exists */
-    if (this.fs.exists(this.destinationPath('package.json'))) {
-      let prev = this.fs.readJSON(this.destinationPath('package.json'))
-      info.bin = this._sortObj(Object.assign(prev.bin, info.bin))
-      info = Object.assign(prev, info)
-    }
+    info = this._packageUpdate(info)
 
     this.fs.writeJSON(
       this.destinationPath('package.json'),

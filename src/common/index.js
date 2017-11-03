@@ -1,8 +1,8 @@
 import Generator from 'yeoman-generator'
 
-module.exports = class extends Generator {
-  writing () {
-    const filenames = [
+module.exports = class Common extends Generator {
+  _files () {
+    const staticFiles = [
       'test/index.js',
       '.editorconfig',
       '.gitattributes',
@@ -13,21 +13,27 @@ module.exports = class extends Generator {
       'CONTRIBUTING.md'
     ]
 
-    const filesWithParams = [
+    const tplFiles = [
       'LICENSE.md',
       'README.md',
       'CODE_OF_CONDUCT.md'
     ]
 
+    return {staticFiles, tplFiles}
+  }
+
+  writing () {
+    const list = this._files()
+
     /* Writing */
-    filenames.map(file => {
+    list.staticFiles.map(file => {
       this.fs.copy(
         this.templatePath(file),
         this.destinationPath(file)
       )
     })
 
-    filesWithParams.map(file => {
+    list.tplFiles.map(file => {
       this.fs.copyTpl(
         this.templatePath(file),
         this.destinationPath(file),
