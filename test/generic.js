@@ -1,10 +1,10 @@
 import path from 'path'
 import assert from 'yeoman-assert'
 import helpers from 'yeoman-test'
-import {files} from './utils/common'
+import {files, timeout} from './utils/config'
 
 describe('generator-lionbyte:generic', function () {
-  this.timeout(5000)
+  this.timeout(timeout)
 
   describe('scaffolds a generic project with cli', () => {
     before(() => {

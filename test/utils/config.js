@@ -3,11 +3,17 @@ export const files = [
   '.editorconfig',
   '.gitignore',
   '.gitattributes',
+  'docs/ISSUE_TEMPLATE.md',
+  'docs/PULL_REQUEST_TEMPLATE.md',
   'src/index.js',
   'test/index.js',
   'CHANGELOG.md',
+  'CONTRIBUTING.md',
+  'CODE_OF_CONDUCT.md',
   'LICENSE.md',
   'README.md',
   'package.json',
   'gulpfile.babel.js'
 ]
+
+export const timeout = 10000

@@ -7,12 +7,16 @@ module.exports = class extends Generator {
       '.editorconfig',
       '.gitattributes',
       '.gitignore',
-      'CHANGELOG.md'
+      'CHANGELOG.md',
+      'docs/ISSUE_TEMPLATE.md',
+      'docs/PULL_REQUEST_TEMPLATE.md',
+      'CONTRIBUTING.md'
     ]
 
     const filesWithParams = [
       'LICENSE.md',
-      'README.md'
+      'README.md',
+      'CODE_OF_CONDUCT.md'
     ]
 
     /* Writing */
