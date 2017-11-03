@@ -1,20 +1,6 @@
 import Generator from 'yeoman-generator'
 
 module.exports = class extends Generator {
-  constructor (args, opts) {
-    super(args, opts)
-
-    this.argument('name', {
-      type: String,
-      required: true
-    })
-
-    this.argument('description', {
-      type: String,
-      required: true
-    })
-  }
-
   writing () {
     const filenames = [
       'test/index.js',
@@ -42,8 +28,8 @@ module.exports = class extends Generator {
         this.templatePath(file),
         this.destinationPath(file),
         {
-          name: this.options.name,
-          description: this.options.description,
+          name: this.config.get('name'),
+          description: this.config.get('description'),
           user: {
             name: this.user.git.name(),
             email: this.user.git.email()
@@ -64,6 +50,7 @@ module.exports = class extends Generator {
       'chai',
       'del',
       'gulp',
+      'gulp-babel',
       'gulp-plumber',
       'gulp-sequence',
       'gulp-sourcemaps',

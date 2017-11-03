@@ -9,18 +9,39 @@ module.exports = class LionByte extends Generator {
       `Welcome to the best ${chalk.red('generator-lionbyte')} generator!`
     ))
 
+    /* Defaults */
+    let name = this.appname
+    let description = 'Things...'
+    let version = '0.0.0'
+
+    /* Check for existing package.json */
+    if (this.fs.exists(this.destinationPath('package.json'))) {
+      this.log('Looks like you already have a package.json')
+      /* Read the file and adjust the defaults */
+      let info = this.fs.readJSON(this.destinationPath('package.json'))
+      name = info.name
+      description = info.description
+      version = info.version
+    }
+
     const prompts = [
       {
         type: 'input',
         name: 'name',
         message: 'Your project name',
-        default: this.appname
+        default: name
       },
       {
         type: 'input',
         name: 'description',
         message: 'Project description',
-        default: 'Things...'
+        default: description
+      },
+      {
+        type: 'input',
+        name: 'version',
+        message: 'Project version',
+        default: version
       },
       {
         type: 'list',
@@ -39,55 +60,27 @@ module.exports = class LionByte extends Generator {
         // To access props later use this.props.someAnswer;
         this.props = props
 
+        this.config.set('name', props.name)
+        this.config.set('description', props.description)
+        this.config.set('version', props.version)
+        this.config.set('projectType', props.projectType)
+
         this.composeWith(require.resolve('../common'), {
-          arguments: [this.props.name, this.props.description]
+          arguments: [props.name, props.description]
         })
 
         /* Run the appropriate subgenerator */
-        switch (this.props.projectType) {
+        switch (props.projectType) {
           case 'static-site':
             this.composeWith(require.resolve('../static-site'))
             break
           default:
             this.composeWith(require.resolve('../generic'))
         }
+
+        /* Run package subgenerator */
+        /* Must be done at end */
+        this.composeWith(require.resolve('../package'))
       })
-  }
-
-  writing () {
-    /* Files */
-    const filesWithParams = [
-      'package.json'
-    ]
-
-    /* Writing */
-    filesWithParams.map(file => {
-      this.fs.copyTpl(
-        this.templatePath(file),
-        this.destinationPath(file),
-        {
-          name: this.props.name,
-          description: this.props.description,
-          user: {
-            name: this.user.git.name(),
-            email: this.user.git.email()
-          },
-          projectType: this.props.projectType
-        }
-      )
-    })
-  }
-
-  install () {
-    /* Install devDependencies */
-    this.npmInstall([
-      'gulp-babel'
-    ], {
-      saveDev: true
-    })
-
-    /* Install dependencies */
-    this.npmInstall([
-    ])
   }
 }
