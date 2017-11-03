@@ -83,18 +83,6 @@ module.exports = class Package extends Generator {
     return result
   }
 
-  _packageUpdate (info) {
-    let result = Object.assign({}, info)
-
-    if (this.fs.exists(this.destinationPath('package.json'))) {
-      let prev = this.fs.readJSON(this.destinationPath('package.json'))
-      result.bin = this._sortObj(Object.assign(prev.bin, info.bin))
-      result = Object.assign(prev, result)
-    }
-
-    return result
-  }
-
   writing () {
     /* Set basic info */
     let info = {
@@ -110,9 +98,6 @@ module.exports = class Package extends Generator {
     info = Object.assign(info, tpl)
 
     info = this._projectAdjustments(info, this.config.get('projectType'))
-
-    /* Update package.json if exists */
-    info = this._packageUpdate(info)
 
     this.fs.writeJSON(
       this.destinationPath('package.json'),

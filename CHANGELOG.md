@@ -13,7 +13,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add mini.css-react to static-site by default
 
 ### Changed
-- Uses existing package.json data if available
 - Improved gulpfiles for readability
 
 ## [0.2.0] - 2017-10-29

@@ -10,16 +10,6 @@ module.exports = class LionByte extends Generator {
       version: '0.0.0'
     }
 
-    /* Check for existing package.json */
-    if (this.fs.exists(this.destinationPath('package.json'))) {
-      this.log('Looks like you already have a package.json')
-      /* Read the file and adjust the defaults */
-      let info = this.fs.readJSON(this.destinationPath('package.json'))
-      defaults.name = info.name
-      defaults.description = info.description
-      defaults.version = info.version
-    }
-
     return defaults
   }
 
