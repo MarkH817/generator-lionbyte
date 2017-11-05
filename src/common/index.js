@@ -6,7 +6,6 @@ module.exports = class Common extends Generator {
       'test/index.js',
       '.editorconfig',
       '.gitattributes',
-      '.gitignore',
       'CHANGELOG.md',
       'docs/ISSUE_TEMPLATE.md',
       'docs/PULL_REQUEST_TEMPLATE.md',
@@ -35,21 +34,30 @@ module.exports = class Common extends Generator {
       )
     })
 
+    let data = {
+      name: this.config.get('name'),
+      description: this.config.get('description'),
+      user: {
+        name: this.user.git.name(),
+        email: this.user.git.email()
+      },
+      projectType: this.config.get('projectType')
+    }
+
     list.tplFiles.map(file => {
       this.fs.copyTpl(
         this.templatePath(file),
         this.destinationPath(file),
-        {
-          name: this.config.get('name'),
-          description: this.config.get('description'),
-          user: {
-            name: this.user.git.name(),
-            email: this.user.git.email()
-          },
-          projectType: this.config.get('projectType')
-        }
+        data
       )
     })
+
+    /* Must be manually renamed */
+    /* NPM keeps deleting this file */
+    this.fs.copy(
+      this.templatePath('_gitignore'),
+      this.destinationPath('.gitignore')
+    )
   }
 
   install () {
