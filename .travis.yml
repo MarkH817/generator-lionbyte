@@ -1,8 +1,8 @@
 language: node_js
 node_js:
   - "node"
-  - 7
-  - 6
+  - 8
+
 after_script:
   - npm run report
   - 'cat ./coverage/lcov.info | coveralls'

@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [0.2.2] - 2017-11-04
-## Fixed
+### Fixed
 - NOW FIXED the .gitignore issue
   - :) I love seeing a fix actually fixing something (:
 
@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Improved gulpfiles for readability
 
-## Fixed
+### Fixed
 - Have a .npmignore file in the same directory as the .gitignore file
   - NPM converted .gitignore to .npmignore when published
   - Resulted in 'file not found' error for other users
@@ -42,8 +42,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Separated template files among common, generic, and static-site subgenerators
 - Insert inline-sourcemaps to transpiled generators
-
-### Fixed
 
 ## [0.1.0] - 2017-10-28
 ### Added
