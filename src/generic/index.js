@@ -22,8 +22,7 @@ module.exports = class Generic extends Generator {
     let staticFiles = [
       'src/index.js',
       '.babelrc',
-      'gulpfile.babel.js',
-      '.npmignore'
+      'gulpfile.babel.js'
     ]
 
     if (this.props.cli) {

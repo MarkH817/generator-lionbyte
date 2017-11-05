@@ -17,7 +17,8 @@ module.exports = class Common extends Generator {
       '.travis.yml',
       'LICENSE.md',
       'README.md',
-      'CODE_OF_CONDUCT.md'
+      'CODE_OF_CONDUCT.md',
+      '.npmignore'
     ]
 
     return {staticFiles, tplFiles}

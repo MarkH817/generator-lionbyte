@@ -2,6 +2,7 @@ export const files = [
   '.babelrc',
   '.editorconfig',
   '.gitignore',
+  '.npmignore',
   '.gitattributes',
   '.travis.yml',
   'docs/ISSUE_TEMPLATE.md',
