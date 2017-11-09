@@ -77,11 +77,11 @@ module.exports = class StaticSite extends Generator {
       'gulp-htmlmin',
       'gulp-less',
       'gulp-postcss',
-      'gulp-webpack',
       'node-static',
       'testcafe',
       'webpack',
-      'webpack-merge'
+      'webpack-merge',
+      'webpack-stream'
     ], {
       saveDev: true
     })

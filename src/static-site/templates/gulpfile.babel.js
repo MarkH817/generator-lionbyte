@@ -6,8 +6,8 @@ import plumber from 'gulp-plumber'
 import postcss from 'gulp-postcss'
 import gulpSequence from 'gulp-sequence'
 import sourcemaps from 'gulp-sourcemaps'
-import gulpWebpack from 'gulp-webpack'
 import webpack from 'webpack'
+import webpackStream from 'webpack-stream'
 import configDev from './webpack.dev'
 import configProd from './webpack.prod'
 import autoprefixer from 'autoprefixer'
@@ -28,7 +28,7 @@ modes.map(mode => {
 
     return gulp.src('src/*.js')
       .pipe(plumber())
-      .pipe(gulpWebpack(config, webpack))
+      .pipe(webpackStream(config, webpack))
       .pipe(gulp.dest('dist/js'))
       .pipe(browserSync.stream())
   })
