@@ -44,5 +44,11 @@ describe('generator-lionbyte:generic', function () {
         ...files
       ])
     })
+
+    it('does not create cli.js', () => {
+      assert.noFile([
+        'src/cli.js'
+      ])
+    })
   })
 })

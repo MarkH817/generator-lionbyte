@@ -33,6 +33,17 @@ describe('generator-lionbyte:static-site', function () {
         ...files
       ])
     })
+
+    it('does not containt React in the configuration files', () => {
+      assert.noFileContent('.babelrc', /react/)
+      assert.noFileContent('webpack.common.js', /react/)
+    })
+
+    it('does not create App.js', () => {
+      assert.noFile([
+        'src/App.js'
+      ])
+    })
   })
 
   describe('scaffolds a static-site with React', () => {
@@ -62,6 +73,11 @@ describe('generator-lionbyte:static-site', function () {
         'webpack.prod.js',
         ...files
       ])
+    })
+
+    it('contains React in the configuration files', () => {
+      assert.fileContent('.babelrc', /react/)
+      assert.fileContent('webpack.common.js', /react/)
     })
   })
 })
