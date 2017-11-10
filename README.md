@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/MarkH817/generator-lionbyte.svg?branch=master)](https://travis-ci.org/MarkH817/generator-lionbyte)
 [![Dependency Status][daviddm-image]][daviddm-url]
 [![Coverage Status](https://coveralls.io/repos/github/MarkH817/generator-lionbyte/badge.svg?branch=master)](https://coveralls.io/github/MarkH817/generator-lionbyte?branch=master)
+[![BCH compliance](https://bettercodehub.com/edge/badge/MarkH817/generator-lionbyte?branch=master)](https://bettercodehub.com/)
 > Generate a NodeJS project
 
 ## Installation
