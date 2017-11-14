@@ -6,6 +6,10 @@ import {files, timeout} from './utils/config'
 describe('generator-lionbyte:generic', function () {
   this.timeout(timeout)
 
+  const projectFiles = [
+    'tasks/transpile.js'
+  ]
+
   describe('scaffolds a generic project with cli', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../src/app'))
@@ -22,6 +26,7 @@ describe('generator-lionbyte:generic', function () {
     it('creates files', () => {
       assert.file([
         'src/cli.js',
+        ...projectFiles,
         ...files
       ])
     })
@@ -41,6 +46,7 @@ describe('generator-lionbyte:generic', function () {
 
     it('creates files', () => {
       assert.file([
+        ...projectFiles,
         ...files
       ])
     })

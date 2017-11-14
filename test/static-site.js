@@ -6,6 +6,22 @@ import {files, timeout} from './utils/config'
 describe('generator-lionbyte:static-site', function () {
   this.timeout(timeout)
 
+  const projectFiles = [
+    'pages/components/header.ejs',
+    'pages/components/metas.ejs',
+    'pages/components/stylesheets.ejs',
+    'pages/views/index.ejs',
+    'styles/main.less',
+    'tasks/js.js',
+    'tasks/pages.js',
+    'tasks/styles.js',
+    'test/ui/basic.js',
+    'test/ui/index.js',
+    'webpack.common.js',
+    'webpack.dev.js',
+    'webpack.prod.js'
+  ]
+
   describe('scaffolds a static-site', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../src/app'))
@@ -20,16 +36,7 @@ describe('generator-lionbyte:static-site', function () {
 
     it('creates files', () => {
       assert.file([
-        'pages/components/header.ejs',
-        'pages/components/metas.ejs',
-        'pages/components/stylesheets.ejs',
-        'pages/views/index.ejs',
-        'styles/main.less',
-        'test/ui/basic.js',
-        'test/ui/index.js',
-        'webpack.common.js',
-        'webpack.dev.js',
-        'webpack.prod.js',
+        ...projectFiles,
         ...files
       ])
     })
@@ -60,17 +67,7 @@ describe('generator-lionbyte:static-site', function () {
 
     it('creates files', () => {
       assert.file([
-        'pages/components/header.ejs',
-        'pages/components/metas.ejs',
-        'pages/components/stylesheets.ejs',
-        'pages/views/index.ejs',
-        'src/App.js',
-        'styles/main.less',
-        'test/ui/basic.js',
-        'test/ui/index.js',
-        'webpack.common.js',
-        'webpack.dev.js',
-        'webpack.prod.js',
+        ...projectFiles,
         ...files
       ])
     })
