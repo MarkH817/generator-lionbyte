@@ -1,4 +1,5 @@
 import Generator from 'yeoman-generator'
+import {copy, copyTpl} from '../utils'
 
 module.exports = class StaticSite extends Generator {
   prompting () {
@@ -12,101 +13,122 @@ module.exports = class StaticSite extends Generator {
     ]
 
     return this.prompt(prompts)
-      .then(props => {
-        this.props = props
-      })
-  }
-
-  _files () {
-    let staticFiles = [
-      'pages/components/header.ejs',
-      'pages/components/metas.ejs',
-      'pages/components/stylesheets.ejs',
-      'pages/views/index.ejs',
-      'styles/main.less',
-      'test/ui/index.js',
-      'gulpfile.babel.js',
-      'webpack.dev.js',
-      'webpack.prod.js'
-    ]
-
-    if (this.props.react) {
-      staticFiles = [...staticFiles, 'src/App.js']
-    }
-
-    let tplFiles = [
-      '.babelrc',
-      'src/index.js',
-      'test/ui/basic.js',
-      'webpack.common.js'
-    ]
-
-    return {staticFiles, tplFiles}
+      .then(props => (this.props = props))
   }
 
   writing () {
-    const list = this._files()
+    const {staticFiles, tplFiles} = getFiles(this.props)
+    const data = {
+      react: this.props.react
+    }
 
     /* Writing */
-    list.staticFiles.map(file => {
-      this.fs.copy(
-        this.templatePath(file),
-        this.destinationPath(file)
-      )
-    })
-
-    list.tplFiles.map(file => {
-      this.fs.copyTpl(
-        this.templatePath(file),
-        this.destinationPath(file),
-        {
-          react: this.props.react
-        }
-      )
-    })
+    staticFiles.map(file => copy(this, file))
+    tplFiles.map(file => copyTpl(this, data, file))
   }
 
   install () {
+    const {devDependencies, dependencies} = getAllDependencies(this.props)
+
     /* Install devDependencies */
-    this.npmInstall([
-      'autoprefixer',
-      'browser-sync',
-      'babel-loader',
-      'cssnano',
-      'gulp-ejs',
-      'gulp-htmlmin',
-      'gulp-less',
-      'gulp-postcss',
-      'node-static',
-      'testcafe',
-      'webpack',
-      'webpack-merge',
-      'webpack-stream'
-    ], {
+    this.npmInstall(devDependencies, {
       saveDev: true
     })
 
     /* Install dependencies */
-    this.npmInstall([
-      'mini.css'
-    ])
-
-    /* Optionally include react */
-    if (this.props.react) {
-      /* Install devDependencies */
-      this.npmInstall([
-        'babel-preset-react',
-        'testcafe-react-selectors'
-      ], {
-        saveDev: true
-      })
-
-      /* Install dependencies */
-      this.npmInstall([
-        'mini.css-react',
-        'react',
-        'react-dom'
-      ])
-    }
+    this.npmInstall(dependencies)
   }
+}
+
+/* Helper Functions */
+function getFiles (props) {
+  const staticFiles = getStaticFiles(props)
+  const tplFiles = getTplFiles(props)
+
+  return {staticFiles, tplFiles}
+}
+
+function getStaticFiles (props) {
+  let files = [
+    'pages/components/header.ejs',
+    'pages/components/metas.ejs',
+    'pages/components/stylesheets.ejs',
+    'pages/views/index.ejs',
+    'styles/main.less',
+    'tasks/build.js',
+    'tasks/clean.js',
+    'tasks/js.js',
+    'tasks/pages.js',
+    'tasks/styles.js',
+    'tasks/watch.js',
+    'test/ui/index.js',
+    'gulpfile.babel.js',
+    'webpack.dev.js',
+    'webpack.prod.js'
+  ]
+
+  if (props.react) {
+    files = [...files, 'src/App.js']
+  }
+
+  return files
+}
+
+function getTplFiles (props) {
+  return [
+    '.babelrc',
+    'src/index.js',
+    'test/ui/basic.js',
+    'webpack.common.js'
+  ]
+}
+
+function getAllDependencies (props) {
+  const devDependencies = getDevDeps(props)
+  const dependencies = getDependencies(props)
+
+  return {devDependencies, dependencies}
+}
+
+function getDevDeps (props) {
+  let list = [
+    'autoprefixer',
+    'browser-sync',
+    'babel-loader',
+    'cssnano',
+    'gulp-ejs',
+    'gulp-htmlmin',
+    'gulp-less',
+    'gulp-postcss',
+    'node-static',
+    'testcafe',
+    'webpack',
+    'webpack-merge',
+    'webpack-stream'
+  ]
+
+  if (props.react) {
+    list = [
+      ...list,
+      'babel-preset-react',
+      'testcafe-react-selectors'
+    ]
+  }
+
+  return list
+}
+
+function getDependencies (props) {
+  let list = ['mini.css']
+
+  if (props.react) {
+    list = [
+      ...list,
+      'mini.css-react',
+      'react',
+      'react-dom'
+    ]
+  }
+
+  return list
 }

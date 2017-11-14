@@ -1,63 +1,18 @@
 import Generator from 'yeoman-generator'
+import {copy, copyTpl} from '../utils'
 
 module.exports = class Common extends Generator {
-  _files () {
-    const staticFiles = [
-      'test/index.js',
-      '.editorconfig',
-      '.gitattributes',
-      'CHANGELOG.md',
-      'docs/ISSUE_TEMPLATE.md',
-      'docs/PULL_REQUEST_TEMPLATE.md',
-      'CONTRIBUTING.md'
-    ]
-
-    const tplFiles = [
-      '.travis.yml',
-      'LICENSE.md',
-      'README.md',
-      'CODE_OF_CONDUCT.md',
-      '.npmignore'
-    ]
-
-    return {staticFiles, tplFiles}
-  }
-
   writing () {
-    const list = this._files()
+    const {staticFiles, tplFiles} = getFiles(this.props)
+    const data = getData(this)
 
     /* Writing */
-    list.staticFiles.map(file => {
-      this.fs.copy(
-        this.templatePath(file),
-        this.destinationPath(file)
-      )
-    })
-
-    let data = {
-      name: this.config.get('name'),
-      description: this.config.get('description'),
-      user: {
-        name: this.user.git.name(),
-        email: this.user.git.email()
-      },
-      projectType: this.config.get('projectType')
-    }
-
-    list.tplFiles.map(file => {
-      this.fs.copyTpl(
-        this.templatePath(file),
-        this.destinationPath(file),
-        data
-      )
-    })
+    staticFiles.map(file => copy(this, file))
+    tplFiles.map(file => copyTpl(this, data, file))
 
     /* Must be manually renamed */
     /* NPM keeps deleting this file */
-    this.fs.copy(
-      this.templatePath('_gitignore'),
-      this.destinationPath('.gitignore')
-    )
+    copy(this, '_gitignore', '.gitignore')
   }
 
   install () {
@@ -72,6 +27,7 @@ module.exports = class Common extends Generator {
       'del',
       'gulp',
       'gulp-babel',
+      'gulp-hub',
       'gulp-plumber',
       'gulp-sequence',
       'gulp-sourcemaps',
@@ -81,5 +37,51 @@ module.exports = class Common extends Generator {
     ], {
       saveDev: true
     })
+  }
+}
+
+/* Helper Functions */
+function getFiles (props) {
+  const staticFiles = getStaticFiles(props)
+  const tplFiles = getTplFiles(props)
+
+  return {staticFiles, tplFiles}
+}
+
+function getStaticFiles (props) {
+  let files = [
+    'test/index.js',
+    '.editorconfig',
+    '.gitattributes',
+    'CHANGELOG.md',
+    'docs/ISSUE_TEMPLATE.md',
+    'docs/PULL_REQUEST_TEMPLATE.md',
+    'CONTRIBUTING.md'
+  ]
+
+  return files
+}
+
+function getTplFiles (props) {
+  let files = [
+    '.travis.yml',
+    'LICENSE.md',
+    'README.md',
+    'CODE_OF_CONDUCT.md',
+    '.npmignore'
+  ]
+
+  return files
+}
+
+function getData (generator) {
+  return {
+    name: generator.config.get('name'),
+    description: generator.config.get('description'),
+    user: {
+      name: generator.user.git.name(),
+      email: generator.user.git.email()
+    },
+    projectType: generator.config.get('projectType')
   }
 }
