@@ -47,6 +47,10 @@ function getFiles (props) {
 function getStaticFiles (props) {
   let files = [
     'src/index.js',
+    'tasks/build.js',
+    'tasks/clean.js',
+    'tasks/transpile.js',
+    'tasks/watch.js',
     '.babelrc',
     'gulpfile.babel.js'
   ]

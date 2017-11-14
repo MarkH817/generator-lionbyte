@@ -27,6 +27,7 @@ module.exports = class Common extends Generator {
       'del',
       'gulp',
       'gulp-babel',
+      'gulp-hub',
       'gulp-plumber',
       'gulp-sequence',
       'gulp-sourcemaps',
