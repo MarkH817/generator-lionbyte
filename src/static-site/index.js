@@ -1,4 +1,5 @@
 import Generator from 'yeoman-generator'
+import {copy, copyTpl} from '../utils'
 
 module.exports = class StaticSite extends Generator {
   prompting () {
@@ -12,9 +13,7 @@ module.exports = class StaticSite extends Generator {
     ]
 
     return this.prompt(prompts)
-      .then(props => {
-        this.props = props
-      })
+      .then(props => (this.props = props))
   }
 
   _files () {
@@ -45,25 +44,14 @@ module.exports = class StaticSite extends Generator {
   }
 
   writing () {
-    const list = this._files()
+    const {staticFiles, tplFiles} = this._files()
+    const data = {
+      react: this.props.react
+    }
 
     /* Writing */
-    list.staticFiles.map(file => {
-      this.fs.copy(
-        this.templatePath(file),
-        this.destinationPath(file)
-      )
-    })
-
-    list.tplFiles.map(file => {
-      this.fs.copyTpl(
-        this.templatePath(file),
-        this.destinationPath(file),
-        {
-          react: this.props.react
-        }
-      )
-    })
+    staticFiles.map(file => copy(this, file))
+    tplFiles.map(file => copyTpl(this, data, file))
   }
 
   install () {

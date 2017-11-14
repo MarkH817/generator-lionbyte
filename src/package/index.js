@@ -17,9 +17,7 @@ module.exports = class Package extends Generator {
     }
 
     return this.prompt(prompts)
-      .then(props => {
-        this.props = props
-      })
+      .then(props => (this.props = props))
   }
 
   _sortObj (obj) {
@@ -94,6 +92,7 @@ module.exports = class Package extends Generator {
         email: this.user.git.email()
       }
     }
+
     let tpl = this.fs.readJSON(this.templatePath('package.json'))
     info = Object.assign(info, tpl)
 

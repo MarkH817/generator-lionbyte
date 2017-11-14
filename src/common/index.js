@@ -1,4 +1,5 @@
 import Generator from 'yeoman-generator'
+import {copy, copyTpl} from '../utils'
 
 module.exports = class Common extends Generator {
   _files () {
@@ -23,18 +24,8 @@ module.exports = class Common extends Generator {
     return {staticFiles, tplFiles}
   }
 
-  writing () {
-    const list = this._files()
-
-    /* Writing */
-    list.staticFiles.map(file => {
-      this.fs.copy(
-        this.templatePath(file),
-        this.destinationPath(file)
-      )
-    })
-
-    let data = {
+  _data () {
+    return {
       name: this.config.get('name'),
       description: this.config.get('description'),
       user: {
@@ -43,21 +34,19 @@ module.exports = class Common extends Generator {
       },
       projectType: this.config.get('projectType')
     }
+  }
 
-    list.tplFiles.map(file => {
-      this.fs.copyTpl(
-        this.templatePath(file),
-        this.destinationPath(file),
-        data
-      )
-    })
+  writing () {
+    const {staticFiles, tplFiles} = this._files()
+    const data = this._data()
+
+    /* Writing */
+    staticFiles.map(file => copy(this, file))
+    tplFiles.map(file => copyTpl(this, data, file))
 
     /* Must be manually renamed */
     /* NPM keeps deleting this file */
-    this.fs.copy(
-      this.templatePath('_gitignore'),
-      this.destinationPath('.gitignore')
-    )
+    copy(this, '_gitignore', '.gitignore')
   }
 
   install () {
