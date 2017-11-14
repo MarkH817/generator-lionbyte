@@ -10,31 +10,15 @@ module.exports = class Common extends Generator {
     staticFiles.map(file => copy(this, file))
     tplFiles.map(file => copyTpl(this, data, file))
 
-    /* Must be manually renamed */
-    /* NPM keeps deleting this file */
+    /* Must be manually renamed
+      NPM keeps deleting this file */
     copy(this, '_gitignore', '.gitignore')
   }
 
   install () {
     /* Install devDependencies */
-    this.npmInstall([
-      'babel-cli',
-      'babel-core',
-      'babel-preset-env',
-      'babel-register',
-      'coveralls',
-      'chai',
-      'del',
-      'gulp',
-      'gulp-babel',
-      'gulp-hub',
-      'gulp-plumber',
-      'gulp-sequence',
-      'gulp-sourcemaps',
-      'mocha',
-      'nyc',
-      'standard'
-    ], {
+    const {devDependencies} = getAllDependencies(this.props)
+    this.npmInstall(devDependencies, {
       saveDev: true
     })
   }
@@ -84,4 +68,36 @@ function getData (generator) {
     },
     projectType: generator.config.get('projectType')
   }
+}
+
+function getAllDependencies (props) {
+  const devDependencies = getDevDeps(props)
+  const dependencies = getDependencies(props)
+
+  return {devDependencies, dependencies}
+}
+
+function getDevDeps (props) {
+  return [
+    'babel-cli',
+    'babel-core',
+    'babel-preset-env',
+    'babel-register',
+    'coveralls',
+    'chai',
+    'del',
+    'gulp',
+    'gulp-babel',
+    'gulp-hub',
+    'gulp-plumber',
+    'gulp-sequence',
+    'gulp-sourcemaps',
+    'mocha',
+    'nyc',
+    'standard'
+  ]
+}
+
+function getDependencies (props) {
+  return []
 }
