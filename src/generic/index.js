@@ -1,4 +1,5 @@
 import Generator from 'yeoman-generator'
+import {copy} from '../utils'
 
 module.exports = class Generic extends Generator {
   prompting () {
@@ -18,30 +19,11 @@ module.exports = class Generic extends Generator {
       })
   }
 
-  _files () {
-    let staticFiles = [
-      'src/index.js',
-      '.babelrc',
-      'gulpfile.babel.js'
-    ]
-
-    if (this.props.cli) {
-      staticFiles = [...staticFiles, 'src/cli.js']
-    }
-
-    return {staticFiles}
-  }
-
   writing () {
-    const list = this._files()
+    const {staticFiles} = getFiles(this.props)
 
     /* Writing */
-    list.staticFiles.map(file => {
-      this.fs.copy(
-        this.templatePath(file),
-        this.destinationPath(file)
-      )
-    })
+    staticFiles.map(file => copy(this, file))
   }
 
   install () {
@@ -52,4 +34,32 @@ module.exports = class Generic extends Generator {
       ])
     }
   }
+}
+
+/* Helper Functions */
+function getFiles (props) {
+  const staticFiles = getStaticFiles(props)
+  const tplFiles = getTplFiles(props)
+
+  return {staticFiles, tplFiles}
+}
+
+function getStaticFiles (props) {
+  let files = [
+    'src/index.js',
+    '.babelrc',
+    'gulpfile.babel.js'
+  ]
+
+  if (props.cli) {
+    files = [...files, 'src/cli.js']
+  }
+
+  return files
+}
+
+function getTplFiles (props) {
+  let files = []
+
+  return files
 }

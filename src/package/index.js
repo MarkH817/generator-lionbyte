@@ -20,67 +20,6 @@ module.exports = class Package extends Generator {
       .then(props => (this.props = props))
   }
 
-  _sortObj (obj) {
-    let keys = Object.keys(obj).sort()
-
-    let sorted = {}
-
-    keys.map((key) => {
-      sorted = Object.assign(sorted, {[key]: obj[key]})
-    })
-
-    return sorted
-  }
-
-  _projectAdjustments (info, type) {
-    let result = Object.assign({}, info)
-
-    let scripts = {}
-    let globals = []
-    let standard = {}
-
-    switch (type) {
-      case 'static-site':
-        scripts = Object.assign(result.scripts, {
-          'build:prod': 'gulp build:prod',
-          'test:ui': 'babel-node test/ui'
-        })
-
-        globals = [
-          ...result.standard.globals,
-          'fixture',
-          'test'
-        ].sort()
-
-        standard = Object.assign(result.standard, {globals})
-
-        result = Object.assign(result, {
-          scripts: this._sortObj(scripts),
-          standard: this._sortObj(standard)
-        })
-        break
-      default:
-        if (this.props.command) {
-          result = Object.assign(result, {
-            bin: {
-              [this.props.command]: 'dist/cli'
-            }
-          })
-        }
-
-        scripts = Object.assign(result.scripts, {
-          'start': 'babel-node src/index'
-        })
-
-        result = Object.assign(result, {
-          scripts: this._sortObj(scripts)
-        })
-        break
-    }
-
-    return result
-  }
-
   writing () {
     /* Set basic info */
     let info = {
@@ -95,12 +34,75 @@ module.exports = class Package extends Generator {
 
     let tpl = this.fs.readJSON(this.templatePath('package.json'))
     info = Object.assign(info, tpl)
+    info = projectAdjustments(info, this.props, this.config.get('projectType'))
 
-    info = this._projectAdjustments(info, this.config.get('projectType'))
-
-    this.fs.writeJSON(
-      this.destinationPath('package.json'),
-      info
-    )
+    this.fs.writeJSON(this.destinationPath('package.json'), info)
   }
+}
+
+/* Helper functions */
+function sortObj (obj) {
+  let keys = Object.keys(obj).sort()
+  let sorted = {}
+
+  keys.map((key) => {
+    sorted = Object.assign(sorted, {[key]: obj[key]})
+  })
+
+  return sorted
+}
+
+function projectAdjustments (info, props, type) {
+  switch (type) {
+    case 'static-site':
+      return typeStaticSite(info, props)
+    default:
+      return typeGeneric(info, props)
+  }
+}
+
+function typeStaticSite (info, props) {
+  let result = Object.assign({}, info)
+
+  let scripts = Object.assign(result.scripts, {
+    'build:prod': 'gulp build:prod',
+    'test:ui': 'babel-node test/ui'
+  })
+
+  let globals = [
+    ...result.standard.globals,
+    'fixture',
+    'test'
+  ].sort()
+
+  let standard = Object.assign(result.standard, {globals})
+
+  result = Object.assign(result, {
+    scripts: sortObj(scripts),
+    standard: sortObj(standard)
+  })
+
+  return result
+}
+
+function typeGeneric (info, props) {
+  let result = Object.assign({}, info)
+
+  if (props.command) {
+    result = Object.assign(result, {
+      bin: {
+        [props.command]: 'dist/cli'
+      }
+    })
+  }
+
+  let scripts = Object.assign(result.scripts, {
+    'start': 'babel-node src/index'
+  })
+
+  result = Object.assign(result, {
+    scripts: sortObj(scripts)
+  })
+
+  return result
 }

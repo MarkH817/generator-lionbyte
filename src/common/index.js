@@ -2,43 +2,9 @@ import Generator from 'yeoman-generator'
 import {copy, copyTpl} from '../utils'
 
 module.exports = class Common extends Generator {
-  _files () {
-    const staticFiles = [
-      'test/index.js',
-      '.editorconfig',
-      '.gitattributes',
-      'CHANGELOG.md',
-      'docs/ISSUE_TEMPLATE.md',
-      'docs/PULL_REQUEST_TEMPLATE.md',
-      'CONTRIBUTING.md'
-    ]
-
-    const tplFiles = [
-      '.travis.yml',
-      'LICENSE.md',
-      'README.md',
-      'CODE_OF_CONDUCT.md',
-      '.npmignore'
-    ]
-
-    return {staticFiles, tplFiles}
-  }
-
-  _data () {
-    return {
-      name: this.config.get('name'),
-      description: this.config.get('description'),
-      user: {
-        name: this.user.git.name(),
-        email: this.user.git.email()
-      },
-      projectType: this.config.get('projectType')
-    }
-  }
-
   writing () {
-    const {staticFiles, tplFiles} = this._files()
-    const data = this._data()
+    const {staticFiles, tplFiles} = getFiles(this.props)
+    const data = getData(this)
 
     /* Writing */
     staticFiles.map(file => copy(this, file))
@@ -70,5 +36,51 @@ module.exports = class Common extends Generator {
     ], {
       saveDev: true
     })
+  }
+}
+
+/* Helper Functions */
+function getFiles (props) {
+  const staticFiles = getStaticFiles(props)
+  const tplFiles = getTplFiles(props)
+
+  return {staticFiles, tplFiles}
+}
+
+function getStaticFiles (props) {
+  let files = [
+    'test/index.js',
+    '.editorconfig',
+    '.gitattributes',
+    'CHANGELOG.md',
+    'docs/ISSUE_TEMPLATE.md',
+    'docs/PULL_REQUEST_TEMPLATE.md',
+    'CONTRIBUTING.md'
+  ]
+
+  return files
+}
+
+function getTplFiles (props) {
+  let files = [
+    '.travis.yml',
+    'LICENSE.md',
+    'README.md',
+    'CODE_OF_CONDUCT.md',
+    '.npmignore'
+  ]
+
+  return files
+}
+
+function getData (generator) {
+  return {
+    name: generator.config.get('name'),
+    description: generator.config.get('description'),
+    user: {
+      name: generator.user.git.name(),
+      email: generator.user.git.email()
+    },
+    projectType: generator.config.get('projectType')
   }
 }
