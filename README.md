@@ -21,6 +21,26 @@ Then generate your new project:
 yo lionbyte
 ```
 
+## Features
+This generator scaffolds the following NodeJS project types:
+- Generic (Default)
+  - Basic project type
+  - Uses babel-preset-env for ES6+ features
+  - Includes option to make a CLI portion
+- Static Site
+  - Makes a static website
+  - Development/Production configurations for webpack
+  - BrowserSync - Local development with auto-reloading browsers
+  - Pages
+    - EJS - HTML Templating
+    - HTMLMin - Minification
+  - Styles
+    - Autoprefixer
+    - CSSNano - Minification
+    - LESS CSS Preprocessor 
+    - mini.css CSS Framework
+  - Option to include React
+
 ## Getting To Know Yeoman
 
  * Yeoman has a heart of gold.
@@ -33,7 +53,7 @@ See [CONTRIBUTING](./CONTRIBUTING.md)
 
 ## License
 
-MIT © [Mark Hernandez]()
+MIT © [Mark Hernandez](https://www.github.com/MarkH817)
 
 
 [npm-image]: https://badge.fury.io/js/generator-lionbyte.svg
