@@ -1,3 +1,4 @@
+/** @module */
 import Generator from 'yeoman-generator'
 import chalk from 'chalk'
 import yosay from 'yosay'

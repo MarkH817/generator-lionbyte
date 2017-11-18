@@ -1,3 +1,4 @@
+/** @module */
 import Generator from 'yeoman-generator'
 import {copy, copyTpl} from '../utils'
 
@@ -41,6 +42,8 @@ function getStaticFiles (props) {
     'docs/ISSUE_TEMPLATE.md',
     'docs/PULL_REQUEST_TEMPLATE.md',
     'tasks/clean.js',
+    'tasks/docs.js',
+    'tasks/utils.js',
     'CONTRIBUTING.md'
   ]
 

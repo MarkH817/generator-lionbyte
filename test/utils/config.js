@@ -10,6 +10,8 @@ export const files = [
   'src/index.js',
   'tasks/build.js',
   'tasks/clean.js',
+  'tasks/docs.js',
+  'tasks/utils.js',
   'tasks/watch.js',
   'test/index.js',
   'CHANGELOG.md',

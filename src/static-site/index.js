@@ -1,3 +1,4 @@
+/** @module */
 import Generator from 'yeoman-generator'
 import {copy, copyTpl} from '../utils'
 
