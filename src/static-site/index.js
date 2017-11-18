@@ -56,7 +56,6 @@ function getStaticFiles (props) {
     'pages/views/index.ejs',
     'styles/main.less',
     'tasks/build.js',
-    'tasks/clean.js',
     'tasks/js.js',
     'tasks/pages.js',
     'tasks/styles.js',

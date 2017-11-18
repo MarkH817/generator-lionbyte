@@ -40,6 +40,7 @@ function getStaticFiles (props) {
     'CHANGELOG.md',
     'docs/ISSUE_TEMPLATE.md',
     'docs/PULL_REQUEST_TEMPLATE.md',
+    'tasks/clean.js',
     'CONTRIBUTING.md'
   ]
 
