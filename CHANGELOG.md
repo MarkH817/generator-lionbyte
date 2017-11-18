@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Add gulp-hub
+- Add jsdoc-to-markdown
 ### Fixed
 - Update dependency for static-site
   - `gulp-webpack` -> `webpack-stream`
