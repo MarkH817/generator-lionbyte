@@ -3,7 +3,7 @@ import webpack from 'webpack'
 
 const options = {
   entry: {
-    index: './src/index.js',
+    index: path.join(__dirname, './src/index.js'),
     vendor: [<% if (react) { %>
       'mini.css-react',
       'react',

@@ -2,8 +2,8 @@ import gulp from 'gulp'
 import plumber from 'gulp-plumber'
 import webpack from 'webpack'
 import webpackStream from 'webpack-stream'
-import configDev from './webpack.dev'
-import configProd from './webpack.prod'
+import configDev from '../webpack.dev'
+import configProd from '../webpack.prod'
 import browserSync from 'browser-sync'
 
 const modes = ['dev', 'prod']
