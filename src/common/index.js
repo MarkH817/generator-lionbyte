@@ -90,6 +90,7 @@ function getDevDeps (props) {
     'coveralls',
     'chai',
     'del',
+    'jsdoc-to-markdown',
     'gulp',
     'gulp-babel',
     'gulp-hub',
