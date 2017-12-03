@@ -11,8 +11,5 @@ Before you submit a pull request, complete this checklist
 ## Issues Resolved
 - Resolves #
 
-## Changes Proposed
-- [Insert changes]
-
-## Any Additional Information
-[Any comments]
+## Description
+[Insert content here]
