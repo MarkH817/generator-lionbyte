@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Insert more rules to the .gitattribute file
 ### Fixed
 - Fix BrowserSync path bug
+### Removed
+- TestCafe from static-site template due to insecure dependencies
 
-## [0.3.0] - 2017-11-18
+## [0.3.1] - 2017-11-18
 ### Fixed
 - Fix require paths in static-site subgenerator
 
