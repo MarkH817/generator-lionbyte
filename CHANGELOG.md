@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Addded
 - Insert more rules to the .gitattribute file
+### Changed
+- Shorten the pull request template
+
 ### Fixed
 - Fix BrowserSync path bug
 ### Removed
@@ -20,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add gulp-hub
 - Add jsdoc-to-markdown
+
 ### Fixed
 - Update dependency for static-site
   - `gulp-webpack` -> `webpack-stream`
