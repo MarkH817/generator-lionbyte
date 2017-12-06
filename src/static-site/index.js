@@ -61,7 +61,6 @@ function getStaticFiles (props) {
     'tasks/pages.js',
     'tasks/styles.js',
     'tasks/watch.js',
-    'test/ui/index.js',
     'gulpfile.babel.js',
     'webpack.dev.js',
     'webpack.prod.js'
@@ -78,7 +77,6 @@ function getTplFiles (props) {
   return [
     '.babelrc',
     'src/index.js',
-    'test/ui/basic.js',
     'webpack.common.js'
   ]
 }
@@ -100,8 +98,6 @@ function getDevDeps (props) {
     'gulp-htmlmin',
     'gulp-less',
     'gulp-postcss',
-    'node-static',
-    'testcafe',
     'webpack',
     'webpack-merge',
     'webpack-stream'
@@ -110,8 +106,7 @@ function getDevDeps (props) {
   if (props.react) {
     list = [
       ...list,
-      'babel-preset-react',
-      'testcafe-react-selectors'
+      'babel-preset-react'
     ]
   }
 

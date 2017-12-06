@@ -15,8 +15,6 @@ describe('generator-lionbyte:static-site', function () {
     'tasks/js.js',
     'tasks/pages.js',
     'tasks/styles.js',
-    'test/ui/basic.js',
-    'test/ui/index.js',
     'webpack.common.js',
     'webpack.dev.js',
     'webpack.prod.js'
