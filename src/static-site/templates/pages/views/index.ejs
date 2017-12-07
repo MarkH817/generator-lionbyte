@@ -8,16 +8,20 @@
     <% include ../components/stylesheets %>
   </head>
   <body>
-    <% include ../components/header %>
+    <!--<% include ../components/header %>-->
 
     <div class="container">
-      <h1>Welcome</h1>
+      <div class="row">
+        <section class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+          <h1>Welcome</h1>
+        </section>
 
-      <main class="row" id="root"></main>
+        <main class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1" id="root"></main>
 
-      <noscript>
-        <h3>Hey, JavaScript needs to be enabled to use this app.</h3>
-      </noscript>
+        <noscript class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
+          <h3>Hey, JavaScript needs to be enabled to use this app.</h3>
+        </noscript>
+      </div>
     </div>
 
     <script src="js/vendor.js" charset="utf-8"></script>
