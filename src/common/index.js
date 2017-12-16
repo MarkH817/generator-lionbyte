@@ -42,7 +42,6 @@ function getStaticFiles (props) {
     'docs/ISSUE_TEMPLATE.md',
     'docs/PULL_REQUEST_TEMPLATE.md',
     'tasks/clean.js',
-    'tasks/docs.js',
     'tasks/utils.js',
     'CONTRIBUTING.md'
   ]
@@ -90,7 +89,6 @@ function getDevDeps (props) {
     'chai',
     'coveralls',
     'del',
-    'jsdoc-to-markdown',
     'gulp',
     'gulp-babel',
     'gulp-hub',
