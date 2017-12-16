@@ -68,6 +68,7 @@
       "src/app/templates/**/*.js",
       "src/common/templates/**/*.js",
       "src/generic/templates/**/*.js",
+      "src/server/templates/**/*.js",
       "src/static-site/templates/**/*.js"
     ]
   },

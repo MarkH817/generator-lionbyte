@@ -24,6 +24,7 @@ module.exports = class LionByte extends Generator {
 function getProjectTypes () {
   return [
     'generic',
+    'server',
     'static-site'
   ]
 }
