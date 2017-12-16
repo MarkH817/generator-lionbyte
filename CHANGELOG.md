@@ -10,9 +10,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Uses Express
   - Server reloading with Nodemon
 
+### Renoved
+- Remove jsdoc-to-markdown
+
 ## [0.3.1] - 2017-12-06
 ### Addded
 - Insert more rules to the .gitattribute file
+
 ### Changed
 - Shorten the pull request template
 
