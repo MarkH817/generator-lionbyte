@@ -3,5 +3,6 @@ export const generators = [
   'common',
   'generic',
   'package',
+  'server',
   'static-site'
 ]

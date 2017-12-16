@@ -57,6 +57,8 @@ function projectAdjustments (info, props, type) {
   switch (type) {
     case 'static-site':
       return typeStaticSite(info, props)
+    case 'server':
+      return typeServer(info, props)
     default:
       return typeGeneric(info, props)
   }
@@ -99,6 +101,21 @@ function typeGeneric (info, props) {
 
   let scripts = Object.assign(result.scripts, {
     'start': 'babel-node src/index'
+  })
+
+  result = Object.assign(result, {
+    scripts: sortObj(scripts)
+  })
+
+  return result
+}
+
+function typeServer (info, props) {
+  let result = Object.assign({}, info)
+
+  let scripts = Object.assign(result.scripts, {
+    'serve': 'node dist/index',
+    'start': 'nodemon src/index --exec babel-node'
   })
 
   result = Object.assign(result, {
