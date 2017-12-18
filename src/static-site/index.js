@@ -1,4 +1,3 @@
-/** @module */
 import Generator from 'yeoman-generator'
 import {copy, copyTpl} from '../utils'
 
@@ -49,7 +48,7 @@ function getFiles (props) {
   return {staticFiles, tplFiles}
 }
 
-function getStaticFiles (props) {
+function getStaticFiles ({react}) {
   let files = [
     'pages/components/header.ejs',
     'pages/components/metas.ejs',
@@ -66,11 +65,11 @@ function getStaticFiles (props) {
     'webpack.prod.js'
   ]
 
-  if (props.react) {
-    files = [...files, 'src/App.js']
+  if (react) {
+    return [...files, 'src/App.js']
+  } else {
+    return files
   }
-
-  return files
 }
 
 function getTplFiles (props) {
@@ -88,7 +87,7 @@ function getAllDependencies (props) {
   return {devDependencies, dependencies}
 }
 
-function getDevDeps (props) {
+function getDevDeps ({react}) {
   let list = [
     'autoprefixer',
     'browser-sync',
@@ -103,27 +102,24 @@ function getDevDeps (props) {
     'webpack-stream'
   ]
 
-  if (props.react) {
-    list = [
-      ...list,
-      'babel-preset-react'
-    ]
+  if (react) {
+    return [...list, 'babel-preset-react']
+  } else {
+    return list
   }
-
-  return list
 }
 
-function getDependencies (props) {
+function getDependencies ({react}) {
   let list = ['mini.css']
 
-  if (props.react) {
-    list = [
+  if (react) {
+    return [
       ...list,
       'mini.css-react',
       'react',
       'react-dom'
     ]
+  } else {
+    return list
   }
-
-  return list
 }

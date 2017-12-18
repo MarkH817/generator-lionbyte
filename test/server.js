@@ -7,6 +7,7 @@ describe('generator-lionbyte:server', function () {
   this.timeout(timeout)
 
   const projectFiles = [
+    ...files,
     'src/app.js',
     'src/routes/index.js'
   ]
@@ -14,19 +15,17 @@ describe('generator-lionbyte:server', function () {
   describe('scaffolds a server project', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../src/app'))
-      .withPrompts({
-        name: 'test',
-        description: 'testing server',
-        version: '0.0.0',
-        projectType: 'server'
-      })
+        .withPrompts({
+          name: 'test',
+          description: 'testing server',
+          version: '0.0.0',
+          projectType: 'server'
+        })
     })
 
-    it('creates files', () => {
-      assert.file([
-        ...files,
-        ...projectFiles
-      ])
+    it('creates files', (done) => {
+      assert.file(projectFiles)
+      done()
     })
   })
 })

@@ -26,3 +26,14 @@ export function copyTpl (generator, data, filename, output = filename) {
     data
   )
 }
+
+export function sortObj (obj) {
+  let keys = Object.keys(obj).sort()
+  let sorted = {}
+
+  keys.map((key) => {
+    sorted = Object.assign(sorted, {[key]: obj[key]})
+  })
+
+  return sorted
+}

@@ -1,4 +1,3 @@
-/** @module */
 import Generator from 'yeoman-generator'
 import {copy} from '../utils'
 
@@ -56,10 +55,10 @@ function getStaticFiles (props) {
   ]
 
   if (props.cli) {
-    files = [...files, 'src/cli.js']
+    return [...files, 'src/cli.js']
+  } else {
+    return files
   }
-
-  return files
 }
 
 function getTplFiles (props) {
