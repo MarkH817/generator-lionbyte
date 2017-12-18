@@ -6,15 +6,12 @@ module.exports = class Package extends Generator {
     let prompts = []
 
     if (this.config.get('cli')) {
-      prompts = [
-        ...prompts,
-        {
-          type: String,
-          name: 'command',
-          message: 'What is the command name for your cli?',
-          default: this.config.get('name')
-        }
-      ]
+      prompts = [{
+        type: String,
+        name: 'command',
+        message: 'What is the command name for your cli?',
+        default: this.config.get('name')
+      }]
     }
 
     return this.prompt(prompts)
