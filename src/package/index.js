@@ -1,4 +1,3 @@
-/** @module */
 import Generator from 'yeoman-generator'
 
 module.exports = class Package extends Generator {
