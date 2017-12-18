@@ -1,4 +1,3 @@
-/** @module */
 import Generator from 'yeoman-generator'
 import {copy, copyTpl} from '../utils'
 
@@ -19,9 +18,7 @@ module.exports = class Common extends Generator {
   install () {
     /* Install devDependencies */
     const {devDependencies} = getAllDependencies(this.props)
-    this.npmInstall(devDependencies, {
-      saveDev: true
-    })
+    this.npmInstall(devDependencies, {saveDev: true})
   }
 }
 
@@ -35,14 +32,15 @@ function getFiles (props) {
 
 function getStaticFiles (props) {
   let files = [
-    'test/index.js',
     '.editorconfig',
     '.gitattributes',
-    'CHANGELOG.md',
+    '.travis.yml',
     'docs/ISSUE_TEMPLATE.md',
     'docs/PULL_REQUEST_TEMPLATE.md',
     'tasks/clean.js',
     'tasks/utils.js',
+    'test/index.js',
+    'CHANGELOG.md',
     'CONTRIBUTING.md'
   ]
 
@@ -51,11 +49,10 @@ function getStaticFiles (props) {
 
 function getTplFiles (props) {
   let files = [
-    '.travis.yml',
-    'LICENSE.md',
-    'README.md',
+    '.npmignore',
     'CODE_OF_CONDUCT.md',
-    '.npmignore'
+    'LICENSE.md',
+    'README.md'
   ]
 
   return files
