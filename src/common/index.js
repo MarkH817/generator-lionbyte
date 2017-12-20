@@ -1,9 +1,9 @@
 import Generator from 'yeoman-generator'
-import {copy, copyTpl} from '../utils'
+import { copy, copyTpl } from '../utils'
 
 module.exports = class Common extends Generator {
   writing () {
-    const {staticFiles, tplFiles} = getFiles(this.props)
+    const { staticFiles, tplFiles } = getFiles(this.props)
     const data = getData(this)
 
     /* Writing */
@@ -17,8 +17,8 @@ module.exports = class Common extends Generator {
 
   install () {
     /* Install devDependencies */
-    const {devDependencies} = getAllDependencies(this.props)
-    this.npmInstall(devDependencies, {saveDev: true})
+    const { devDependencies } = getAllDependencies(this.props)
+    this.npmInstall(devDependencies, { saveDev: true })
   }
 }
 
@@ -27,7 +27,7 @@ function getFiles (props) {
   const staticFiles = getStaticFiles(props)
   const tplFiles = getTplFiles(props)
 
-  return {staticFiles, tplFiles}
+  return { staticFiles, tplFiles }
 }
 
 function getStaticFiles (props) {
@@ -48,12 +48,7 @@ function getStaticFiles (props) {
 }
 
 function getTplFiles (props) {
-  let files = [
-    '.npmignore',
-    'CODE_OF_CONDUCT.md',
-    'LICENSE.md',
-    'README.md'
-  ]
+  let files = ['.npmignore', 'CODE_OF_CONDUCT.md', 'LICENSE.md', 'README.md']
 
   return files
 }
@@ -74,7 +69,7 @@ function getAllDependencies (props) {
   const devDependencies = getDevDeps(props)
   const dependencies = getDependencies(props)
 
-  return {devDependencies, dependencies}
+  return { devDependencies, dependencies }
 }
 
 function getDevDeps (props) {

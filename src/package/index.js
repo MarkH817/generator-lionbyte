@@ -1,21 +1,22 @@
 import Generator from 'yeoman-generator'
-import {sortObj} from '../utils'
+import { sortObj } from '../utils'
 
 module.exports = class Package extends Generator {
   prompting () {
     let prompts = []
 
     if (this.config.get('cli')) {
-      prompts = [{
-        type: String,
-        name: 'command',
-        message: 'What is the command name for your cli?',
-        default: this.config.get('name')
-      }]
+      prompts = [
+        {
+          type: String,
+          name: 'command',
+          message: 'What is the command name for your cli?',
+          default: this.config.get('name')
+        }
+      ]
     }
 
-    return this.prompt(prompts)
-      .then(props => (this.props = props))
+    return this.prompt(prompts).then(props => (this.props = props))
   }
 
   writing () {
@@ -64,14 +65,16 @@ function typeStaticSite (info, props) {
   })
 }
 
-function typeGeneric (info, {command}) {
+function typeGeneric (info, { command }) {
   /* Define cli command only if it's provided */
-  let bin = command ? {
-    [command]: 'dist/cli'
-  } : {}
+  let bin = command
+    ? {
+      [command]: 'dist/cli'
+    }
+    : {}
 
   let scripts = Object.assign(info.scripts, {
-    'start': 'babel-node src/index'
+    start: 'babel-node src/index'
   })
 
   return Object.assign(info, {
@@ -82,8 +85,8 @@ function typeGeneric (info, {command}) {
 
 function typeServer (info, props) {
   let scripts = Object.assign(info.scripts, {
-    'serve': 'node dist/index',
-    'start': 'nodemon src/index --exec babel-node'
+    serve: 'node dist/index',
+    start: 'nodemon src/index --exec babel-node'
   })
 
   return Object.assign(info, {

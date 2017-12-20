@@ -5,27 +5,22 @@ import yosay from 'yosay'
 module.exports = class LionByte extends Generator {
   prompting () {
     // Have Yeoman greet the user.
-    this.log(yosay(
-      `Welcome to the best ${chalk.red('generator-lionbyte')} generator!`
-    ))
+    this.log(
+      yosay(`Welcome to the best ${chalk.red('generator-lionbyte')} generator!`)
+    )
 
     const prompts = getPrompts(this)
 
-    return this.prompt(prompts)
-      .then(props => {
-        saveConfig(this, props)
-        compose(this, props)
-      })
+    return this.prompt(prompts).then(props => {
+      saveConfig(this, props)
+      compose(this, props)
+    })
   }
 }
 
 /* Helper Functions */
 function getProjectTypes () {
-  return [
-    'generic',
-    'server',
-    'static-site'
-  ]
+  return ['generic', 'server', 'static-site']
 }
 
 function getPrompts (generator) {
@@ -72,11 +67,7 @@ function compose (generator, props) {
 }
 
 function getSubgenerators (projectType) {
-  let subgenerators = [
-    'common',
-    projectType,
-    'package'
-  ]
+  let subgenerators = ['common', projectType, 'package']
 
   return subgenerators.map(sub => `../${sub}`)
 }

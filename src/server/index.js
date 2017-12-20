@@ -1,18 +1,18 @@
 import Generator from 'yeoman-generator'
-import {copy} from '../utils'
+import { copy } from '../utils'
 
 module.exports = class Server extends Generator {
   writing () {
-    const {staticFiles} = getFiles()
+    const { staticFiles } = getFiles()
 
     /* Writing */
     staticFiles.map(file => copy(this, file))
   }
 
   install () {
-    const {devDependencies, dependencies} = getAllDependencies()
+    const { devDependencies, dependencies } = getAllDependencies()
 
-    this.npmInstall(devDependencies, {saveDev: true})
+    this.npmInstall(devDependencies, { saveDev: true })
     this.npmInstall(dependencies)
   }
 }
@@ -21,7 +21,7 @@ function getFiles () {
   const staticFiles = getStaticFiles()
   const tplFiles = getTplFiles()
 
-  return {staticFiles, tplFiles}
+  return { staticFiles, tplFiles }
 }
 
 function getStaticFiles () {
@@ -45,20 +45,13 @@ function getAllDependencies () {
   const devDependencies = getDevDeps()
   const dependencies = getDependencies()
 
-  return {devDependencies, dependencies}
+  return { devDependencies, dependencies }
 }
 
 function getDevDeps () {
-  return [
-    'nodemon'
-  ]
+  return ['nodemon']
 }
 
 function getDependencies () {
-  return [
-    'body-parser',
-    'debug',
-    'express',
-    'morgan'
-  ]
+  return ['body-parser', 'debug', 'express', 'morgan']
 }

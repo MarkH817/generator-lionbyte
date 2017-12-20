@@ -31,8 +31,8 @@ export function sortObj (obj) {
   let keys = Object.keys(obj).sort()
   let sorted = {}
 
-  keys.map((key) => {
-    sorted = Object.assign(sorted, {[key]: obj[key]})
+  keys.map(key => {
+    sorted = Object.assign(sorted, { [key]: obj[key] })
   })
 
   return sorted

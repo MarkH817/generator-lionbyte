@@ -1,5 +1,5 @@
 import Generator from 'yeoman-generator'
-import {copy} from '../utils'
+import { copy } from '../utils'
 
 module.exports = class Generic extends Generator {
   prompting () {
@@ -12,15 +12,14 @@ module.exports = class Generic extends Generator {
       }
     ]
 
-    return this.prompt(prompts)
-      .then(props => {
-        this.config.set('cli', props.cli)
-        this.props = props
-      })
+    return this.prompt(prompts).then(props => {
+      this.config.set('cli', props.cli)
+      this.props = props
+    })
   }
 
   writing () {
-    const {staticFiles} = getFiles(this.props)
+    const { staticFiles } = getFiles(this.props)
 
     /* Writing */
     staticFiles.map(file => copy(this, file))
@@ -28,10 +27,7 @@ module.exports = class Generic extends Generator {
 
   install () {
     if (this.props.cli) {
-      this.npmInstall([
-        'chalk',
-        'commander'
-      ])
+      this.npmInstall(['chalk', 'commander'])
     }
   }
 }
@@ -41,7 +37,7 @@ function getFiles (props) {
   const staticFiles = getStaticFiles(props)
   const tplFiles = getTplFiles(props)
 
-  return {staticFiles, tplFiles}
+  return { staticFiles, tplFiles }
 }
 
 function getStaticFiles (props) {

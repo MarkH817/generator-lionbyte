@@ -1,5 +1,5 @@
 import Generator from 'yeoman-generator'
-import {copy, copyTpl} from '../utils'
+import { copy, copyTpl } from '../utils'
 
 module.exports = class StaticSite extends Generator {
   prompting () {
@@ -12,12 +12,11 @@ module.exports = class StaticSite extends Generator {
       }
     ]
 
-    return this.prompt(prompts)
-      .then(props => (this.props = props))
+    return this.prompt(prompts).then(props => (this.props = props))
   }
 
   writing () {
-    const {staticFiles, tplFiles} = getFiles(this.props)
+    const { staticFiles, tplFiles } = getFiles(this.props)
     const data = {
       react: this.props.react
     }
@@ -28,7 +27,7 @@ module.exports = class StaticSite extends Generator {
   }
 
   install () {
-    const {devDependencies, dependencies} = getAllDependencies(this.props)
+    const { devDependencies, dependencies } = getAllDependencies(this.props)
 
     /* Install devDependencies */
     this.npmInstall(devDependencies, {
@@ -45,10 +44,10 @@ function getFiles (props) {
   const staticFiles = getStaticFiles(props)
   const tplFiles = getTplFiles(props)
 
-  return {staticFiles, tplFiles}
+  return { staticFiles, tplFiles }
 }
 
-function getStaticFiles ({react}) {
+function getStaticFiles ({ react }) {
   let files = [
     'pages/components/header.ejs',
     'pages/components/metas.ejs',
@@ -73,21 +72,17 @@ function getStaticFiles ({react}) {
 }
 
 function getTplFiles (props) {
-  return [
-    '.babelrc',
-    'src/index.js',
-    'webpack.common.js'
-  ]
+  return ['.babelrc', 'src/index.js', 'webpack.common.js']
 }
 
 function getAllDependencies (props) {
   const devDependencies = getDevDeps(props)
   const dependencies = getDependencies(props)
 
-  return {devDependencies, dependencies}
+  return { devDependencies, dependencies }
 }
 
-function getDevDeps ({react}) {
+function getDevDeps ({ react }) {
   let list = [
     'autoprefixer',
     'browser-sync',
@@ -109,16 +104,11 @@ function getDevDeps ({react}) {
   }
 }
 
-function getDependencies ({react}) {
+function getDependencies ({ react }) {
   let list = ['mini.css']
 
   if (react) {
-    return [
-      ...list,
-      'mini.css-react',
-      'react',
-      'react-dom'
-    ]
+    return [...list, 'mini.css-react', 'react', 'react-dom']
   } else {
     return list
   }
