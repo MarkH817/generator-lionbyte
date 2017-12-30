@@ -35,7 +35,7 @@
     "gulp-sourcemaps": "^2.6.1",
     "mocha": "^4.0.1",
     "nsp": "^3.1.0",
-    "nyc": "^11.3.0",
+    "nyc": "^11.4.1",
     "standard": "^10.0.3",
     "yeoman-assert": "^3.1.0",
     "yeoman-test": "^1.7.0"
