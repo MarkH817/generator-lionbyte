@@ -31,7 +31,7 @@
     "gulp-babel": "^7.0.0",
     "gulp-hub": "^0.8.0",
     "gulp-plumber": "^1.1.0",
-    "gulp-sequence": "^0.4.6",
+    "gulp-sequence": "^1.0.0",
     "gulp-sourcemaps": "^2.6.2",
     "mocha": "^4.0.1",
     "nsp": "^3.1.0",
