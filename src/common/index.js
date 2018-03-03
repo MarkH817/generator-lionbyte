@@ -1,18 +1,18 @@
-import Generator from 'yeoman-generator'
-import { copy, copyTpl } from '../utils'
+const Generator = require('yeoman-generator')
+const { copy, copyTpl } = require('../utils')
 
 module.exports = class Common extends Generator {
   writing () {
-    const { staticFiles, tplFiles } = getFiles(this.props)
-    const data = getData(this)
+    return new Promise(resolve => {
+      const { staticFiles, tplFiles } = getFiles(this.props)
+      const data = getData(this)
 
-    /* Writing */
-    staticFiles.map(file => copy(this, file))
-    tplFiles.map(file => copyTpl(this, data, file))
+      staticFiles.map(file => copy(this, file))
+      tplFiles.map(file => copyTpl(this, data, file))
+      copy(this, '_gitignore', '.gitignore')
 
-    /* Must be manually renamed
-      NPM keeps deleting this file */
-    copy(this, '_gitignore', '.gitignore')
+      resolve()
+    })
   }
 
   install () {

@@ -5,7 +5,7 @@
  * @param  {String} filename          File to copy.
  * @param  {String} [output=filename] File destination. Keeps the same filename by default.
  */
-export function copy (generator, filename, output = filename) {
+const copy = (generator, filename, output = filename) => {
   generator.fs.copy(
     generator.templatePath(filename),
     generator.destinationPath(output)
@@ -19,7 +19,7 @@ export function copy (generator, filename, output = filename) {
  * @param  {String} filename          File to copy.
  * @param  {String} [output=filename] File destination. Keeps the same filename by default.
  */
-export function copyTpl (generator, data, filename, output = filename) {
+const copyTpl = (generator, data, filename, output = filename) => {
   generator.fs.copyTpl(
     generator.templatePath(filename),
     generator.destinationPath(output),
@@ -27,7 +27,7 @@ export function copyTpl (generator, data, filename, output = filename) {
   )
 }
 
-export function sortObj (obj) {
+const sortObj = obj => {
   let keys = Object.keys(obj).sort()
   let sorted = {}
 
@@ -36,4 +36,10 @@ export function sortObj (obj) {
   })
 
   return sorted
+}
+
+module.exports = {
+  copy,
+  copyTpl,
+  sortObj
 }

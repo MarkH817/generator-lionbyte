@@ -1,5 +1,5 @@
-import Generator from 'yeoman-generator'
-import { copy, copyTpl } from '../utils'
+const Generator = require('yeoman-generator')
+const { copy, copyTpl } = require('../utils')
 
 module.exports = class StaticSite extends Generator {
   prompting () {
@@ -16,14 +16,17 @@ module.exports = class StaticSite extends Generator {
   }
 
   writing () {
-    const { staticFiles, tplFiles } = getFiles(this.props)
-    const data = {
-      react: this.props.react
-    }
+    return new Promise(resolve => {
+      const { staticFiles, tplFiles } = getFiles(this.props)
+      const data = {
+        react: this.props.react
+      }
 
-    /* Writing */
-    staticFiles.map(file => copy(this, file))
-    tplFiles.map(file => copyTpl(this, data, file))
+      staticFiles.map(file => copy(this, file))
+      tplFiles.map(file => copyTpl(this, data, file))
+
+      resolve()
+    })
   }
 
   install () {

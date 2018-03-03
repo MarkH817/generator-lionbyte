@@ -1,10 +1,9 @@
-import Generator from 'yeoman-generator'
-import chalk from 'chalk'
-import yosay from 'yosay'
+const Generator = require('yeoman-generator')
+const chalk = require('chalk')
+const yosay = require('yosay')
 
 module.exports = class LionByte extends Generator {
   prompting () {
-    // Have Yeoman greet the user.
     this.log(
       yosay(`Welcome to the best ${chalk.red('generator-lionbyte')} generator!`)
     )
@@ -67,7 +66,7 @@ function compose (generator, props) {
 }
 
 function getSubgenerators (projectType) {
-  let subgenerators = ['common', projectType, 'package']
+  const subgenerators = ['common', projectType, 'package']
 
   return subgenerators.map(sub => `../${sub}`)
 }

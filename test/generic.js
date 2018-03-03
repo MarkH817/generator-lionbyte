@@ -1,7 +1,7 @@
-import path from 'path'
-import assert from 'yeoman-assert'
-import helpers from 'yeoman-test'
-import {files, timeout} from './utils/config'
+const path = require('path')
+const assert = require('yeoman-assert')
+const helpers = require('yeoman-test')
+const {files, timeout} = require('./utils/config')
 
 describe('generator-lionbyte:generic', function () {
   this.timeout(timeout)
@@ -12,8 +12,8 @@ describe('generator-lionbyte:generic', function () {
   ]
 
   describe('scaffolds a generic project with cli', () => {
-    before(() => {
-      return helpers.run(path.join(__dirname, '../src/app'))
+    before(done => {
+      helpers.run(path.join(__dirname, '../src/app'))
         .withPrompts({
           name: 'test',
           description: 'testing generic',
@@ -22,6 +22,7 @@ describe('generator-lionbyte:generic', function () {
           cli: true,
           command: 'heck'
         })
+        .then(() => done())
     })
 
     it('creates files', (done) => {
@@ -31,15 +32,16 @@ describe('generator-lionbyte:generic', function () {
   })
 
   describe('scaffolds a generic project', () => {
-    before(() => {
-      return helpers.run(path.join(__dirname, '../src/app'))
+    before(done => {
+      helpers.run(path.join(__dirname, '../src/app'))
         .withPrompts({
           name: 'test',
           description: 'testing the generator-lionbyte',
-          'version': '0.0.0',
+          version: '0.0.0',
           projectType: 'generic',
           cli: false
         })
+        .then(() => done())
     })
 
     it('creates files', (done) => {

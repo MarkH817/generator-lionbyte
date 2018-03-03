@@ -2,11 +2,10 @@
   "name": "generator-lionbyte",
   "version": "0.4.0",
   "description": "Generate a NodeJS project",
-  "homepage": "",
   "author": {
     "name": "Mark Hernandez",
     "email": "markedcode@gmail.com",
-    "url": ""
+    "url": "https://www.lion-byte.com"
   },
   "files": [
     "generators"
@@ -52,7 +51,7 @@
     "lint:fix": "standard --fix",
     "prepublishOnly": "nsp check && npm run build",
     "report": "nyc report --reporter=lcov",
-    "test": "standard && nyc mocha --require babel-register"
+    "test": "standard && nyc mocha -A"
   },
   "standard": {
     "globals": [
