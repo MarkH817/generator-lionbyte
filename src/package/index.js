@@ -1,5 +1,5 @@
-import Generator from 'yeoman-generator'
-import { sortObj } from '../utils'
+const Generator = require('yeoman-generator')
+const { sortObj } = require('../utils')
 
 module.exports = class Package extends Generator {
   prompting () {
@@ -20,14 +20,17 @@ module.exports = class Package extends Generator {
   }
 
   writing () {
-    /* Set basic info */
-    let info = this.getBaseInfo()
+    return new Promise(resolve => {
+      /* Set basic info */
+      let info = this.getBaseInfo()
 
-    let tpl = this.fs.readJSON(this.templatePath('package.json'))
-    info = Object.assign(info, tpl)
-    info = projectAdjustments(info, this.props, this.config.get('projectType'))
+      let tpl = this.fs.readJSON(this.templatePath('package.json'))
+      info = Object.assign(info, tpl)
+      info = projectAdjustments(info, this.props, this.config.get('projectType'))
 
-    this.fs.writeJSON(this.destinationPath('package.json'), info)
+      this.fs.writeJSON(this.destinationPath('package.json'), info)
+      resolve()
+    })
   }
 
   getBaseInfo () {

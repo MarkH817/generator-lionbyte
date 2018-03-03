@@ -1,7 +1,7 @@
-import path from 'path'
-import assert from 'yeoman-assert'
-import helpers from 'yeoman-test'
-import {files, timeout} from './utils/config'
+const path = require('path')
+const assert = require('yeoman-assert')
+const helpers = require('yeoman-test')
+const {files, timeout} = require('./utils/config')
 
 describe('generator-lionbyte:server', function () {
   this.timeout(timeout)

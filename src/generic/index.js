@@ -1,5 +1,5 @@
-import Generator from 'yeoman-generator'
-import { copy } from '../utils'
+const Generator = require('yeoman-generator')
+const { copy } = require('../utils')
 
 module.exports = class Generic extends Generator {
   prompting () {
@@ -19,10 +19,12 @@ module.exports = class Generic extends Generator {
   }
 
   writing () {
-    const { staticFiles } = getFiles(this.props)
+    return new Promise(resolve => {
+      const { staticFiles } = getFiles(this.props)
+      staticFiles.map(file => copy(this, file))
 
-    /* Writing */
-    staticFiles.map(file => copy(this, file))
+      resolve()
+    })
   }
 
   install () {

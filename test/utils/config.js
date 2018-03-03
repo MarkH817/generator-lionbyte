@@ -1,4 +1,4 @@
-export const files = [
+const files = [
   '.babelrc',
   '.editorconfig',
   '.gitignore',
@@ -22,4 +22,9 @@ export const files = [
   'gulpfile.babel.js'
 ]
 
-export const timeout = 10000
+const timeout = 10000
+
+module.exports = {
+  files,
+  timeout
+}
