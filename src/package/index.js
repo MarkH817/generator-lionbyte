@@ -58,7 +58,7 @@ function projectAdjustments (info, props, type) {
   switch (type) {
     case 'static-site':
       scripts = Object.assign({}, scripts, {
-        dev: 'webpack --config webpack.dev.js --watch --progress',
+        dev: 'webpack-dev-server --config webpack.dev.js --open',
         build: 'webpack --config webpack.prod.js --progress',
         clean: 'del dist',
         lint: 'standard --parser babel-eslint',

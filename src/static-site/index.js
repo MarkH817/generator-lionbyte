@@ -19,7 +19,7 @@ module.exports = class StaticSite extends Generator {
     return new Promise(resolve => {
       const babelPresets = [
         [
-          '@babel/preset-env',
+          'babel-preset-env',
           {
             targets: {
               browsers: ['last 2 versions']
@@ -42,7 +42,7 @@ module.exports = class StaticSite extends Generator {
 
       this.fs.writeJSON(this.destinationPath('.babelrc'), {
         presets: this.props.react
-          ? [...babelPresets, '@babel/preset-react']
+          ? [...babelPresets, 'babel-preset-react']
           : babelPresets,
         plugins: ['syntax-dynamic-import']
       })
@@ -81,9 +81,10 @@ function getDevDeps ({ react }) {
     'less',
     'less-loader',
     'style-loader',
+    'extract-text-webpack-plugin@next',
     'clean-webpack-plugin',
-    'html-webpack-plugin',
-    'webpack-dev-server',
+    'html-webpack-plugin@latest',
+    'webpack-dev-server@latest',
     'webpack@4',
     'webpack-cli',
     'webpack-merge'
