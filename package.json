@@ -35,6 +35,7 @@
     "mocha": "^4.0.1",
     "nsp": "^3.1.0",
     "nyc": "^11.4.1",
+    "prettier": "^1.11.1",
     "standard": "^10.0.3",
     "yeoman-assert": "^3.1.0",
     "yeoman-test": "^1.7.0"
@@ -48,7 +49,7 @@
     "build": "gulp build",
     "dev": "gulp",
     "lint": "standard",
-    "lint:fix": "standard --fix",
+    "lint:fix": "prettier --no-semi --single-quote --write **/*.js && standard --fix",
     "prepublishOnly": "nsp check && npm run build",
     "report": "nyc report --reporter=lcov",
     "test": "standard && nyc mocha -A"
@@ -61,13 +62,6 @@
       "beforeEach",
       "describe",
       "it"
-    ],
-    "ignore": [
-      "src/app/templates/**/*.js",
-      "src/common/templates/**/*.js",
-      "src/generic/templates/**/*.js",
-      "src/server/templates/**/*.js",
-      "src/static-site/templates/**/*.js"
     ]
   },
   "repository": "MarkH817/generator-lionbyte",

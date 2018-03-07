@@ -1,4 +1,3 @@
-/** @module */
 /**
  * Copy static template files
  * @param  {Object} generator         Reference to generator instance
@@ -32,7 +31,7 @@ const sortObj = obj => {
   let sorted = {}
 
   keys.map(key => {
-    sorted = Object.assign(sorted, { [key]: obj[key] })
+    sorted[key] = obj[key]
   })
 
   return sorted

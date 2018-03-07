@@ -1,4 +1,4 @@
-import {Router} from 'express'
+const { Router } = require('express')
 
 const router = Router()
 router.get('/', (req, res, next) => {
@@ -11,4 +11,6 @@ router.get('/user/:name', (req, res, next) => {
   })
 })
 
-export {router as index}
+module.exports = {
+  index: router
+}

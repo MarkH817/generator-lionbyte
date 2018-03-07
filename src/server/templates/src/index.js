@@ -1,6 +1,7 @@
-import {app} from './app'
-import Debug from 'debug'
-import http from 'http'
+const Debug = require('debug')
+const http = require('http')
+
+const { app } = require('./app')
 
 function normalizePort (val = '3000') {
   var port = parseInt(val, 10)
@@ -23,9 +24,7 @@ function onError (error) {
     throw error
   }
 
-  const bind = typeof port === 'string'
-    ? `Pipe ${port}`
-    : `Port ${port}`
+  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -42,9 +41,7 @@ function onError (error) {
 
 function onListening () {
   const addr = server.address()
-  const bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port
 
   debug(`Listening on ${bind}`)
 }

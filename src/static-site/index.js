@@ -1,5 +1,5 @@
 const Generator = require('yeoman-generator')
-const { copy, copyTpl } = require('../utils')
+const { copy } = require('../utils')
 
 module.exports = class StaticSite extends Generator {
   prompting () {
@@ -17,13 +17,35 @@ module.exports = class StaticSite extends Generator {
 
   writing () {
     return new Promise(resolve => {
-      const { staticFiles, tplFiles } = getFiles(this.props)
-      const data = {
-        react: this.props.react
-      }
+      const babelPresets = [
+        [
+          '@babel/preset-env',
+          {
+            targets: {
+              browsers: ['last 2 versions']
+            },
+            exclude: ['transform-regenerator']
+          }
+        ]
+      ]
+
+      const staticFiles = [
+        'pages/index.html',
+        'styles/main.less',
+        'src/index.js',
+        'webpack.dev.js',
+        'webpack.prod.js',
+        'webpack.common.js'
+      ]
 
       staticFiles.map(file => copy(this, file))
-      tplFiles.map(file => copyTpl(this, data, file))
+
+      this.fs.writeJSON(this.destinationPath('.babelrc'), {
+        presets: this.props.react
+          ? [...babelPresets, '@babel/preset-react']
+          : babelPresets,
+        plugins: ['syntax-dynamic-import']
+      })
 
       resolve()
     })
@@ -32,50 +54,9 @@ module.exports = class StaticSite extends Generator {
   install () {
     const { devDependencies, dependencies } = getAllDependencies(this.props)
 
-    /* Install devDependencies */
-    this.npmInstall(devDependencies, {
-      saveDev: true
-    })
-
-    /* Install dependencies */
+    this.npmInstall(devDependencies, { saveDev: true })
     this.npmInstall(dependencies)
   }
-}
-
-/* Helper Functions */
-function getFiles (props) {
-  const staticFiles = getStaticFiles(props)
-  const tplFiles = getTplFiles(props)
-
-  return { staticFiles, tplFiles }
-}
-
-function getStaticFiles ({ react }) {
-  let files = [
-    'pages/components/header.ejs',
-    'pages/components/metas.ejs',
-    'pages/components/stylesheets.ejs',
-    'pages/views/index.ejs',
-    'styles/main.less',
-    'tasks/build.js',
-    'tasks/js.js',
-    'tasks/pages.js',
-    'tasks/styles.js',
-    'tasks/watch.js',
-    'gulpfile.babel.js',
-    'webpack.dev.js',
-    'webpack.prod.js'
-  ]
-
-  if (react) {
-    return [...files, 'src/App.js']
-  } else {
-    return files
-  }
-}
-
-function getTplFiles (props) {
-  return ['.babelrc', 'src/index.js', 'webpack.common.js']
 }
 
 function getAllDependencies (props) {
@@ -86,18 +67,26 @@ function getAllDependencies (props) {
 }
 
 function getDevDeps ({ react }) {
-  let list = [
-    'autoprefixer',
-    'browser-sync',
+  const list = [
+    'del-cli',
+    'babel-core',
+    'babel-eslint',
+    'babel-preset-env',
     'babel-loader',
+    'babel-plugin-syntax-dynamic-import',
+    'postcss-loader',
+    'autoprefixer',
+    'css-loader',
     'cssnano',
-    'gulp-ejs',
-    'gulp-htmlmin',
-    'gulp-less',
-    'gulp-postcss',
-    'webpack',
-    'webpack-merge',
-    'webpack-stream'
+    'less',
+    'less-loader',
+    'style-loader',
+    'clean-webpack-plugin',
+    'html-webpack-plugin',
+    'webpack-dev-server',
+    'webpack@4',
+    'webpack-cli',
+    'webpack-merge'
   ]
 
   if (react) {
@@ -108,10 +97,10 @@ function getDevDeps ({ react }) {
 }
 
 function getDependencies ({ react }) {
-  let list = ['mini.css']
+  const list = ['mini.css']
 
   if (react) {
-    return [...list, 'mini.css-react', 'react', 'react-dom']
+    return [...list, 'react', 'react-dom']
   } else {
     return list
   }
