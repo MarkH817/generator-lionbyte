@@ -1,20 +1,10 @@
-import merge from 'webpack-merge'
-import webpack from 'webpack'
-import common from './webpack.common'
+const merge = require('webpack-merge')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-const config = merge(common, {
+const common = require('./webpack.common')
+
+module.exports = merge(common, {
   devtool: 'source-map',
-
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    })
-  ]
+  mode: 'production',
+  plugins: [new CleanWebpackPlugin(['dist'])]
 })
-
-export default config

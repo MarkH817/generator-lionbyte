@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-import chalk from 'chalk'
-import commander from 'commander'
+const chalk = require('chalk')
+const commander = require('commander')
 
 let thingValue = ''
 
 commander
   .arguments('[thing]')
-  .action((thing) => {
+  .action(thing => {
     thingValue = thing
   })
   .parse(process.argv)

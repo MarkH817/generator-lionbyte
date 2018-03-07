@@ -4,10 +4,8 @@ import plumber from 'gulp-plumber'
 import sourcemaps from 'gulp-sourcemaps'
 
 gulp.task('transpile', () => {
-  return gulp.src([
-    '../src/**/*.js',
-    '!../src/*/templates/**/*.js'
-  ])
+  return gulp
+    .src(['../src/**/*.js', '!../src/*/templates/**/*.js'])
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(babel())

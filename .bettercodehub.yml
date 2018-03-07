@@ -1,8 +1,0 @@
-exclude:
-- /src/common/templates/.*
-- /src/generic/templates/.*
-- /src/server/templates/.*
-- /src/static-site/templates/.*
-component_depth: 1
-languages:
-- javascript

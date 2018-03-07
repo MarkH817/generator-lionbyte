@@ -1,19 +1,15 @@
 const path = require('path')
 const assert = require('yeoman-assert')
 const helpers = require('yeoman-test')
-const {files, timeout} = require('./utils/config')
+const { files, timeout } = require('./utils/config')
 
 describe('generator-lionbyte:generic', function () {
   this.timeout(timeout)
 
-  const projectFiles = [
-    ...files,
-    'tasks/transpile.js'
-  ]
-
   describe('scaffolds a generic project with cli', () => {
     before(done => {
-      helpers.run(path.join(__dirname, '../src/app'))
+      helpers
+        .run(path.join(__dirname, '../src/app'))
         .withPrompts({
           name: 'test',
           description: 'testing generic',
@@ -25,15 +21,16 @@ describe('generator-lionbyte:generic', function () {
         .then(() => done())
     })
 
-    it('creates files', (done) => {
-      assert.file([...projectFiles, 'src/cli.js'])
+    it('creates files', done => {
+      assert.file([...files.generic, 'src/cli.js'])
       done()
     })
   })
 
   describe('scaffolds a generic project', () => {
     before(done => {
-      helpers.run(path.join(__dirname, '../src/app'))
+      helpers
+        .run(path.join(__dirname, '../src/app'))
         .withPrompts({
           name: 'test',
           description: 'testing the generator-lionbyte',
@@ -44,12 +41,12 @@ describe('generator-lionbyte:generic', function () {
         .then(() => done())
     })
 
-    it('creates files', (done) => {
-      assert.file(projectFiles)
+    it('creates files', done => {
+      assert.file(files.generic)
       done()
     })
 
-    it('does not create cli.js', (done) => {
+    it('does not create cli.js', done => {
       assert.noFile(['src/cli.js'])
       done()
     })

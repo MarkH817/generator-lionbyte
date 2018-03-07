@@ -4,7 +4,7 @@ const { copy, copyTpl } = require('../utils')
 module.exports = class Common extends Generator {
   writing () {
     return new Promise(resolve => {
-      const { staticFiles, tplFiles } = getFiles(this.props)
+      const { staticFiles, tplFiles } = getFiles()
       const data = getData(this)
 
       staticFiles.map(file => copy(this, file))
@@ -16,41 +16,35 @@ module.exports = class Common extends Generator {
   }
 
   install () {
-    /* Install devDependencies */
-    const { devDependencies } = getAllDependencies(this.props)
-    this.npmInstall(devDependencies, { saveDev: true })
+    this.npmInstall(['chai', 'coveralls', 'mocha', 'nyc', 'standard'], {
+      saveDev: true
+    })
   }
 }
 
 /* Helper Functions */
-function getFiles (props) {
-  const staticFiles = getStaticFiles(props)
-  const tplFiles = getTplFiles(props)
+function getFiles () {
+  const staticFiles = getStaticFiles()
+  const tplFiles = getTplFiles()
 
   return { staticFiles, tplFiles }
 }
 
-function getStaticFiles (props) {
-  let files = [
+function getStaticFiles () {
+  return [
+    '.github/ISSUE_TEMPLATE.md',
+    '.github/PULL_REQUEST_TEMPLATE.md',
+    'test/index.js',
     '.editorconfig',
     '.gitattributes',
     '.travis.yml',
-    'docs/ISSUE_TEMPLATE.md',
-    'docs/PULL_REQUEST_TEMPLATE.md',
-    'tasks/clean.js',
-    'tasks/utils.js',
-    'test/index.js',
     'CHANGELOG.md',
     'CONTRIBUTING.md'
   ]
-
-  return files
 }
 
-function getTplFiles (props) {
-  let files = ['.npmignore', 'CODE_OF_CONDUCT.md', 'LICENSE.md', 'README.md']
-
-  return files
+function getTplFiles () {
+  return ['CODE_OF_CONDUCT.md', 'LICENSE.md', 'README.md']
 }
 
 function getData (generator) {
@@ -63,36 +57,4 @@ function getData (generator) {
     },
     projectType: generator.config.get('projectType')
   }
-}
-
-function getAllDependencies (props) {
-  const devDependencies = getDevDeps(props)
-  const dependencies = getDependencies(props)
-
-  return { devDependencies, dependencies }
-}
-
-function getDevDeps (props) {
-  return [
-    'babel-cli',
-    'babel-core',
-    'babel-preset-env',
-    'babel-register',
-    'chai',
-    'coveralls',
-    'del',
-    'gulp',
-    'gulp-babel',
-    'gulp-hub',
-    'gulp-plumber',
-    'gulp-sequence',
-    'gulp-sourcemaps',
-    'mocha',
-    'nyc',
-    'standard'
-  ]
-}
-
-function getDependencies (props) {
-  return []
 }

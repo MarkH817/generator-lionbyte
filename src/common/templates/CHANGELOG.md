@@ -7,8 +7,3 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Scaffolded project using `generator-lionbyte`
-- Uses `standard` linter
-- Supports ES6+ syntax with `babel-preset-env`
-- Uses `gulp` to automate cleaning, building, and watching files
-- Uses `mocha` and `chai` for test suite
-- Reports line coverage for test suite with `nyc`

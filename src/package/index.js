@@ -22,11 +22,15 @@ module.exports = class Package extends Generator {
   writing () {
     return new Promise(resolve => {
       /* Set basic info */
+      const tpl = this.fs.readJSON(this.templatePath('package.json'))
       let info = this.getBaseInfo()
 
-      let tpl = this.fs.readJSON(this.templatePath('package.json'))
-      info = Object.assign(info, tpl)
-      info = projectAdjustments(info, this.props, this.config.get('projectType'))
+      info = Object.assign({}, info, tpl)
+      info = projectAdjustments(
+        info,
+        this.props,
+        this.config.get('projectType')
+      )
 
       this.fs.writeJSON(this.destinationPath('package.json'), info)
       resolve()
@@ -48,51 +52,42 @@ module.exports = class Package extends Generator {
 
 /* Helper functions */
 function projectAdjustments (info, props, type) {
+  let { scripts, standard } = info
+  let bin = {}
+
   switch (type) {
     case 'static-site':
-      return typeStaticSite(info, props)
+      scripts = Object.assign({}, scripts, {
+        dev: 'webpack --config webpack.dev.js --watch --progress',
+        build: 'webpack --config webpack.prod.js --progress',
+        clean: 'del dist',
+        lint: 'standard --parser babel-eslint',
+        'lint:fix': 'standard --parser babel-eslint --fix'
+      })
+      standard = Object.assign({}, standard, {
+        parser: 'babel-eslint'
+      })
+      break
     case 'server':
-      return typeServer(info, props)
+      scripts = Object.assign({}, scripts, {
+        dev: 'nodemon src',
+        start: 'node src'
+      })
+      break
     default:
-      return typeGeneric(info, props)
+      if (props.command) {
+        bin[props.command] = 'src/cli'
+      }
+
+      scripts = Object.assign({}, scripts, {
+        dev: 'nodemon src',
+        start: 'node src'
+      })
   }
-}
 
-function typeStaticSite (info, props) {
-  let scripts = Object.assign(info.scripts, {
-    'build:prod': 'gulp build:prod'
-  })
-
-  return Object.assign(info, {
-    scripts: sortObj(scripts)
-  })
-}
-
-function typeGeneric (info, { command }) {
-  /* Define cli command only if it's provided */
-  let bin = command
-    ? {
-      [command]: 'dist/cli'
-    }
-    : {}
-
-  let scripts = Object.assign(info.scripts, {
-    start: 'babel-node src/index'
-  })
-
-  return Object.assign(info, {
+  return Object.assign({}, info, {
+    scripts: sortObj(scripts),
     bin,
-    scripts: sortObj(scripts)
-  })
-}
-
-function typeServer (info, props) {
-  let scripts = Object.assign(info.scripts, {
-    serve: 'node dist/index',
-    start: 'nodemon src/index --exec babel-node'
-  })
-
-  return Object.assign(info, {
-    scripts: sortObj(scripts)
+    standard
   })
 }

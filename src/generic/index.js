@@ -20,7 +20,7 @@ module.exports = class Generic extends Generator {
 
   writing () {
     return new Promise(resolve => {
-      const { staticFiles } = getFiles(this.props)
+      const staticFiles = getStaticFiles(this.props)
       staticFiles.map(file => copy(this, file))
 
       resolve()
@@ -28,39 +28,20 @@ module.exports = class Generic extends Generator {
   }
 
   install () {
+    this.npmInstall(['nodemon'], { saveDev: true })
+
     if (this.props.cli) {
       this.npmInstall(['chalk', 'commander'])
     }
   }
 }
 
-/* Helper Functions */
-function getFiles (props) {
-  const staticFiles = getStaticFiles(props)
-  const tplFiles = getTplFiles(props)
-
-  return { staticFiles, tplFiles }
-}
-
 function getStaticFiles (props) {
-  let files = [
-    'src/index.js',
-    'tasks/build.js',
-    'tasks/transpile.js',
-    'tasks/watch.js',
-    '.babelrc',
-    'gulpfile.babel.js'
-  ]
+  let files = ['src/index.js']
 
   if (props.cli) {
     return [...files, 'src/cli.js']
   } else {
     return files
   }
-}
-
-function getTplFiles (props) {
-  let files = []
-
-  return files
 }
