@@ -23,27 +23,33 @@ yo lionbyte
 
 ## Features
 This generator scaffolds the following NodeJS project types:
+- Generic/CLI NodeJS programs
+- Server
+- Static site
+
+### Details
 - All Types
-  - Uses babel-preset-env for ES6+ features
-  - Tasks managed with gulp and gulp-hub
-  - Uses `standard` code style and linter
-  - Uses mocha and chai for test framework
-  - Uses nyc for code coverage
+  - Use `standard` code style and linter
+  - Use `mocha` and `chai` for test framework
+  - Use `istanbul`/`nyc` for code coverage
   - Includes Travis-CI script to run tests
   - Includes .editorconfig, .gitignore, .gitattributes
   - CHANGELOG, CODE_OF_CONDUCT, CONTRIBUTING files
   - MIT License
   - Issue and Pull Request templates
 - Generic (Default)
-  - Basic project type
+  - Basic NodeJS project type
   - Includes option to make a CLI portion
+- Server
+  - ExpressJS server
+  - Verbose logging
 - Static Site
-  - Makes a static website
-  - Development/Production configurations for webpack
-  - BrowserSync - Local development with auto-reloading browsers
+  - webpack@4 Legato!!!!
+    - Development/Production configurations for webpack
+    - webpack-dev-server
+    - really fast builds
   - Pages
     - EJS - HTML Templating
-    - HTMLMin - Minification
   - Styles
     - Autoprefixer
     - CSSNano - Minification
