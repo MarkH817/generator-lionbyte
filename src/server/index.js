@@ -12,7 +12,13 @@ module.exports = class Server extends Generator {
   }
 
   install () {
-    this.npmInstall(['nodemon'], { saveDev: true })
-    this.npmInstall(['body-parser', 'debug', 'express', 'morgan'])
+    this.npmInstall(['nodemon@latest'], { saveDev: true })
+
+    this.npmInstall([
+      'body-parser@latest',
+      'debug@latest',
+      'express@latest',
+      'morgan@latest'
+    ])
   }
 }

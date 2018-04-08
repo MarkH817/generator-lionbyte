@@ -16,9 +16,21 @@ module.exports = class Common extends Generator {
   }
 
   install () {
-    this.npmInstall(['chai', 'coveralls', 'mocha', 'nyc', 'standard'], {
-      saveDev: true
-    })
+    this.npmInstall(
+      [
+        'chai@latest',
+        'coveralls@latest',
+        'mocha@latest',
+        'nyc@latest',
+        'standard@latest',
+        'prettier@latest',
+        'husky@next',
+        'lint-staged@latest'
+      ],
+      {
+        saveDev: true
+      }
+    )
   }
 }
 

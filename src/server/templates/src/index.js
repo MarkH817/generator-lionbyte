@@ -3,7 +3,7 @@ const http = require('http')
 
 const { app } = require('./app')
 
-function normalizePort (val = '3000') {
+const normalizePort = (val = '3000') => {
   var port = parseInt(val, 10)
 
   if (isNaN(port)) {
@@ -19,7 +19,7 @@ function normalizePort (val = '3000') {
   return false
 }
 
-function onError (error) {
+const onError = error => {
   if (error.syscall !== 'listen') {
     throw error
   }
@@ -39,7 +39,7 @@ function onError (error) {
   }
 }
 
-function onListening () {
+const onListening = () => {
   const addr = server.address()
   const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port
 
