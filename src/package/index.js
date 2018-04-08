@@ -59,10 +59,7 @@ function projectAdjustments (info, props, type) {
     case 'static-site':
       scripts = Object.assign({}, scripts, {
         dev: 'webpack-dev-server --config webpack.dev.js --open',
-        build: 'webpack --config webpack.prod.js --progress',
-        clean: 'del dist',
-        lint: 'standard --parser babel-eslint',
-        'lint:fix': 'standard --parser babel-eslint --fix'
+        build: 'webpack --config webpack.prod.js'
       })
       standard = Object.assign({}, standard, {
         parser: 'babel-eslint'

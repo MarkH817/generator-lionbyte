@@ -5,9 +5,31 @@
   "main":"src/index.js",
   "scripts": {
     "lint":"standard",
-    "lint:fix":"standard --fix",
+    "lint:fix":"prettier --write **/*.js && standard --fix",
     "report":"nyc report --reporter=lcov",
     "test":"standard && nyc mocha"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": [
+        "lint-staged"
+      ]
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "standard --fix",
+      "git add"
+    ],
+    "*.{md,less}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   },
   "standard": {
     "globals": [
@@ -16,7 +38,10 @@
       "before",
       "beforeEach",
       "describe",
-      "it"
-    ]
+      "it",
+      "test",
+      "fixture"
+    ],
+    "ignore": []
   }
 }

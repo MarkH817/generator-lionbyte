@@ -1,5 +1,5 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
 
 module.exports = {
@@ -24,35 +24,41 @@ module.exports = {
       },
       {
         test: /.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: { sourceMap: true }
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: [require('autoprefixer')(), require('cssnano')()],
-                sourceMap: true
-              }
-            },
-            {
-              loader: 'less-loader',
-              options: { sourceMap: true }
+        use: [
+          'style-loader',
+          MiniCSSExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')(), require('cssnano')()],
+              sourceMap: true
             }
-          ]
-        })
+          },
+          {
+            loader: 'less-loader',
+            options: { sourceMap: true }
+          }
+        ]
       }
     ]
   },
 
   plugins: [
-    new ExtractTextPlugin('main.css'),
+    new MiniCSSExtractPlugin({
+      filename: '[name].css'
+    }),
     new HtmlWebpackPlugin({
       title: 'Hello',
-      template: 'pages/index.html'
+      template: 'pages/index.html',
+      minify: {
+        collapseWhitespace: true,
+        conservativeCollapse: true,
+        removeComments: true
+      }
     })
   ]
 }

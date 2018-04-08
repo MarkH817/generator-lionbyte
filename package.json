@@ -4,7 +4,7 @@
   "description": "Generate a NodeJS project",
   "author": {
     "name": "Mark Hernandez",
-    "email": "markedcode@gmail.com",
+    "email": "mark@lion-byte.com",
     "url": "https://www.lion-byte.com"
   },
   "files": [
@@ -32,6 +32,8 @@
     "gulp-plumber": "^1.1.0",
     "gulp-sequence": "^0.4.6",
     "gulp-sourcemaps": "^2.6.2",
+    "husky": "^0.15.0-rc.13",
+    "lint-staged": "^7.0.4",
     "mocha": "^4.0.1",
     "nsp": "^3.1.0",
     "nyc": "^11.4.1",
@@ -49,10 +51,32 @@
     "build": "gulp build",
     "dev": "gulp",
     "lint": "standard",
-    "lint:fix": "prettier --no-semi --single-quote --write **/*.js && standard --fix",
+    "lint:fix": "prettier --write **/*.js && standard --fix",
     "prepublishOnly": "nsp check && npm run build",
     "report": "nyc report --reporter=lcov",
     "test": "standard && nyc mocha -A"
+  },
+  "husky": {
+    "hooks":{
+      "pre-commit": [
+        "lint-staged"
+      ]
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "standard --fix",
+      "git add"
+    ],
+    "*.{md,less}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   },
   "standard": {
     "globals": [

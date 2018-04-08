@@ -68,41 +68,38 @@ function getAllDependencies (props) {
 
 function getDevDeps ({ react }) {
   const list = [
-    'del-cli',
-    'babel-core',
-    'babel-eslint',
-    'babel-preset-env',
-    'babel-loader',
-    'babel-plugin-syntax-dynamic-import',
-    'postcss-loader',
-    'autoprefixer',
-    'css-loader',
-    'cssnano',
-    'less',
-    'less-loader',
-    'style-loader',
-    'extract-text-webpack-plugin@next',
-    'clean-webpack-plugin',
+    'babel-core@latest',
+    'babel-eslint@latest',
+    'babel-preset-env@latest',
+    'babel-loader@latest',
+    'babel-plugin-syntax-dynamic-import@latest',
+    'postcss-loader@latest',
+    'autoprefixer@latest',
+    'css-loader@latest',
+    'cssnano@latest',
+    'less@latest',
+    'less-loader@latest',
+    'style-loader@latest',
+    'mini-css-extract-plugin@latest',
+    'clean-webpack-plugin@latest',
     'html-webpack-plugin@latest',
     'webpack-dev-server@latest',
     'webpack@4',
-    'webpack-cli',
-    'webpack-merge'
+    'webpack-cli@latest',
+    'webpack-merge@latest'
   ]
 
   if (react) {
-    return [...list, 'babel-preset-react']
+    return [...list, 'babel-preset-react@latest']
   } else {
     return list
   }
 }
 
 function getDependencies ({ react }) {
-  const list = ['mini.css']
-
   if (react) {
-    return [...list, 'react', 'react-dom']
+    return ['react@latest', 'react-dom@latest']
   } else {
-    return list
+    return []
   }
 }
