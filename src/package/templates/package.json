@@ -9,24 +9,6 @@
     "report":"nyc report --reporter=lcov",
     "test":"standard && nyc mocha"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": [
-        "lint-staged"
-      ]
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "standard --fix",
-      "git add"
-    ],
-    "*.{md,less}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
   "prettier": {
     "semi": false,
     "singleQuote": true

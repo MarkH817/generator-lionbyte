@@ -36,6 +36,7 @@ This generator scaffolds the following NodeJS project types:
 
 * All Types
   * `prettier` and `standard` code style and linter
+    * Optional pre-commit hook to run these linters
   * `mocha` and `chai` for test framework
   * `nyc` for code coverage
   * Travis-CI script to run tests
