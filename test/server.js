@@ -8,12 +8,14 @@ describe('generator-lionbyte:server', function () {
 
   describe('scaffolds a server project', () => {
     before(() => {
-      return helpers.run(path.join(__dirname, '../src/app')).withPrompts({
-        name: 'test',
-        description: 'testing server',
-        version: '0.0.0',
-        projectType: 'server'
-      })
+      return helpers
+        .run(path.join(__dirname, '../generators/app'))
+        .withPrompts({
+          name: 'test',
+          description: 'testing server',
+          version: '0.0.0',
+          projectType: 'server'
+        })
     })
 
     it('creates files', done => {

@@ -9,7 +9,7 @@ describe('generator-lionbyte:package', function () {
   describe('write package.json w/out git hook configurations', () => {
     before(done => {
       helpers
-        .run(path.join(__dirname, '../src/package'))
+        .run(path.join(__dirname, '../generators/package'))
         .withLocalConfig({
           name: 'test',
           description: 'a test',
@@ -31,7 +31,7 @@ describe('generator-lionbyte:package', function () {
   describe('adds git hook configurations', () => {
     before(done => {
       helpers
-        .run(path.join(__dirname, '../src/package'))
+        .run(path.join(__dirname, '../generators/package'))
         .withLocalConfig({
           name: 'test',
           description: 'a test',
