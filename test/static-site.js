@@ -9,13 +9,15 @@ describe('generator-lionbyte:static-site', function () {
 
   describe('scaffolds a static-site', () => {
     before(() => {
-      return helpers.run(path.join(__dirname, '../src/app')).withPrompts({
-        name: 'test',
-        description: 'testing static-site',
-        version: '0.0.0',
-        projectType: 'static-site',
-        react: false
-      })
+      return helpers
+        .run(path.join(__dirname, '../generators/app'))
+        .withPrompts({
+          name: 'test',
+          description: 'testing static-site',
+          version: '0.0.0',
+          projectType: 'static-site',
+          react: false
+        })
     })
 
     it('creates files', done => {
@@ -31,13 +33,15 @@ describe('generator-lionbyte:static-site', function () {
 
   describe('scaffolds a static-site with React', () => {
     before(() => {
-      return helpers.run(path.join(__dirname, '../src/app')).withPrompts({
-        name: 'test',
-        description: 'testing static-site',
-        version: '0.0.0',
-        projectType: 'static-site',
-        react: true
-      })
+      return helpers
+        .run(path.join(__dirname, '../generators/app'))
+        .withPrompts({
+          name: 'test',
+          description: 'testing static-site',
+          version: '0.0.0',
+          projectType: 'static-site',
+          react: true
+        })
     })
 
     it('creates files', done => {

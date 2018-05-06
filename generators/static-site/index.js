@@ -84,7 +84,7 @@ function getDevDeps ({ react }) {
     'clean-webpack-plugin@latest',
     'html-webpack-plugin@latest',
     'webpack-dev-server@latest',
-    'webpack@4',
+    'webpack@latest',
     'webpack-cli@latest',
     'webpack-merge@latest'
   ]

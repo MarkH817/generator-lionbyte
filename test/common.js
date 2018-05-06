@@ -9,7 +9,7 @@ describe('generator-lionbyte:common', function () {
   describe('installs pre-commit packages', () => {
     before(done => {
       helpers
-        .run(path.join(__dirname, '../src/common'))
+        .run(path.join(__dirname, '../generators/common'))
         .withLocalConfig({
           gitHooks: true
         })

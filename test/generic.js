@@ -9,7 +9,7 @@ describe('generator-lionbyte:generic', function () {
   describe('scaffolds a generic project with cli', () => {
     before(done => {
       helpers
-        .run(path.join(__dirname, '../src/app'))
+        .run(path.join(__dirname, '../generators/app'))
         .withPrompts({
           name: 'test',
           description: 'testing generic',
@@ -30,7 +30,7 @@ describe('generator-lionbyte:generic', function () {
   describe('scaffolds a generic project', () => {
     before(done => {
       helpers
-        .run(path.join(__dirname, '../src/app'))
+        .run(path.join(__dirname, '../generators/app'))
         .withPrompts({
           name: 'test',
           description: 'testing the generator-lionbyte',

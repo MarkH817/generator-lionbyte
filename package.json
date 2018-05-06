@@ -19,19 +19,8 @@
     "yeoman-generator"
   ],
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "coveralls": "^3.0.1",
-    "cross-env": "^5.1.4",
-    "del": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.1",
-    "gulp-hub": "^0.8.0",
-    "gulp-plumber": "^1.2.0",
-    "gulp-sequence": "^1.0.0",
-    "gulp-sourcemaps": "^2.6.4",
     "husky": "^0.15.0-rc.13",
     "lint-staged": "^7.0.5",
     "mocha": "^4.1.0",
@@ -48,11 +37,9 @@
     "yosay": "^2.0.2"
   },
   "scripts": {
-    "build": "gulp build",
-    "dev": "gulp",
     "lint": "standard",
     "lint:fix": "prettier --write **/*.js && standard --fix",
-    "prepublishOnly": "nsp check && npm run build",
+    "prepublishOnly": "nsp check",
     "report": "nyc report --reporter=lcov",
     "test": "standard && nyc mocha -A"
   },
