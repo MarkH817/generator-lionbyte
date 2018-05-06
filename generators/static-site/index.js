@@ -19,12 +19,14 @@ module.exports = class StaticSite extends Generator {
     return new Promise(resolve => {
       const babelPresets = [
         [
-          'babel-preset-env',
+          'env',
           {
+            modules: false,
+            loose: true,
+            useBuiltIns: true,
             targets: {
-              browsers: ['last 2 versions']
-            },
-            exclude: ['transform-regenerator']
+              browsers: ['defaults']
+            }
           }
         ]
       ]
@@ -41,9 +43,7 @@ module.exports = class StaticSite extends Generator {
       staticFiles.map(file => copy(this, file))
 
       this.fs.writeJSON(this.destinationPath('.babelrc'), {
-        presets: this.props.react
-          ? [...babelPresets, 'babel-preset-react']
-          : babelPresets,
+        presets: this.props.react ? [...babelPresets, 'react'] : babelPresets,
         plugins: ['syntax-dynamic-import']
       })
 
@@ -70,9 +70,12 @@ function getDevDeps ({ react }) {
   const list = [
     'babel-core@latest',
     'babel-eslint@latest',
-    'babel-preset-env@latest',
     'babel-loader@latest',
+    'babel-plugin-dynamic-import-node@latest',
     'babel-plugin-syntax-dynamic-import@latest',
+    'babel-polyfill@latest',
+    'babel-preset-env@latest',
+    'babel-register@latest',
     'postcss-loader@latest',
     'autoprefixer@latest',
     'css-loader@latest',
