@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+* Made pre-commit hooks optional
+
+## [1.1.0] - 2018-04-08
+
+### Changed
+
 * Swapped to `mini-css-extract-plugin` from `extract-text-webpack-plugin`
 
 ### Added

@@ -48,6 +48,12 @@ function getPrompts (generator) {
       message: 'What type of NodeJS project are you doing?',
       choices: getProjectTypes(),
       default: 'generic'
+    },
+    {
+      type: 'confirm',
+      name: 'gitHooks',
+      message: 'Do you want to add linting to your precommit hooks?',
+      default: false
     }
   ]
 }
@@ -57,6 +63,7 @@ function saveConfig (generator, props) {
   generator.config.set('description', props.description)
   generator.config.set('version', props.version)
   generator.config.set('projectType', props.projectType)
+  generator.config.set('gitHooks', props.gitHooks)
 }
 
 function compose (generator, props) {

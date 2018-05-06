@@ -29,7 +29,8 @@ module.exports = class Package extends Generator {
       info = projectAdjustments(
         info,
         this.props,
-        this.config.get('projectType')
+        this.config.get('projectType'),
+        this.config.get('gitHooks')
       )
 
       this.fs.writeJSON(this.destinationPath('package.json'), info)
@@ -51,9 +52,24 @@ module.exports = class Package extends Generator {
 }
 
 /* Helper functions */
-function projectAdjustments (info, props, type) {
+function projectAdjustments (info, props, type, gitHooks) {
   let { scripts, standard } = info
   let bin = {}
+  let hookInfo = {}
+
+  if (gitHooks) {
+    hookInfo = {
+      husky: {
+        hooks: {
+          'pre-commit': ['lint-staged']
+        }
+      },
+      'lint-staged': {
+        '*.js': ['prettier --write', 'standard --fix', 'git add'],
+        '*.{md,less}': ['prettier --write', 'git add']
+      }
+    }
+  }
 
   switch (type) {
     case 'static-site':
@@ -65,12 +81,15 @@ function projectAdjustments (info, props, type) {
         parser: 'babel-eslint'
       })
       break
+
     case 'server':
       scripts = Object.assign({}, scripts, {
         dev: 'nodemon src',
         start: 'node src'
       })
       break
+
+    case 'generic':
     default:
       if (props.command) {
         bin[props.command] = 'src/cli'
@@ -82,7 +101,7 @@ function projectAdjustments (info, props, type) {
       })
   }
 
-  return Object.assign({}, info, {
+  return Object.assign({}, info, hookInfo, {
     scripts: sortObj(scripts),
     bin,
     standard
