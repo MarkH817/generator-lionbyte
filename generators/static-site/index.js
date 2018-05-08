@@ -1,4 +1,5 @@
 const Generator = require('yeoman-generator')
+
 const { copy } = require('../utils')
 
 module.exports = class StaticSite extends Generator {
@@ -12,43 +13,24 @@ module.exports = class StaticSite extends Generator {
       }
     ]
 
-    return this.prompt(prompts).then(props => (this.props = props))
+    return this.prompt(prompts).then(props => {
+      this.props = props
+    })
   }
 
   writing () {
-    return new Promise(resolve => {
-      const babelPresets = [
-        [
-          'env',
-          {
-            modules: false,
-            loose: true,
-            useBuiltIns: true,
-            targets: {
-              browsers: ['defaults']
-            }
-          }
-        ]
-      ]
+    const staticFiles = [
+      'pages/index.html',
+      'styles/main.less',
+      'src/index.js',
+      'webpack.dev.js',
+      'webpack.prod.js',
+      'webpack.common.js'
+    ]
 
-      const staticFiles = [
-        'pages/index.html',
-        'styles/main.less',
-        'src/index.js',
-        'webpack.dev.js',
-        'webpack.prod.js',
-        'webpack.common.js'
-      ]
+    staticFiles.map(file => copy(this, file))
 
-      staticFiles.map(file => copy(this, file))
-
-      this.fs.writeJSON(this.destinationPath('.babelrc'), {
-        presets: this.props.react ? [...babelPresets, 'react'] : babelPresets,
-        plugins: ['syntax-dynamic-import']
-      })
-
-      resolve()
-    })
+    this.fs.writeJSON(this.destinationPath('.babelrc'), getBabelrc(this.props))
   }
 
   install () {
@@ -56,6 +38,47 @@ module.exports = class StaticSite extends Generator {
 
     this.npmInstall(devDependencies, { saveDev: true })
     this.npmInstall(dependencies)
+  }
+}
+
+function getBabelrc ({ react }) {
+  const basePresets = [
+    [
+      'env',
+      {
+        modules: false,
+        loose: true,
+        useBuiltIns: false,
+        targets: { browsers: ['defaults'] }
+      }
+    ]
+  ].concat(react ? ['react'] : [])
+
+  const basePlugins = ['syntax-dynamic-import']
+
+  const testPresets = [
+    [
+      'env',
+      {
+        modules: 'commonjs',
+        loose: true,
+        useBuiltIns: false,
+        targets: { node: 'current' }
+      }
+    ]
+  ].concat(react ? ['react'] : [])
+
+  const testPlugins = ['dynamic-import-node']
+
+  return {
+    presets: basePresets,
+    plugins: basePlugins,
+    env: {
+      test: {
+        presets: testPresets,
+        plugins: testPlugins
+      }
+    }
   }
 }
 
@@ -67,7 +90,7 @@ function getAllDependencies (props) {
 }
 
 function getDevDeps ({ react }) {
-  const list = [
+  return [
     'babel-core@latest',
     'babel-eslint@latest',
     'babel-loader@latest',
@@ -76,6 +99,7 @@ function getDevDeps ({ react }) {
     'babel-polyfill@latest',
     'babel-preset-env@latest',
     'babel-register@latest',
+    'cross-env@latest',
     'postcss-loader@latest',
     'autoprefixer@latest',
     'css-loader@latest',
@@ -90,13 +114,7 @@ function getDevDeps ({ react }) {
     'webpack@latest',
     'webpack-cli@latest',
     'webpack-merge@latest'
-  ]
-
-  if (react) {
-    return [...list, 'babel-preset-react@latest']
-  } else {
-    return list
-  }
+  ].concat(react ? ['babel-preset-react@latest'] : [])
 }
 
 function getDependencies ({ react }) {
