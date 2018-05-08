@@ -1,18 +1,15 @@
 const Generator = require('yeoman-generator')
+
 const { copy, copyTpl } = require('../utils')
 
 module.exports = class Common extends Generator {
   writing () {
-    return new Promise(resolve => {
-      const { staticFiles, tplFiles } = getFiles()
-      const data = getData(this)
+    const { staticFiles, tplFiles } = getFiles()
+    const data = getData(this)
 
-      staticFiles.map(file => copy(this, file))
-      tplFiles.map(file => copyTpl(this, data, file))
-      copy(this, '_gitignore', '.gitignore')
-
-      resolve()
-    })
+    staticFiles.map(file => copy(this, file))
+    tplFiles.map(file => copyTpl(this, data, file))
+    copy(this, '_gitignore', '.gitignore')
   }
 
   install () {
@@ -25,17 +22,9 @@ module.exports = class Common extends Generator {
       'nyc@latest',
       'standard@latest',
       'prettier@latest'
-    ]
+    ].concat(gitHooks ? ['husky@next', 'lint-staged@latest'] : [])
 
-    if (gitHooks) {
-      this.npmInstall([...packages, 'husky@next', 'lint-staged@latest'], {
-        saveDev: true
-      })
-    } else {
-      this.npmInstall(packages, {
-        saveDev: true
-      })
-    }
+    this.npmInstall(packages, { saveDev: true })
   }
 }
 

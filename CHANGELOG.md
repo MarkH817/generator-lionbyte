@@ -7,9 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Changed
+### Changes
 
 * Made pre-commit hooks optional
+* Updated .babelrc file w/ better default settings
+* Added `babel-polyfill` for web projects
+* Added `babel-register` and `cross-env` for testing ES6 modules for web projects
+
+### Internal
+
+* Removed gulp from build process
+* Added Travis CI configurations to test on Node v6, v8, and latest
 
 ## [1.1.0] - 2018-04-08
 

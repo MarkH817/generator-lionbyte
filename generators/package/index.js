@@ -1,4 +1,5 @@
 const Generator = require('yeoman-generator')
+
 const { sortObj } = require('../utils')
 
 module.exports = class Package extends Generator {
@@ -20,22 +21,19 @@ module.exports = class Package extends Generator {
   }
 
   writing () {
-    return new Promise(resolve => {
-      /* Set basic info */
-      const tpl = this.fs.readJSON(this.templatePath('package.json'))
-      let info = this.getBaseInfo()
+    /* Set basic info */
+    const tpl = this.fs.readJSON(this.templatePath('package.json'))
+    let info = this.getBaseInfo()
 
-      info = Object.assign({}, info, tpl)
-      info = projectAdjustments(
-        info,
-        this.props,
-        this.config.get('projectType'),
-        this.config.get('gitHooks')
-      )
+    info = Object.assign({}, info, tpl)
+    info = projectAdjustments(
+      info,
+      this.props,
+      this.config.get('projectType'),
+      this.config.get('gitHooks')
+    )
 
-      this.fs.writeJSON(this.destinationPath('package.json'), info)
-      resolve()
-    })
+    this.fs.writeJSON(this.destinationPath('package.json'), info)
   }
 
   getBaseInfo () {
@@ -75,7 +73,9 @@ function projectAdjustments (info, props, type, gitHooks) {
     case 'static-site':
       scripts = Object.assign({}, scripts, {
         dev: 'webpack-dev-server --config webpack.dev.js --open',
-        build: 'webpack --config webpack.prod.js'
+        build: 'webpack --config webpack.prod.js',
+        test:
+          'standard src && cross-env NODE_ENV=test nyc mocha --require babel-register'
       })
       standard = Object.assign({}, standard, {
         parser: 'babel-eslint'

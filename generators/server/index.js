@@ -1,14 +1,12 @@
 const Generator = require('yeoman-generator')
+
 const { copy } = require('../utils')
 
 module.exports = class Server extends Generator {
   writing () {
-    return new Promise(resolve => {
-      const staticFiles = ['src/routes/index.js', 'src/app.js', 'src/index.js']
+    const staticFiles = ['src/routes/index.js', 'src/app.js', 'src/index.js']
 
-      staticFiles.map(file => copy(this, file))
-      resolve()
-    })
+    staticFiles.map(file => copy(this, file))
   }
 
   install () {

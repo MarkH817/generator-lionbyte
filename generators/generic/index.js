@@ -1,4 +1,5 @@
 const Generator = require('yeoman-generator')
+
 const { copy } = require('../utils')
 
 module.exports = class Generic extends Generator {
@@ -19,12 +20,8 @@ module.exports = class Generic extends Generator {
   }
 
   writing () {
-    return new Promise(resolve => {
-      const staticFiles = getStaticFiles(this.props)
-      staticFiles.map(file => copy(this, file))
-
-      resolve()
-    })
+    const staticFiles = getStaticFiles(this.props)
+    staticFiles.map(file => copy(this, file))
   }
 
   install () {
@@ -36,12 +33,6 @@ module.exports = class Generic extends Generator {
   }
 }
 
-function getStaticFiles (props) {
-  let files = ['src/index.js']
-
-  if (props.cli) {
-    return [...files, 'src/cli.js']
-  } else {
-    return files
-  }
+function getStaticFiles ({ cli }) {
+  return ['src/index.js'].concat(cli ? ['src/cli.js'] : [])
 }
