@@ -22,14 +22,13 @@
     "chai": "^4.1.2",
     "coveralls": "^3.0.1",
     "husky": "^0.15.0-rc.13",
-    "lint-staged": "^7.1.0",
-    "mocha": "^5.1.1",
-    "nsp": "^3.2.1",
-    "nyc": "^11.7.1",
+    "lint-staged": "^7.1.2",
+    "mocha": "^5.2.0",
+    "nyc": "^11.8.0",
     "prettier": "^1.12.1",
     "standard": "^11.0.1",
     "yeoman-assert": "^3.1.1",
-    "yeoman-test": "^1.7.0"
+    "yeoman-test": "^1.7.2"
   },
   "dependencies": {
     "chalk": "^2.4.1",
@@ -39,7 +38,6 @@
   "scripts": {
     "lint": "standard",
     "lint:fix": "prettier --write **/*.js && standard --fix",
-    "prepublishOnly": "nsp check",
     "report": "nyc report --reporter=lcov",
     "test": "standard && nyc mocha -A"
   },

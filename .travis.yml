@@ -4,6 +4,12 @@ node_js:
   - 8
   - 6
 
+before_install:
+  - npm i -g npm@6
+
+install:
+  - npm ci
+
 after_script:
   - npm run report
   - 'cat ./coverage/lcov.info | coveralls'
