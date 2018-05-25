@@ -27,7 +27,7 @@ module.exports = class Generic extends Generator {
   }
 
   install () {
-    this.npmInstall(['nodemon@latest'], { saveDev: true })
+    this.npmInstall(['nodemon@latest', '@types/node@latest'], { saveDev: true })
 
     if (this.props.cli) {
       this.npmInstall(['chalk@latest', 'commander@latest'])

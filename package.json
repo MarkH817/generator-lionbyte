@@ -41,8 +41,8 @@
   },
   "scripts": {
     "lint": "standard",
-    "lint:type": "tsc --pretty",
     "lint:fix": "prettier --write **/*.js && standard --fix",
+    "lint:type": "tsc --pretty",
     "report": "nyc report --reporter=lcov",
     "test": "standard && tsc --pretty && nyc mocha -A"
   },

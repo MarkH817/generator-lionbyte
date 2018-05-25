@@ -8,6 +8,5 @@
     "noEmit": true,
     "target": "es2017"
   },
-  "include": ["generators/**/*.js"],
-  "exclude": ["**/templates/**/*.js"]
+  "include": ["src/**/*.js"]
 }

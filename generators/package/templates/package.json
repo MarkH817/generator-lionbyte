@@ -6,8 +6,9 @@
   "scripts": {
     "lint":"standard",
     "lint:fix":"prettier --write **/*.js && standard --fix",
+    "lint:type": "tsc --pretty",
     "report":"nyc report --reporter=lcov",
-    "test":"standard && nyc mocha"
+    "test":"standard && tsc --pretty && nyc mocha"
   },
   "prettier": {
     "semi": false,

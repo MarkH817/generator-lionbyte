@@ -21,7 +21,8 @@ module.exports = class Common extends Generator {
       'mocha@latest',
       'nyc@latest',
       'standard@latest',
-      'prettier@latest'
+      'prettier@latest',
+      'typescript@latest'
     ].concat(gitHooks ? ['husky@next', 'lint-staged@latest'] : [])
 
     this.npmInstall(packages, { saveDev: true })
@@ -45,7 +46,8 @@ function getStaticFiles () {
     '.gitattributes',
     '.travis.yml',
     'CHANGELOG.md',
-    'CONTRIBUTING.md'
+    'CONTRIBUTING.md',
+    'tsconfig.json'
   ]
 }
 
