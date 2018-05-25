@@ -16,7 +16,8 @@ module.exports = class Server extends Generator {
         '@types/body-parser@latest',
         '@types/debug@latest',
         '@types/express@latest',
-        '@types/morgan@latest'
+        '@types/morgan@latest',
+        '@types/node@latest'
       ],
       { saveDev: true }
     )
