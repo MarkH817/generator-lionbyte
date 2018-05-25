@@ -12,7 +12,8 @@ const files = {
     'CODE_OF_CONDUCT.md',
     'CONTRIBUTING.md',
     'LICENSE.md',
-    'README.md'
+    'README.md',
+    'tsconfig.json'
   ],
   generic: ['src/index.js'],
   package: ['package.json'],

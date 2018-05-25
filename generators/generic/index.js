@@ -15,7 +15,9 @@ module.exports = class Generic extends Generator {
 
     return this.prompt(prompts).then(props => {
       this.config.set('cli', props.cli)
-      this.props = props
+
+      /** @type {{ cli: boolean }} */
+      this.props = { cli: props.cli }
     })
   }
 
@@ -25,7 +27,7 @@ module.exports = class Generic extends Generator {
   }
 
   install () {
-    this.npmInstall(['nodemon@latest'], { saveDev: true })
+    this.npmInstall(['nodemon@latest', '@types/node@latest'], { saveDev: true })
 
     if (this.props.cli) {
       this.npmInstall(['chalk@latest', 'commander@latest'])
@@ -33,6 +35,10 @@ module.exports = class Generic extends Generator {
   }
 }
 
-function getStaticFiles ({ cli }) {
+/**
+ * @param {{cli: boolean}} props
+ */
+function getStaticFiles (props) {
+  const { cli } = props
   return ['src/index.js'].concat(cli ? ['src/cli.js'] : [])
 }

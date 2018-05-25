@@ -75,7 +75,7 @@ function projectAdjustments (info, props, type, gitHooks) {
         dev: 'webpack-dev-server --config webpack.dev.js --open',
         build: 'webpack --config webpack.prod.js',
         test:
-          'standard src && cross-env NODE_ENV=test nyc mocha --require babel-register'
+          'standard && tsc --pretty && cross-env NODE_ENV=test nyc mocha --require babel-register'
       })
       standard = Object.assign({}, standard, {
         parser: 'babel-eslint'

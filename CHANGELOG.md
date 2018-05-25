@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changes
+
+* Adds TypeScript for all JS files
+* Update Travis CI script to use npm@6 and call `npm ci` for installs
+
+### Internal
+
+* Removes `nsp` package, since npm@6 now performs security checks
+
 ## [1.2.0] - 2018-05-08
 
 ### Changes

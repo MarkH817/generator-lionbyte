@@ -14,6 +14,7 @@ app.use('/', index)
 
 app.use((req, res, next) => {
   const err = new Error('Not found')
+  // @ts-ignore
   err.status = 404
   next(err)
 })

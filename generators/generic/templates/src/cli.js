@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-const chalk = require('chalk')
+// @ts-ignore
+const { blue } = require('chalk')
 const commander = require('commander')
 
 let thingValue = ''
@@ -11,5 +12,5 @@ commander
   })
   .parse(process.argv)
 
-console.log(`I'm feeling ${chalk.blue('great')}!`)
+console.log(`I'm feeling ${blue('great')}!`)
 console.log(`Thing: ${thingValue}`)

@@ -19,6 +19,9 @@
     "yeoman-generator"
   ],
   "devDependencies": {
+    "@types/node": "^10.1.2",
+    "@types/yeoman-generator": "^2.0.3",
+    "@types/yosay": "0.0.29",
     "chai": "^4.1.2",
     "coveralls": "^3.0.1",
     "husky": "^0.15.0-rc.13",
@@ -27,6 +30,7 @@
     "nyc": "^11.8.0",
     "prettier": "^1.12.1",
     "standard": "^11.0.1",
+    "typescript": "^2.8.3",
     "yeoman-assert": "^3.1.1",
     "yeoman-test": "^1.7.2"
   },
@@ -38,8 +42,9 @@
   "scripts": {
     "lint": "standard",
     "lint:fix": "prettier --write **/*.js && standard --fix",
+    "lint:type": "tsc --pretty",
     "report": "nyc report --reporter=lcov",
-    "test": "standard && nyc mocha -A"
+    "test": "standard && tsc --pretty && nyc mocha -A"
   },
   "husky": {
     "hooks": {

@@ -1,11 +1,12 @@
+// @ts-ignore
+const { red } = require('chalk')
 const Generator = require('yeoman-generator')
-const chalk = require('chalk')
 const yosay = require('yosay')
 
 module.exports = class LionByte extends Generator {
   prompting () {
     this.log(
-      yosay(`Welcome to the best ${chalk.red('generator-lionbyte')} generator!`)
+      yosay(`Welcome to the best ${red('generator-lionbyte')} generator!`)
     )
 
     const prompts = getPrompts(this)

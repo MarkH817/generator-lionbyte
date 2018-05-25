@@ -14,7 +14,8 @@ module.exports = class StaticSite extends Generator {
     ]
 
     return this.prompt(prompts).then(props => {
-      this.props = props
+      /** @type {{ react: boolean }} */
+      this.props = { react: props.react }
     })
   }
 
@@ -96,7 +97,6 @@ function getDevDeps ({ react }) {
     'babel-loader@latest',
     'babel-plugin-dynamic-import-node@latest',
     'babel-plugin-syntax-dynamic-import@latest',
-    'babel-polyfill@latest',
     'babel-preset-env@latest',
     'babel-register@latest',
     'cross-env@latest',
@@ -114,13 +114,19 @@ function getDevDeps ({ react }) {
     'webpack@latest',
     'webpack-cli@latest',
     'webpack-merge@latest'
-  ].concat(react ? ['babel-preset-react@latest'] : [])
+  ].concat(
+    react
+      ? [
+        'babel-preset-react@latest',
+        '@types/react@latest',
+        '@types/react-dom@latest'
+      ]
+      : []
+  )
 }
 
 function getDependencies ({ react }) {
-  if (react) {
-    return ['react@latest', 'react-dom@latest']
-  } else {
-    return []
-  }
+  return ['babel-polyfill@latest'].concat(
+    react ? ['react@latest', 'react-dom@latest'] : []
+  )
 }
