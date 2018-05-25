@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "alwaysStrict": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "target": "es2017",
+    "types": ["node", "yeoman-generator", "yosay"],
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/chalk/types"
+    ]
+  },
+  "include": ["generators/**/*.js"],
+  "exclude": ["**/templates/**/*.js"]
+}

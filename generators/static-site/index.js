@@ -14,7 +14,8 @@ module.exports = class StaticSite extends Generator {
     ]
 
     return this.prompt(prompts).then(props => {
-      this.props = props
+      /** @type {{ react: boolean }} */
+      this.props = { react: props.react }
     })
   }
 

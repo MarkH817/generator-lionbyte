@@ -15,7 +15,9 @@ module.exports = class Generic extends Generator {
 
     return this.prompt(prompts).then(props => {
       this.config.set('cli', props.cli)
-      this.props = props
+
+      /** @type {{ cli: boolean }} */
+      this.props = { cli: props.cli }
     })
   }
 
@@ -33,6 +35,10 @@ module.exports = class Generic extends Generator {
   }
 }
 
-function getStaticFiles ({ cli }) {
+/**
+ * @param {{cli: boolean}} props
+ */
+function getStaticFiles (props) {
+  const { cli } = props
   return ['src/index.js'].concat(cli ? ['src/cli.js'] : [])
 }
