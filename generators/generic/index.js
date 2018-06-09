@@ -6,39 +6,32 @@ module.exports = class Generic extends Generator {
   prompting () {
     const prompts = [
       {
-        type: 'confirm',
-        name: 'cli',
-        message: 'Are you making a cli?',
-        default: false
+        type: 'input',
+        name: 'command',
+        message:
+          'What is the command name for your cli? [Leave blank for no cli]',
+        default: ''
       }
     ]
 
     return this.prompt(prompts).then(props => {
-      this.config.set('cli', props.cli)
-
-      /** @type {{ cli: boolean }} */
-      this.props = { cli: props.cli }
+      this.config.set('command', props.command)
     })
   }
 
   writing () {
-    const staticFiles = getStaticFiles(this.props)
+    const staticFiles = ['src/index.js'].concat(
+      this.config.get('command').length !== 0 ? ['src/cli.js'] : []
+    )
+
     staticFiles.map(file => copy(this, file))
   }
 
   install () {
-    this.npmInstall(['nodemon@latest', '@types/node@latest'], { saveDev: true })
+    this.npmInstall(['@types/node@latest'], { saveDev: true })
 
-    if (this.props.cli) {
+    if (this.config.get('command').length !== 0) {
       this.npmInstall(['chalk@latest', 'commander@latest'])
     }
   }
-}
-
-/**
- * @param {{cli: boolean}} props
- */
-function getStaticFiles (props) {
-  const { cli } = props
-  return ['src/index.js'].concat(cli ? ['src/cli.js'] : [])
 }

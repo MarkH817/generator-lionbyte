@@ -2,13 +2,11 @@ const path = require('path')
 const assert = require('yeoman-assert')
 const helpers = require('yeoman-test')
 
-const { files, timeout } = require('./utils/config')
+const { files } = require('./utils/config')
 
-describe('generator-lionbyte:static-site', function () {
-  this.timeout(timeout)
-
+describe('generator-lionbyte:static-site', () => {
   describe('scaffolds a static-site', () => {
-    before(() => {
+    beforeAll(() => {
       return helpers
         .run(path.join(__dirname, '../generators/app'))
         .withPrompts({
@@ -20,19 +18,17 @@ describe('generator-lionbyte:static-site', function () {
         })
     })
 
-    it('creates files', done => {
-      assert.file(files['static-site'])
-      done()
+    test('creates files', () => {
+      assert.file([...files.common, ...files['static-site']])
     })
 
-    it('does not containt React in the configuration files', done => {
-      assert.noFileContent('.babelrc', /react/)
-      done()
+    test('does not containt React in the configuration files', () => {
+      assert.noFileContent('.babelrc', /react/g)
     })
   })
 
   describe('scaffolds a static-site with React', () => {
-    before(() => {
+    beforeAll(() => {
       return helpers
         .run(path.join(__dirname, '../generators/app'))
         .withPrompts({
@@ -44,14 +40,12 @@ describe('generator-lionbyte:static-site', function () {
         })
     })
 
-    it('creates files', done => {
-      assert.file(files['static-site'])
-      done()
+    test('creates files', () => {
+      assert.file([...files.common, ...files['static-site']])
     })
 
-    it('contains React in the configuration files', done => {
-      assert.fileContent('.babelrc', /react/)
-      done()
+    test('contains React in the configuration files', () => {
+      assert.fileContent('.babelrc', /react/g)
     })
   })
 })

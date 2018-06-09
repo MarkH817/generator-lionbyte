@@ -2,11 +2,10 @@ const files = {
   common: [
     '.github/ISSUE_TEMPLATE.md',
     '.github/PULL_REQUEST_TEMPLATE.md',
-    'test/index.js',
+    'test/index.test.js',
     '.editorconfig',
     '.gitattributes',
     '.gitignore',
-    '.npmignore',
     '.travis.yml',
     'CHANGELOG.md',
     'CODE_OF_CONDUCT.md',
@@ -21,7 +20,7 @@ const files = {
   'static-site': [
     'pages/index.html',
     'src/index.js',
-    'styles/main.less',
+    'src/styles/main.less',
     '.babelrc',
     'webpack.common.js',
     'webpack.dev.js',
@@ -29,9 +28,6 @@ const files = {
   ]
 }
 
-const timeout = 10000
-
 module.exports = {
-  files,
-  timeout
+  files
 }

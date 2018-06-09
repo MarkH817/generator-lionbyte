@@ -11,5 +11,4 @@ install:
   - npm ci
 
 after_script:
-  - npm run report
   - 'cat ./coverage/lcov.info | coveralls'
