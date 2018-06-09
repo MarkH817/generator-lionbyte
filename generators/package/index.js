@@ -1,62 +1,46 @@
 const Generator = require('yeoman-generator')
 
-const { sortObj } = require('../utils')
+const { getProjectInfo, sortObj } = require('../utils')
 
-module.exports = class Package extends Generator {
-  prompting () {
-    let prompts = []
-
-    if (this.config.get('cli')) {
-      prompts = [
-        {
-          type: String,
-          name: 'command',
-          message: 'What is the command name for your cli?',
-          default: this.config.get('name')
-        }
-      ]
-    }
-
-    return this.prompt(prompts).then(props => (this.props = props))
-  }
-
-  writing () {
-    /* Set basic info */
-    const tpl = this.fs.readJSON(this.templatePath('package.json'))
-    let info = this.getBaseInfo()
-
-    info = Object.assign({}, info, tpl)
-    info = projectAdjustments(
-      info,
-      this.props,
-      this.config.get('projectType'),
-      this.config.get('gitHooks')
-    )
-
-    this.fs.writeJSON(this.destinationPath('package.json'), info)
-  }
-
-  getBaseInfo () {
-    return {
-      name: this.config.get('name'),
-      description: this.config.get('description'),
-      version: this.config.get('version'),
-      author: {
-        name: this.user.git.name(),
-        email: this.user.git.email()
-      }
+/**
+ * @param {string} type
+ * @param {boolean} gitHooks
+ * @param {string} command
+ */
+const createPackageFile = (type, gitHooks, command = undefined) => {
+  const base = {
+    license: 'MIT',
+    main: 'src/index.js',
+    scripts: {
+      lint: 'standard',
+      'lint:fix': 'prettier --write **/*.js && standard --fix',
+      'lint:type': 'tsc --pretty',
+      test: 'standard && tsc --pretty && jest --coverage'
+    },
+    prettier: {
+      semi: false,
+      singleQuote: true
+    },
+    standard: {
+      globals: [
+        'afterAll',
+        'afterEach',
+        'beforeAll',
+        'beforeEach',
+        'describe',
+        'expect',
+        'jest',
+        'test'
+      ],
+      ignore: []
     }
   }
-}
 
-/* Helper functions */
-function projectAdjustments (info, props, type, gitHooks) {
-  let { scripts, standard } = info
-  let bin = {}
-  let hookInfo = {}
+  let { scripts, standard } = base
+  const others = {}
 
   if (gitHooks) {
-    hookInfo = {
+    others.hookInfo = {
       husky: {
         hooks: {
           'pre-commit': ['lint-staged']
@@ -73,13 +57,9 @@ function projectAdjustments (info, props, type, gitHooks) {
     case 'static-site':
       scripts = Object.assign({}, scripts, {
         dev: 'webpack-dev-server --config webpack.dev.js --open',
-        build: 'webpack --config webpack.prod.js',
-        test:
-          'standard && tsc --pretty && cross-env NODE_ENV=test nyc mocha --require babel-register'
+        build: 'webpack --config webpack.prod.js'
       })
-      standard = Object.assign({}, standard, {
-        parser: 'babel-eslint'
-      })
+      standard = Object.assign({}, standard, { parser: 'babel-eslint' })
       break
 
     case 'server':
@@ -91,19 +71,47 @@ function projectAdjustments (info, props, type, gitHooks) {
 
     case 'generic':
     default:
-      if (props.command) {
-        bin[props.command] = 'src/cli'
+      if (command) {
+        others.bin = { [command]: 'src/cli' }
       }
 
-      scripts = Object.assign({}, scripts, {
-        dev: 'nodemon src',
-        start: 'node src'
-      })
+      scripts = Object.assign({}, scripts, { start: 'node src' })
   }
 
-  return Object.assign({}, info, hookInfo, {
+  return Object.assign({}, base, others, {
     scripts: sortObj(scripts),
-    bin,
     standard
   })
+}
+
+module.exports = class Package extends Generator {
+  writing () {
+    const {
+      description,
+      name,
+      version,
+      user: { name: userName, email: userEmail }
+    } = getProjectInfo(this)
+
+    const command = this.config.get('command') || ''
+
+    const packageInfo = createPackageFile(
+      this.config.get('projectType'),
+      this.config.get('gitHooks'),
+      command.length !== 0 ? command : undefined
+    )
+
+    this.fs.writeJSON(
+      this.destinationPath('package.json'),
+      Object.assign(
+        {
+          name,
+          version,
+          description,
+          author: `${userName} <${userEmail}>`
+        },
+        packageInfo
+      )
+    )
+  }
 }

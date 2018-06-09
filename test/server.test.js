@@ -1,13 +1,11 @@
 const path = require('path')
 const assert = require('yeoman-assert')
 const helpers = require('yeoman-test')
-const { files, timeout } = require('./utils/config')
+const { files } = require('./utils/config')
 
-describe('generator-lionbyte:server', function () {
-  this.timeout(timeout)
-
+describe('generator-lionbyte:server', () => {
   describe('scaffolds a server project', () => {
-    before(() => {
+    beforeAll(() => {
       return helpers
         .run(path.join(__dirname, '../generators/app'))
         .withPrompts({
@@ -18,9 +16,8 @@ describe('generator-lionbyte:server', function () {
         })
     })
 
-    it('creates files', done => {
-      assert.file(files.server)
-      done()
+    test('creates files', () => {
+      assert.file([...files.common, ...files.server])
     })
   })
 })

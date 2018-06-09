@@ -1,8 +1,8 @@
 /**
  * Copy static template files
- * @param  {Object} generator         Reference to generator instance
- * @param  {String} filename          File to copy.
- * @param  {String} [output=filename] File destination. Keeps the same filename by default.
+ * @param  {any} generator         Reference to generator instance
+ * @param  {string} filename          File to copy.
+ * @param  {string} [output=filename] File destination. Keeps the same filename by default.
  */
 const copy = (generator, filename, output = filename) => {
   generator.fs.copy(
@@ -13,10 +13,10 @@ const copy = (generator, filename, output = filename) => {
 
 /**
  * Copy dynamic template files with data
- * @param  {Object} generator         Reference to generator instance
- * @param  {Object} data              Data to write to the template file
- * @param  {String} filename          File to copy.
- * @param  {String} [output=filename] File destination. Keeps the same filename by default.
+ * @param  {any} generator         Reference to generator instance
+ * @param  {any} data              Data to write to the template file
+ * @param  {string} filename          File to copy.
+ * @param  {string} [output=filename] File destination. Keeps the same filename by default.
  */
 const copyTpl = (generator, data, filename, output = filename) => {
   generator.fs.copyTpl(
@@ -25,6 +25,23 @@ const copyTpl = (generator, data, filename, output = filename) => {
     data
   )
 }
+
+/**
+ * @param {any} generator
+ * @returns {{ description: string, name: string, projectType: string, user: {name: string, email: string}, version: string }}
+ */
+const getProjectInfo = generator => ({
+  description: generator.config.get('description'),
+  name: generator.config.get('name'),
+  projectType: generator.config.get('projectType'),
+  user: {
+    name: generator.user.git.name(),
+    email: generator.user.git.email()
+  },
+  version: generator.config.get('version')
+})
+
+const projectTypes = ['generic', 'server', 'static-site']
 
 const sortObj = obj => {
   let keys = Object.keys(obj).sort()
@@ -40,5 +57,7 @@ const sortObj = obj => {
 module.exports = {
   copy,
   copyTpl,
+  getProjectInfo,
+  projectTypes,
   sortObj
 }

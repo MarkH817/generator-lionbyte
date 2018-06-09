@@ -2,11 +2,7 @@
   "name": "generator-lionbyte",
   "version": "1.2.0",
   "description": "Generate a NodeJS project",
-  "author": {
-    "name": "Mark Hernandez",
-    "email": "mark@lion-byte.com",
-    "url": "https://www.lion-byte.com"
-  },
+  "author": "Mark Hernandez <mark@lion-byte.com> (https://www.lion-byte.com)",
   "files": [
     "generators"
   ],
@@ -19,18 +15,16 @@
     "yeoman-generator"
   ],
   "devDependencies": {
-    "@types/node": "^10.1.2",
+    "@types/node": "^10.3.2",
     "@types/yeoman-generator": "^2.0.3",
     "@types/yosay": "0.0.29",
-    "chai": "^4.1.2",
     "coveralls": "^3.0.1",
-    "husky": "^0.15.0-rc.13",
-    "lint-staged": "^7.1.2",
-    "mocha": "^5.2.0",
-    "nyc": "^11.8.0",
-    "prettier": "^1.12.1",
+    "husky": "^1.0.0-rc.8",
+    "jest": "^23.1.0",
+    "lint-staged": "^7.1.3",
+    "prettier": "^1.13.5",
     "standard": "^11.0.1",
-    "typescript": "^2.8.3",
+    "typescript": "^2.9.1",
     "yeoman-assert": "^3.1.1",
     "yeoman-test": "^1.7.2"
   },
@@ -43,8 +37,7 @@
     "lint": "standard",
     "lint:fix": "prettier --write **/*.js && standard --fix",
     "lint:type": "tsc --pretty",
-    "report": "nyc report --reporter=lcov",
-    "test": "standard && tsc --pretty && nyc mocha -A"
+    "test": "standard && tsc && jest --coverage"
   },
   "husky": {
     "hooks": {
@@ -70,12 +63,14 @@
   },
   "standard": {
     "globals": [
-      "after",
+      "afterAll",
       "afterEach",
-      "before",
+      "beforeAll",
       "beforeEach",
       "describe",
-      "it"
+      "expect",
+      "jest",
+      "test"
     ]
   },
   "repository": "MarkH817/generator-lionbyte",

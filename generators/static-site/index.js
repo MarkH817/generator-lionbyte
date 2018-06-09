@@ -2,58 +2,21 @@ const Generator = require('yeoman-generator')
 
 const { copy } = require('../utils')
 
-module.exports = class StaticSite extends Generator {
-  prompting () {
-    const prompts = [
-      {
-        type: 'confirm',
-        name: 'react',
-        message: 'Include React?',
-        default: false
-      }
-    ]
-
-    return this.prompt(prompts).then(props => {
-      /** @type {{ react: boolean }} */
-      this.props = { react: props.react }
-    })
-  }
-
-  writing () {
-    const staticFiles = [
-      'pages/index.html',
-      'styles/main.less',
-      'src/index.js',
-      'webpack.dev.js',
-      'webpack.prod.js',
-      'webpack.common.js'
-    ]
-
-    staticFiles.map(file => copy(this, file))
-
-    this.fs.writeJSON(this.destinationPath('.babelrc'), getBabelrc(this.props))
-  }
-
-  install () {
-    const { devDependencies, dependencies } = getAllDependencies(this.props)
-
-    this.npmInstall(devDependencies, { saveDev: true })
-    this.npmInstall(dependencies)
-  }
-}
-
-function getBabelrc ({ react }) {
+/**
+ * @param {{ react: boolean }} options
+ */
+const getBabelrc = options => {
   const basePresets = [
     [
       'env',
       {
         modules: false,
         loose: true,
-        useBuiltIns: false,
+        useBuiltIns: true,
         targets: { browsers: ['defaults'] }
       }
     ]
-  ].concat(react ? ['react'] : [])
+  ].concat(options.react ? ['react'] : [], ['stage-3'])
 
   const basePlugins = ['syntax-dynamic-import']
 
@@ -63,11 +26,11 @@ function getBabelrc ({ react }) {
       {
         modules: 'commonjs',
         loose: true,
-        useBuiltIns: false,
+        useBuiltIns: true,
         targets: { node: 'current' }
       }
     ]
-  ].concat(react ? ['react'] : [])
+  ].concat(options.react ? ['react'] : [], ['stage-3'])
 
   const testPlugins = ['dynamic-import-node']
 
@@ -83,50 +46,102 @@ function getBabelrc ({ react }) {
   }
 }
 
-function getAllDependencies (props) {
-  const devDependencies = getDevDeps(props)
-  const dependencies = getDependencies(props)
+/**
+ * @param {{ react: boolean }} options
+ */
+const getAllDependencies = options => {
+  const devDependencies = getDevDeps(options)
+  const dependencies = getDependencies(options)
 
   return { devDependencies, dependencies }
 }
 
-function getDevDeps ({ react }) {
+/**
+ * @param {{ react: boolean }} options
+ */
+const getDevDeps = options => {
   return [
+    'autoprefixer@latest',
     'babel-core@latest',
     'babel-eslint@latest',
     'babel-loader@latest',
     'babel-plugin-dynamic-import-node@latest',
     'babel-plugin-syntax-dynamic-import@latest',
     'babel-preset-env@latest',
-    'babel-register@latest',
-    'cross-env@latest',
-    'postcss-loader@latest',
-    'autoprefixer@latest',
+    'babel-preset-stage-3@latest',
+    'clean-webpack-plugin@latest',
     'css-loader@latest',
     'cssnano@latest',
     'less@latest',
     'less-loader@latest',
+    'postcss-loader@latest',
     'style-loader@latest',
     'mini-css-extract-plugin@latest',
-    'clean-webpack-plugin@latest',
     'html-webpack-plugin@latest',
-    'webpack-dev-server@latest',
     'webpack@latest',
     'webpack-cli@latest',
+    'webpack-dev-server@latest',
     'webpack-merge@latest'
   ].concat(
-    react
+    options.react
       ? [
-        'babel-preset-react@latest',
         '@types/react@latest',
-        '@types/react-dom@latest'
+        '@types/react-dom@latest',
+        'babel-preset-react@latest'
       ]
       : []
   )
 }
 
-function getDependencies ({ react }) {
+/**
+ * @param {{ react: boolean }} options
+ */
+const getDependencies = options => {
   return ['babel-polyfill@latest'].concat(
-    react ? ['react@latest', 'react-dom@latest'] : []
+    options.react ? ['react@latest', 'react-dom@latest'] : []
   )
+}
+
+module.exports = class StaticSite extends Generator {
+  prompting () {
+    const prompts = [
+      {
+        type: 'confirm',
+        name: 'react',
+        message: 'Include React?',
+        default: false
+      }
+    ]
+
+    return this.prompt(prompts).then(props => {
+      this.config.set('react', props.react)
+    })
+  }
+
+  writing () {
+    const staticFiles = [
+      'pages/index.html',
+      'src/index.js',
+      'src/styles/main.less',
+      'webpack.dev.js',
+      'webpack.prod.js',
+      'webpack.common.js'
+    ]
+
+    staticFiles.map(file => copy(this, file))
+
+    this.fs.writeJSON(
+      this.destinationPath('.babelrc'),
+      getBabelrc({ react: this.config.get('react') })
+    )
+  }
+
+  install () {
+    const { devDependencies, dependencies } = getAllDependencies({
+      react: this.config.get('react')
+    })
+
+    this.npmInstall(devDependencies, { saveDev: true })
+    this.npmInstall(dependencies)
+  }
 }

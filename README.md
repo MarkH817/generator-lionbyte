@@ -27,44 +27,45 @@ yo lionbyte
 
 This generator scaffolds the following NodeJS project types:
 
-* Generic/CLI NodeJS programs
-* Server
-* Static site
+- Generic/CLI NodeJS programs
+- Server
+- Static site
 
 ### Details
 
-* All Types
-  * `prettier` and `standard` code style and linter
-    * Optional pre-commit hook to run these linters
-  * `mocha` and `chai` for test framework
-  * `nyc` for code coverage
-  * Travis-CI script to run tests
-  * Includes .editorconfig, .gitignore, .gitattributes
-  * Document files
-    * Issue and Pull Request templates
-    * CHANGELOG, CODE_OF_CONDUCT, CONTRIBUTING files
-    * MIT License
-* Generic (Default)
-  * Basic Node.js project type
-  * Includes option to make a CLI portion
-* Server
-  * ExpressJS server
-* Static Site
-  * webpack@4 setup
-    * Development/Production configurations for webpack
-    * webpack-dev-server
-  * Styles
-    * Autoprefixer
-    * CSSNano - Minification
-    * LESS CSS Preprocessor
-  * Option to include React
+#### Common features
+
+- `typescript` type checking with `*.js` files
+- `jest` for testing and code coverage
+- `prettier` and `standard` code style and linter
+  - Optional pre-commit hook to run these linters
+- Travis-CI script to run tests
+
+#### Generic (Default)
+
+- Basic Node.js project type
+- Includes option to make a CLI portion
+
+#### Server
+
+- ExpressJS server
+
+#### Static Site
+
+- `webpack` configurations for development and production
+- Styles
+  - Autoprefixer
+  - CSSNano - Minification
+  - LESS CSS Preprocessor
+- Dynamic importing
+- Option to include React
 
 ## Getting To Know Yeoman
 
-* Yeoman has a heart of gold.
-* Yeoman is a person with feelings and opinions, but is very easy to work with.
-* Yeoman can be too opinionated at times but is easily convinced not to be.
-* Feel free to [learn more about Yeoman](http://yeoman.io/).
+- Yeoman has a heart of gold.
+- Yeoman is a person with feelings and opinions, but is very easy to work with.
+- Yeoman can be too opinionated at times but is easily convinced not to be.
+- Feel free to [learn more about Yeoman](http://yeoman.io/).
 
 ## Contributing
 

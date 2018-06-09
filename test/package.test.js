@@ -1,14 +1,11 @@
 const path = require('path')
 const assert = require('yeoman-assert')
 const helpers = require('yeoman-test')
-const { timeout } = require('./utils/config')
 
-describe('generator-lionbyte:package', function () {
-  this.timeout(timeout)
-
+describe('generator-lionbyte:package', () => {
   describe('write package.json w/out git hook configurations', () => {
-    before(done => {
-      helpers
+    beforeAll(() => {
+      return helpers
         .run(path.join(__dirname, '../generators/package'))
         .withLocalConfig({
           name: 'test',
@@ -18,19 +15,17 @@ describe('generator-lionbyte:package', function () {
           command: false,
           gitHooks: false
         })
-        .then(() => done())
     })
 
-    it('does not have husky or lint-staged', done => {
-      assert.noFileContent('package.json', /husky/)
-      assert.noFileContent('package.json', /lint-staged/)
-      done()
+    test('does not have husky or lint-staged', () => {
+      assert.noFileContent('package.json', /husky/g)
+      assert.noFileContent('package.json', /lint-staged/g)
     })
   })
 
   describe('adds git hook configurations', () => {
-    before(done => {
-      helpers
+    beforeAll(() => {
+      return helpers
         .run(path.join(__dirname, '../generators/package'))
         .withLocalConfig({
           name: 'test',
@@ -40,13 +35,11 @@ describe('generator-lionbyte:package', function () {
           command: false,
           gitHooks: true
         })
-        .then(() => done())
     })
 
-    it('has husky and lint-staged configurations', done => {
-      assert.fileContent('package.json', /husky/)
-      assert.fileContent('package.json', /lint-staged/)
-      done()
+    test('has husky and lint-staged configurations', () => {
+      assert.fileContent('package.json', /husky/g)
+      assert.fileContent('package.json', /lint-staged/g)
     })
   })
 })
