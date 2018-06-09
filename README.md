@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/MarkH817/generator-lionbyte.svg?branch=master)](https://travis-ci.org/MarkH817/generator-lionbyte)
 [![Coverage Status](https://coveralls.io/repos/github/MarkH817/generator-lionbyte/badge.svg?branch=master)](https://coveralls.io/github/MarkH817/generator-lionbyte?branch=master)
 
-> Generate a NodeJS project
+> Generate a JavaScript project
 
 ## Installation
 
