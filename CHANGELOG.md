@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.3.0] - 2018-06-09
+
 ### Changes
 
 - Switches to `jest` testing framework from `mocha`, `chai`, and `nyc`
