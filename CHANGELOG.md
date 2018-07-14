@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changes
+
+- Bump `yeoman-generator` dependency to v3.0.0
+- Fix commit-hooks configs to be readable by the tools
+- Set `.babelrc` useBuiltIns to false
+
 ## [1.3.0] - 2018-06-09
 
 ### Changes

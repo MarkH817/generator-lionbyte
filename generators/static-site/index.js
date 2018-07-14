@@ -12,7 +12,7 @@ const getBabelrc = options => {
       {
         modules: false,
         loose: true,
-        useBuiltIns: true,
+        useBuiltIns: false,
         targets: { browsers: ['defaults'] }
       }
     ]
@@ -26,7 +26,7 @@ const getBabelrc = options => {
       {
         modules: 'commonjs',
         loose: true,
-        useBuiltIns: true,
+        useBuiltIns: false,
         targets: { node: 'current' }
       }
     ]
@@ -121,6 +121,7 @@ module.exports = class StaticSite extends Generator {
   writing () {
     const staticFiles = [
       'pages/index.html',
+      'src/common.js',
       'src/index.js',
       'src/styles/main.less',
       'webpack.dev.js',

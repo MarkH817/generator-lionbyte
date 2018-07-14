@@ -40,16 +40,15 @@ const createPackageFile = (type, gitHooks, command = undefined) => {
   const others = {}
 
   if (gitHooks) {
-    others.hookInfo = {
-      husky: {
-        hooks: {
-          'pre-commit': ['lint-staged']
-        }
-      },
-      'lint-staged': {
-        '*.js': ['prettier --write', 'standard --fix', 'git add'],
-        '*.{md,less}': ['prettier --write', 'git add']
+    others['husky'] = {
+      hooks: {
+        'pre-commit': ['lint-staged']
       }
+    }
+
+    others['lint-staged'] = {
+      '*.js': ['prettier --write', 'standard --fix', 'git add'],
+      '*.{md,less}': ['prettier --write', 'git add']
     }
   }
 
