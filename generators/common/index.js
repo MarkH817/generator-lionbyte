@@ -27,10 +27,11 @@ module.exports = class Common extends Generator {
 
     const packages = [
       'jest@latest',
+      'babel-jest@latest',
       'standard@latest',
       'prettier@latest',
       'typescript@latest'
-    ].concat(gitHooks ? ['husky@next', 'lint-staged@latest'] : [])
+    ].concat(gitHooks ? ['husky@latest', 'lint-staged@latest'] : [])
 
     this.npmInstall(packages, { saveDev: true })
   }

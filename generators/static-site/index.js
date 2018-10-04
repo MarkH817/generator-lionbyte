@@ -8,39 +8,33 @@ const { copy } = require('../utils')
 const getBabelrc = options => {
   const basePresets = [
     [
-      'env',
+      '@babel/preset-env',
       {
         modules: false,
-        loose: true,
-        useBuiltIns: false,
+        useBuiltIns: 'usage',
         targets: { browsers: ['defaults'] }
       }
     ]
-  ].concat(options.react ? ['react'] : [], ['stage-3'])
-
-  const basePlugins = ['syntax-dynamic-import']
+  ].concat(options.react ? ['@babel/preset-react'] : [])
 
   const testPresets = [
     [
-      'env',
+      '@babel/preset-env',
       {
         modules: 'commonjs',
-        loose: true,
-        useBuiltIns: false,
+        useBuiltIns: 'usage',
         targets: { node: 'current' }
       }
     ]
-  ].concat(options.react ? ['react'] : [], ['stage-3'])
-
-  const testPlugins = ['dynamic-import-node']
+  ].concat(options.react ? ['@babel/preset-react'] : [])
 
   return {
     presets: basePresets,
-    plugins: basePlugins,
+    plugins: ['@babel/syntax-dynamic-import'],
     env: {
       test: {
         presets: testPresets,
-        plugins: testPlugins
+        plugins: ['dynamic-import-node']
       }
     }
   }
@@ -61,14 +55,14 @@ const getAllDependencies = options => {
  */
 const getDevDeps = options => {
   return [
+    '@babel/core@latest',
+    '@babel/plugin-syntax-dynamic-import@latest',
+    '@babel/preset-env@latest',
     'autoprefixer@latest',
-    'babel-core@latest',
+    'babel-core@7.0.0-bridge.0', // To allow Jest to work with Babel 7
     'babel-eslint@latest',
     'babel-loader@latest',
     'babel-plugin-dynamic-import-node@latest',
-    'babel-plugin-syntax-dynamic-import@latest',
-    'babel-preset-env@latest',
-    'babel-preset-stage-3@latest',
     'clean-webpack-plugin@latest',
     'css-loader@latest',
     'cssnano@latest',
@@ -87,7 +81,7 @@ const getDevDeps = options => {
       ? [
         '@types/react@latest',
         '@types/react-dom@latest',
-        'babel-preset-react@latest'
+        '@babel/preset-react@latest'
       ]
       : []
   )
@@ -97,7 +91,7 @@ const getDevDeps = options => {
  * @param {{ react: boolean }} options
  */
 const getDependencies = options => {
-  return ['babel-polyfill@latest'].concat(
+  return ['@babel/polyfill@latest'].concat(
     options.react ? ['react@latest', 'react-dom@latest'] : []
   )
 }
@@ -121,9 +115,8 @@ module.exports = class StaticSite extends Generator {
   writing () {
     const staticFiles = [
       'pages/index.html',
-      'src/common.js',
-      'src/index.js',
       'src/styles/main.less',
+      'src/index.js',
       'webpack.dev.js',
       'webpack.prod.js',
       'webpack.common.js'
