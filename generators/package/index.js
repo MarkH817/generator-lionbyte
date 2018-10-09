@@ -6,8 +6,10 @@ const { getProjectInfo, sortObj } = require('../utils')
  * @param {string} type
  * @param {boolean} gitHooks
  * @param {string} command
+ * @returns {PackageJSON}
  */
-const createPackageFile = (type, gitHooks, command = undefined) => {
+const createPackageFile = (type, gitHooks, command = null) => {
+  /** @type {PackageJSON} */
   const base = {
     license: 'MIT',
     main: 'src/index.js',
@@ -100,17 +102,17 @@ module.exports = class Package extends Generator {
       command.length !== 0 ? command : undefined
     )
 
-    this.fs.writeJSON(
-      this.destinationPath('package.json'),
-      Object.assign(
-        {
-          name,
-          version,
-          description,
-          author: `${userName} <${userEmail}>`
-        },
-        packageInfo
-      )
+    /** @type {PackageJSON} */
+    const fullPackageJSON = Object.assign(
+      {
+        name,
+        version,
+        description,
+        author: `${userName} <${userEmail}>`
+      },
+      packageInfo
     )
+
+    this.fs.writeJSON(this.destinationPath('package.json'), fullPackageJSON)
   }
 }
