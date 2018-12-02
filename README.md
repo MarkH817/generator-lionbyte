@@ -27,9 +27,8 @@ yo lionbyte
 
 This generator scaffolds the following NodeJS project types:
 
-- Generic/CLI NodeJS programs
-- Server
-- Static site
+- Node (default)
+- Frontend
 
 ### Details
 
@@ -38,34 +37,21 @@ This generator scaffolds the following NodeJS project types:
 - `typescript` type checking with `*.js` files
 - `jest` for testing and code coverage
 - `prettier` and `standard` code style and linter
-  - Optional pre-commit hook to run these linters
+  - Optional pre-commit hook to run these linters via `husky` and `lint-staged`
 - Travis-CI script to run tests
 
-#### Generic (Default)
+#### Node (Default)
 
 - Basic Node.js project type
-- Includes option to make a CLI portion
 
-#### Server
-
-- ExpressJS server
-
-#### Static Site
+#### Frontend
 
 - `webpack` configurations for development and production
 - Styles
   - Autoprefixer
   - CSSNano - Minification
   - LESS CSS Preprocessor
-- Dynamic importing
 - Option to include React
-
-## Getting To Know Yeoman
-
-- Yeoman has a heart of gold.
-- Yeoman is a person with feelings and opinions, but is very easy to work with.
-- Yeoman can be too opinionated at times but is easily convinced not to be.
-- Feel free to [learn more about Yeoman](http://yeoman.io/).
 
 ## Contributing
 
