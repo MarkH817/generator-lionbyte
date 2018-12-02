@@ -1,5 +1,4 @@
-// @ts-ignore
-const { red } = require('chalk')
+const { red } = require('chalk').default
 const Generator = require('yeoman-generator')
 const yosay = require('yosay')
 
@@ -16,7 +15,7 @@ module.exports = class LionByte extends Generator {
         type: 'input',
         name: 'name',
         message: 'Your project name',
-        default: this.appname
+        default: this.appname.replace(/ /g, '-').toLowerCase()
       },
       {
         type: 'input',
@@ -25,30 +24,23 @@ module.exports = class LionByte extends Generator {
         default: ''
       },
       {
-        type: 'input',
-        name: 'version',
-        message: 'Project version',
-        default: '0.0.0'
-      },
-      {
         type: 'list',
         name: 'projectType',
-        message: 'What type of NodeJS project are you doing?',
+        message: 'What type of project are you doing?',
         choices: projectTypes,
-        default: 'generic'
+        default: 'node'
       },
       {
         type: 'confirm',
         name: 'gitHooks',
-        message: 'Do you want to add linting to your precommit hooks?',
+        message: 'Do you want to add linting to your pre-commit hooks?',
         default: false
       }
     ]
 
     return this.prompt(prompts).then(props => {
-      this.config.set('name', props.name)
+      this.config.set('name', props.name.replace(/ /g, '-').toLowerCase())
       this.config.set('description', props.description)
-      this.config.set('version', props.version)
       this.config.set('projectType', props.projectType)
       this.config.set('gitHooks', props.gitHooks)
 
@@ -57,9 +49,11 @@ module.exports = class LionByte extends Generator {
         `../${props.projectType}`,
         `../package`,
         `../typescript`
-      ].map(path => require.resolve(path))
+      ]
 
-      subgenerators.map(sub => this.composeWith(sub, undefined))
+      subgenerators.forEach(sub => {
+        this.composeWith(require.resolve(sub), {})
+      })
     })
   }
 }

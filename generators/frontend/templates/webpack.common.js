@@ -53,7 +53,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'Hello',
-      template: 'pages/index.html',
+      template: 'static/index.html',
       minify: {
         collapseWhitespace: true,
         conservativeCollapse: true,

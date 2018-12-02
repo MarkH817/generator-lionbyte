@@ -15,8 +15,10 @@
     "yeoman-generator"
   ],
   "devDependencies": {
+    "@types/jest": "^23.3.10",
     "@types/node": "^10.12.11",
     "@types/yeoman-generator": "^3.0.1",
+    "@types/yeoman-test": "^1.7.4",
     "@types/yosay": "0.0.29",
     "coveralls": "^3.0.2",
     "eslint": "^5.9.0",
@@ -40,9 +42,9 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "prettier --write **/*.js && eslint . --fix",
-    "lint:type": "tsc --pretty",
-    "test": "eslint . && tsc && jest --coverage"
+    "format": "prettier --write **/*.js && npm run lint -- --fix",
+    "type": "tsc --pretty",
+    "test": "npm run lint && npm run type && jest --coverage"
   },
   "repository": "MarkH817/generator-lionbyte",
   "license": "MIT"

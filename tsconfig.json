@@ -5,9 +5,10 @@
     "checkJs": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "module": "commonjs",
     "noEmit": true,
     "target": "es2017"
   },
-  "include": ["./definitions.d.ts", "generators/**/*.js"],
+  "include": ["declarations.d.ts", "generators/**/*.js"],
   "exclude": ["**/templates/**/*.js"]
 }

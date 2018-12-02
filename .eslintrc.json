@@ -1,5 +1,11 @@
 {
-  "extends": "standard",
+  "extends": ["standard"],
+  "rules": {
+    "no-var": "error"
+  },
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
   "globals": {
     "afterAll": true,
     "afterEach": true,
