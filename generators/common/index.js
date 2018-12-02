@@ -1,38 +1,103 @@
 const Generator = require('yeoman-generator')
 
-const { copy, copyTpl, getProjectInfo } = require('../utils')
+const { copy, copyTpl, getProjectInfo, sortObj } = require('../utils')
+
+const createEslintConfig = options => {
+  const { projectType, react } = options
+
+  const config = {
+    extends: ['standard'],
+    rules: {
+      'no-var': 'error'
+    },
+    parserOptions: {
+      ecmaVersion: 8
+    },
+    globals: {
+      afterAll: true,
+      afterEach: true,
+      beforeAll: true,
+      beforeEach: true,
+      describe: true,
+      expect: true,
+      jest: true,
+      test: true
+    }
+  }
+
+  if (projectType === 'frontend') {
+    config.parser = 'babel-eslint'
+
+    if (react) {
+      config.extends.push('standard-jsx')
+
+      config.rules['react/jsx-uses-react'] = 'error'
+      config.rules['react/jsx-uses-vars'] = 'error'
+    }
+  }
+
+  return sortObj(config)
+}
 
 module.exports = class Common extends Generator {
   writing () {
+    const eslintConfig = createEslintConfig(this.config.getAll())
+    const data = getProjectInfo(this)
+    const tplFiles = ['CODE_OF_CONDUCT.md', 'LICENSE.md', 'README.md']
     const staticFiles = [
       '.github/ISSUE_TEMPLATE.md',
       '.github/PULL_REQUEST_TEMPLATE.md',
       '.editorconfig',
+      '.eslintignore',
       '.gitattributes',
+      '.prettierrc',
       '.travis.yml',
       'CHANGELOG.md',
       'CONTRIBUTING.md'
     ]
-    const tplFiles = ['CODE_OF_CONDUCT.md', 'LICENSE.md', 'README.md']
-    const data = getProjectInfo(this)
 
-    staticFiles.map(file => copy(this, file))
-    tplFiles.map(file => copyTpl(this, data, file))
+    if (this.config.get('gitHooks')) {
+      staticFiles.push('.huskyrc', '.lintstagedrc')
+    }
+
+    staticFiles.forEach(file => copy(this, file))
+    tplFiles.forEach(file => copyTpl(this, data, file))
+
     copy(this, '_gitignore', '.gitignore')
     copy(this, 'test/index.js', 'test/index.test.js')
+
+    this.fs.writeJSON(this.destinationPath('.eslintrc.json'), eslintConfig)
   }
 
   install () {
-    const gitHooks = this.config.get('gitHooks')
+    const devDependencies = [
+      'jest',
+      'eslint',
+      'eslint-config-standard',
+      'eslint-plugin-import',
+      'eslint-plugin-node',
+      'eslint-plugin-promise',
+      'eslint-plugin-standard',
+      'prettier'
+    ]
 
-    const packages = [
-      'jest@latest',
-      'babel-jest@latest',
-      'standard@latest',
-      'prettier@latest',
-      'typescript@latest'
-    ].concat(gitHooks ? ['husky@latest', 'lint-staged@latest'] : [])
+    const { gitHooks, projectType, react } = this.config.getAll()
 
-    this.npmInstall(packages, { saveDev: true })
+    if (gitHooks) {
+      devDependencies.push('husky', 'lint-staged')
+    }
+
+    if (projectType === 'frontend') {
+      devDependencies.push('babel-jest', 'babel-eslint')
+
+      if (react) {
+        devDependencies.push(
+          'eslint-plugin-react',
+          'eslint-config-standard-jsx'
+        )
+      }
+    }
+
+    this.npmInstall(devDependencies, { saveDev: true })
   }
 }

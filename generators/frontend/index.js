@@ -3,7 +3,7 @@ const Generator = require('yeoman-generator')
 const { copy } = require('../utils')
 
 /**
- * @param {{ react: boolean }} options
+ * @param {object} options
  */
 const getBabelrc = options => {
   const basePresets = [
@@ -41,7 +41,7 @@ const getBabelrc = options => {
 }
 
 /**
- * @param {{ react: boolean }} options
+ * @param {object} options
  */
 const getAllDependencies = options => {
   const devDependencies = getDevDeps(options)
@@ -51,49 +51,38 @@ const getAllDependencies = options => {
 }
 
 /**
- * @param {{ react: boolean }} options
+ * @param {object} options
  */
 const getDevDeps = options => {
   return [
-    '@babel/core@latest',
-    '@babel/plugin-syntax-dynamic-import@latest',
-    '@babel/preset-env@latest',
-    'autoprefixer@latest',
+    '@babel/core',
+    '@babel/plugin-syntax-dynamic-import',
+    '@babel/preset-env',
+    'autoprefixer',
     'babel-core@7.0.0-bridge.0', // To allow Jest to work with Babel 7
-    'babel-eslint@latest',
-    'babel-loader@latest',
-    'babel-plugin-dynamic-import-node@latest',
-    'clean-webpack-plugin@latest',
-    'css-loader@latest',
-    'cssnano@latest',
-    'less@latest',
-    'less-loader@latest',
-    'postcss-loader@latest',
-    'style-loader@latest',
-    'mini-css-extract-plugin@latest',
-    'html-webpack-plugin@latest',
-    'webpack@latest',
-    'webpack-cli@latest',
-    'webpack-dev-server@latest',
-    'webpack-merge@latest'
-  ].concat(
-    options.react
-      ? [
-        '@types/react@latest',
-        '@types/react-dom@latest',
-        '@babel/preset-react@latest'
-      ]
-      : []
-  )
+    'babel-loader',
+    'babel-plugin-dynamic-import-node',
+    'clean-webpack-plugin',
+    'css-loader',
+    'cssnano',
+    'less',
+    'less-loader',
+    'postcss-loader',
+    'style-loader',
+    'mini-css-extract-plugin',
+    'html-webpack-plugin',
+    'webpack',
+    'webpack-cli',
+    'webpack-dev-server',
+    'webpack-merge'
+  ].concat(options.react ? ['@babel/preset-react'] : [])
 }
 
 /**
- * @param {{ react: boolean }} options
+ * @param {object} options
  */
 const getDependencies = options => {
-  return ['@babel/polyfill@latest'].concat(
-    options.react ? ['react@latest', 'react-dom@latest'] : []
-  )
+  return ['@babel/polyfill'].concat(options.react ? ['react', 'react-dom'] : [])
 }
 
 module.exports = class StaticSite extends Generator {
@@ -114,26 +103,26 @@ module.exports = class StaticSite extends Generator {
 
   writing () {
     const staticFiles = [
-      'pages/index.html',
       'src/styles/main.less',
       'src/index.js',
+      'static/index.html',
       'webpack.dev.js',
       'webpack.prod.js',
       'webpack.common.js'
     ]
 
-    staticFiles.map(file => copy(this, file))
+    staticFiles.forEach(file => copy(this, file))
 
     this.fs.writeJSON(
       this.destinationPath('.babelrc'),
-      getBabelrc({ react: this.config.get('react') })
+      getBabelrc(this.config.getAll())
     )
   }
 
   install () {
-    const { devDependencies, dependencies } = getAllDependencies({
-      react: this.config.get('react')
-    })
+    const { devDependencies, dependencies } = getAllDependencies(
+      this.config.getAll()
+    )
 
     this.npmInstall(devDependencies, { saveDev: true })
     this.npmInstall(dependencies)

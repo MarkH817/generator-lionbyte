@@ -28,7 +28,7 @@ const copyTpl = (generator, data, filename, output = filename) => {
 
 /**
  * @param {any} generator
- * @returns {{ description: string, name: string, projectType: string, user: {name: string, email: string}, version: string }}
+ * @returns {{ description: string, name: string, projectType: string, user: {name: string, email: string} }}
  */
 const getProjectInfo = generator => ({
   description: generator.config.get('description'),
@@ -37,20 +37,25 @@ const getProjectInfo = generator => ({
   user: {
     name: generator.user.git.name(),
     email: generator.user.git.email()
-  },
-  version: generator.config.get('version')
+  }
 })
 
-const projectTypes = ['generic', 'server', 'static-site']
+const projectTypes = ['node', 'frontend']
 
+/**
+ * @template {any} T
+ * @param {T} obj
+ * @returns {T}
+ */
 const sortObj = obj => {
   let keys = Object.keys(obj).sort()
   let sorted = {}
 
-  keys.map(key => {
+  keys.forEach(key => {
     sorted[key] = obj[key]
   })
 
+  // @ts-ignore
   return sorted
 }
 

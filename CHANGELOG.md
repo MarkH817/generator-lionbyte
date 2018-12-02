@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changes
+
+- Remove `server` and `cli` project types
+  - I hardly ever used these two. They're based off of the default node project type anyways.
+- Rename subgenerator `generic` to `node`
+- Rename subgenerator `static-site` to `frontend`
+- Use `eslint` with `standard` configurations
+  - Allows for more customization and integration with other tools using `eslint`.
+- Move `prettier`, `husky`, `lint-staged`, and `eslint` configuations to individual `.*rc` files
+  - The `package.json` file was getting cluttered with too many configurations.
+
+### Internal
+
+- Add Node v10 to travis-ci test suite environment
+
 ## [1.4.0] - 2018-10-04
 
 ### Changes

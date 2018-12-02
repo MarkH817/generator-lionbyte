@@ -2,7 +2,7 @@ const Generator = require('yeoman-generator')
 
 module.exports = class TypeScript extends Generator {
   writing () {
-    const isStaticSite = this.config.get('projectType') === 'static-site'
+    const isFrontend = this.config.get('projectType') === 'frontend'
 
     const tsconfig = {
       compilerOptions: {
@@ -10,18 +10,29 @@ module.exports = class TypeScript extends Generator {
         alwaysStrict: true,
         checkJs: true,
         esModuleInterop: true,
-        module: isStaticSite ? 'esnext' : 'commonjs',
+        module: isFrontend ? 'esnext' : 'commonjs',
         moduleResolution: 'node',
         noEmit: true,
         target: 'es2017'
       },
-      include: ['src/**/*.js']
+      include: ['declarations.d.ts', 'src/**/*.js']
     }
 
-    if (isStaticSite && this.config.get('react')) {
+    if (this.config.get('react')) {
       tsconfig.compilerOptions['jsx'] = 'react'
     }
 
     this.fs.writeJSON(this.destinationPath('tsconfig.json'), tsconfig)
+    this.fs.write(this.destinationPath('declarations.d.ts'), '')
+  }
+
+  install () {
+    const devDependencies = ['typescript', '@types/node', '@types/jest']
+
+    if (this.config.get('react')) {
+      devDependencies.push('@types/react', '@types/react-dom')
+    }
+
+    this.npmInstall(devDependencies, { saveDev: true })
   }
 }

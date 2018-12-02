@@ -1,9 +1,0 @@
-{
-  "generator-node": {
-    "promptValues": {
-      "authorName": "Mark Hernandez",
-      "authorEmail": "markedcode@gmail.com",
-      "authorUrl": ""
-    }
-  }
-}
