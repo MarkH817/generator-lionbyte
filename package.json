@@ -41,8 +41,9 @@
     "yosay": "^2.0.2"
   },
   "scripts": {
+    "format": "npm run prettier && npm run lint -- --fix",
     "lint": "eslint .",
-    "format": "prettier --write **/*.js && npm run lint -- --fix",
+    "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|yml|yaml|css|less|ts|md|graphql|mdx)\"",
     "type": "tsc --pretty",
     "test": "npm run lint && npm run type && jest --coverage"
   },
