@@ -9,7 +9,7 @@ const { getProjectInfo, sortObj } = require('../utils')
 const createScripts = type => {
   const scripts = {
     format: 'npm run prettier && npm run lint -- --fix',
-    lint: 'eslint .',
+    lint: 'eslint --ignore-path .gitignore .',
     prettier:
       'prettier --ignore-path .gitignore --write "**/*.+(js|json|yml|yaml|css|less|ts|md|graphql|mdx)"',
     test: 'npm run lint && npm run type && jest --coverage',
