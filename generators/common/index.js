@@ -3,12 +3,14 @@ const Generator = require('yeoman-generator')
 const { copy, copyTpl, getProjectInfo, sortObj } = require('../utils')
 
 const createEslintConfig = options => {
-  const { projectType, react } = options
+  const { projectType } = options
 
   const config = {
-    extends: ['standard'],
+    extends: ['standard', 'standard-jsx'],
     rules: {
-      'no-var': 'error'
+      'no-var': 'error',
+      'react/jsx-uses-react': 'error',
+      'react/jsx-uses-vars': 'error'
     },
     parserOptions: {
       ecmaVersion: 8
@@ -27,13 +29,6 @@ const createEslintConfig = options => {
 
   if (projectType === 'frontend') {
     config.parser = 'babel-eslint'
-
-    if (react) {
-      config.extends.push('standard-jsx')
-
-      config.rules['react/jsx-uses-react'] = 'error'
-      config.rules['react/jsx-uses-vars'] = 'error'
-    }
   }
 
   return sortObj(config)
@@ -73,14 +68,16 @@ module.exports = class Common extends Generator {
       'jest',
       'eslint',
       'eslint-config-standard',
+      'eslint-config-standard-jsx',
       'eslint-plugin-import',
       'eslint-plugin-node',
       'eslint-plugin-promise',
+      'eslint-plugin-react',
       'eslint-plugin-standard',
       'prettier'
     ]
 
-    const { gitHooks, projectType, react } = this.config.getAll()
+    const { gitHooks, projectType } = this.config.getAll()
 
     if (gitHooks) {
       devDependencies.push('husky', 'lint-staged')
@@ -88,13 +85,6 @@ module.exports = class Common extends Generator {
 
     if (projectType === 'frontend') {
       devDependencies.push('babel-jest', 'babel-eslint')
-
-      if (react) {
-        devDependencies.push(
-          'eslint-plugin-react',
-          'eslint-config-standard-jsx'
-        )
-      }
     }
 
     this.npmInstall(devDependencies, { saveDev: true })

@@ -61,10 +61,6 @@ describe('common (frontend)', () => {
 
   test('has frontend config in .eslintrc.json', () => {
     assert.jsonFileContent('.eslintrc.json', { parser: 'babel-eslint' })
-    assert.noFileContent(
-      '.eslintrc.json',
-      /standard-jsx|react\/jsx-uses-react|react\/jsx-uses-vars/g
-    )
   })
 })
 
@@ -87,9 +83,5 @@ describe('common (frontend w/ React)', () => {
 
   test('has frontend + React config in .eslintrc.json', () => {
     assert.jsonFileContent('.eslintrc.json', { parser: 'babel-eslint' })
-    assert.fileContent(
-      '.eslintrc.json',
-      /standard-jsx|react\/jsx-uses-react|react\/jsx-uses-vars/g
-    )
   })
 })
