@@ -1,6 +1,6 @@
 {
   "name": "generator-lionbyte",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "Generate a JavaScript project",
   "author": "Mark Hernandez <mark@lion-byte.com> (https://www.lion-byte.com)",
   "files": [
