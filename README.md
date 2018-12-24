@@ -4,6 +4,7 @@
 [![Dependency Status][daviddm-image]][daviddm-url]
 [![Build Status](https://travis-ci.org/MarkH817/generator-lionbyte.svg?branch=master)](https://travis-ci.org/MarkH817/generator-lionbyte)
 [![Coverage Status](https://coveralls.io/repos/github/MarkH817/generator-lionbyte/badge.svg?branch=master)](https://coveralls.io/github/MarkH817/generator-lionbyte?branch=master)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 > Generate a JavaScript project
 
@@ -25,26 +26,24 @@ yo lionbyte
 
 ## Features
 
-This generator scaffolds the following NodeJS project types:
+This generator scaffolds the following JavaScript project types:
 
 - Node (default)
 - Frontend
 
-### Details
-
-#### Common features
+In addition, the following utility packages are added for all project types:
 
 - `typescript` type checking with `*.js` files
 - `jest` for testing and code coverage
 - `prettier` and `standard` code style and linter
-  - Optional pre-commit hook to run these linters via `husky` and `lint-staged`
-- Travis-CI script to run tests
+- Travis-CI script to run the tests
+- Optional pre-commit hook to run these linters via `husky` and `lint-staged`
 
-#### Node (Default)
+### Project Type: Node (Default)
 
-- Basic Node.js project type
+- Meant to serve as a base for any Node.js projects
 
-#### Frontend
+### Project Type: Frontend
 
 - `webpack` configurations for development and production
 - Styles
