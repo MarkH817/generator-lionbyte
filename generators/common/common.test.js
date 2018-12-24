@@ -4,13 +4,14 @@ const { resolve } = require('path')
 
 const genPath = resolve(__dirname, './index')
 const commonFiles = [
-  'test/index.test.js',
   '.github/ISSUE_TEMPLATE.md',
   '.github/PULL_REQUEST_TEMPLATE.md',
+  'test/index.test.js',
   '.editorconfig',
   '.eslintrc.json',
   '.gitattributes',
   '.gitignore',
+  '.prettierrc',
   '.travis.yml',
   'CHANGELOG.md',
   'CODE_OF_CONDUCT.md',
