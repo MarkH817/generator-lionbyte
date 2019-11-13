@@ -27,17 +27,13 @@
     "yeoman-generator"
   ],
   "devDependencies": {
+    "@lionbyte/eslint-config": "^1.2.0",
     "@types/jest": "^24.0.23",
     "@types/node": "^12.12.7",
     "@types/yeoman-generator": "^3.1.4",
     "@types/yeoman-test": "^2.0.3",
     "@types/yosay": "0.0.29",
     "eslint": "^6.6.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
     "lint-staged": "^9.4.2",

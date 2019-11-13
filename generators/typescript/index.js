@@ -19,7 +19,7 @@ module.exports = class TypeScript extends Generator {
     }
 
     if (this.config.get('react')) {
-      tsconfig.compilerOptions['jsx'] = 'react'
+      tsconfig.compilerOptions.jsx = 'react'
     }
 
     this.fs.writeJSON(this.destinationPath('tsconfig.json'), tsconfig)

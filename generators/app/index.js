@@ -1,4 +1,4 @@
-const { red } = require('chalk').default
+const { red } = require('chalk')
 const Generator = require('yeoman-generator')
 const yosay = require('yosay')
 
@@ -10,7 +10,7 @@ module.exports = class LionByte extends Generator {
       yosay(`Welcome to the best ${red('generator-lionbyte')} generator!`)
     )
 
-    const prompts = [
+    return this.prompt([
       {
         type: 'input',
         name: 'name',
@@ -36,9 +36,7 @@ module.exports = class LionByte extends Generator {
         message: 'Do you want to add linting to your pre-commit hooks?',
         default: false
       }
-    ]
-
-    return this.prompt(prompts).then(props => {
+    ]).then(props => {
       this.config.set('name', props.name.replace(/ /g, '-').toLowerCase())
       this.config.set('description', props.description)
       this.config.set('projectType', props.projectType)
