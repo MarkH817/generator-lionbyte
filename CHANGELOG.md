@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.0.0...v2.1.0) (2019-11-13)
+
+
+### Features
+
+* use `@lionbyte/eslint-config` ([aa8cd52](https://github.com/MarkH817/generator-lionbyte/commit/aa8cd52cdb9a34927fd6e5078974c5540ca096a4))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
