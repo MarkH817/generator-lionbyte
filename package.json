@@ -2,11 +2,24 @@
   "name": "generator-lionbyte",
   "version": "2.0.0",
   "description": "Generate a JavaScript project",
+  "scripts": {
+    "format": "npm run prettier && npm run lint -- --fix",
+    "lint": "eslint --ignore-path .gitignore .",
+    "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|yml|yaml|css|less|ts|md|graphql|mdx)\"",
+    "type": "tsc --pretty",
+    "test": "npm run lint && npm run type && jest",
+    "semantic-release": "semantic-release"
+  },
+  "license": "MIT",
+  "main": "generators/index.js",
   "author": "Mark Hernandez <mark@lion-byte.com> (https://www.lion-byte.com)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarkH817/generator-lionbyte.git"
+  },
   "files": [
     "generators"
   ],
-  "main": "generators/index.js",
   "keywords": [
     "generator",
     "scaffold",
@@ -15,38 +28,27 @@
     "yeoman-generator"
   ],
   "devDependencies": {
-    "@types/jest": "^23.3.10",
-    "@types/node": "^10.12.18",
-    "@types/yeoman-generator": "^3.0.1",
-    "@types/yeoman-test": "^2.0.0",
+    "@lionbyte/eslint-config": "^1.2.0",
+    "@semantic-release/changelog": "^3.0.5",
+    "@semantic-release/git": "^7.0.18",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.7",
+    "@types/yeoman-generator": "^3.1.4",
+    "@types/yeoman-test": "^2.0.3",
     "@types/yosay": "0.0.29",
-    "coveralls": "^3.0.2",
-    "eslint": "^5.11.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^8.0.0",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "husky": "^1.2.1",
-    "jest": "^23.6.0",
-    "lint-staged": "^8.1.0",
-    "prettier": "^1.15.3",
-    "typescript": "^3.2.2",
+    "eslint": "^6.6.0",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.19.1",
+    "semantic-release": "^15.13.30",
+    "typescript": "^3.7.2",
     "yeoman-assert": "^3.1.1",
-    "yeoman-test": "^1.9.1"
+    "yeoman-test": "^2.0.0"
   },
   "dependencies": {
-    "chalk": "^2.4.1",
-    "yeoman-generator": "^3.2.0",
+    "chalk": "^3.0.0",
+    "yeoman-generator": "^4.2.0",
     "yosay": "^2.0.2"
-  },
-  "scripts": {
-    "format": "npm run prettier && npm run lint -- --fix",
-    "lint": "eslint --ignore-path .gitignore .",
-    "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|yml|yaml|css|less|ts|md|graphql|mdx)\"",
-    "type": "tsc --pretty",
-    "test": "npm run lint && npm run type && jest --coverage"
-  },
-  "repository": "MarkH817/generator-lionbyte",
-  "license": "MIT"
+  }
 }

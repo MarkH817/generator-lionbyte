@@ -40,6 +40,7 @@ const getProjectInfo = generator => ({
   }
 })
 
+/** @type {ReadonlyArray<string>} */
 const projectTypes = ['node', 'frontend']
 
 /**
@@ -48,8 +49,8 @@ const projectTypes = ['node', 'frontend']
  * @returns {T}
  */
 const sortObj = obj => {
-  let keys = Object.keys(obj).sort()
-  let sorted = {}
+  const keys = Object.keys(obj).sort()
+  const sorted = {}
 
   keys.forEach(key => {
     sorted[key] = obj[key]

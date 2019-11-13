@@ -1,9 +1,9 @@
 language: node_js
+
 node_js:
-  - 'node'
+  - 12
   - 10
   - 8
-  - 6
 
 before_install:
   - npm i -g npm@6
@@ -11,5 +11,17 @@ before_install:
 install:
   - npm ci
 
-after_script:
-  - 'cat ./coverage/lcov.info | coveralls'
+script: npm test
+
+jobs:
+  include:
+    # Define the release stage that runs semantic-release
+    - stage: release
+      node_js: lts/*
+      # Advanced: optionally overwrite your default `script` step to skip the tests
+      # script: skip
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release

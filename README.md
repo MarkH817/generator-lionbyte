@@ -1,10 +1,7 @@
 # generator-lionbyte
 
 [![NPM version][npm-image]][npm-url]
-[![Dependency Status][daviddm-image]][daviddm-url]
 [![Build Status](https://travis-ci.org/MarkH817/generator-lionbyte.svg?branch=master)](https://travis-ci.org/MarkH817/generator-lionbyte)
-[![Coverage Status](https://coveralls.io/repos/github/MarkH817/generator-lionbyte/badge.svg?branch=master)](https://coveralls.io/github/MarkH817/generator-lionbyte?branch=master)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 > Generate a JavaScript project
 
@@ -62,5 +59,3 @@ MIT © [Mark Hernandez](https://www.github.com/MarkH817)
 
 [npm-image]: https://badge.fury.io/js/generator-lionbyte.svg
 [npm-url]: https://npmjs.org/package/generator-lionbyte
-[daviddm-image]: https://david-dm.org/MarkH817/generator-lionbyte.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/MarkH817/generator-lionbyte
