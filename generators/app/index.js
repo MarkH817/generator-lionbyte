@@ -43,10 +43,10 @@ module.exports = class LionByte extends Generator {
       this.config.set('gitHooks', props.gitHooks)
 
       const subgenerators = [
-        `../common`,
+        '../common',
         `../${props.projectType}`,
-        `../package`,
-        `../typescript`
+        '../package',
+        '../typescript'
       ]
 
       subgenerators.forEach(sub => {
