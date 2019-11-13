@@ -7,7 +7,8 @@
     "lint": "eslint --ignore-path .gitignore .",
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|yml|yaml|css|less|ts|md|graphql|mdx)\"",
     "type": "tsc --pretty",
-    "test": "npm run lint && npm run type && jest"
+    "test": "npm run lint && npm run type && jest",
+    "semantic-release": "semantic-release"
   },
   "license": "MIT",
   "main": "generators/index.js",
@@ -28,6 +29,8 @@
   ],
   "devDependencies": {
     "@lionbyte/eslint-config": "^1.2.0",
+    "@semantic-release/changelog": "^3.0.5",
+    "@semantic-release/git": "^7.0.18",
     "@types/jest": "^24.0.23",
     "@types/node": "^12.12.7",
     "@types/yeoman-generator": "^3.1.4",
@@ -38,6 +41,7 @@
     "jest": "^24.9.0",
     "lint-staged": "^9.4.2",
     "prettier": "^1.19.1",
+    "semantic-release": "^15.13.30",
     "typescript": "^3.7.2",
     "yeoman-assert": "^3.1.1",
     "yeoman-test": "^2.0.0"
