@@ -4,8 +4,6 @@ const { resolve } = require('path')
 
 const genPath = resolve(__dirname, './index')
 const commonFiles = [
-  '.github/ISSUE_TEMPLATE.md',
-  '.github/PULL_REQUEST_TEMPLATE.md',
   'test/index.test.js',
   '.editorconfig',
   '.eslintrc.json',
@@ -13,7 +11,6 @@ const commonFiles = [
   '.gitignore',
   '.prettierrc',
   '.travis.yml',
-  'CHANGELOG.md',
   'CODE_OF_CONDUCT.md',
   'CONTRIBUTING.md',
   'LICENSE.md',
@@ -36,10 +33,6 @@ describe('common (node)', () => {
   test('creates pre-commit linting file configuration', () => {
     assert.file(['.huskyrc', '.lintstagedrc'])
   })
-
-  test('has frontend config in .eslintrc.json', () => {
-    assert.noJsonFileContent('.eslintrc.json', { parser: 'babel-eslint' })
-  })
 })
 
 describe('common (frontend)', () => {
@@ -58,10 +51,6 @@ describe('common (frontend)', () => {
   test('no pre-commit linting file configuration', () => {
     assert.noFile(['.huskyrc', '.lintstagedrc'])
   })
-
-  test('has frontend config in .eslintrc.json', () => {
-    assert.jsonFileContent('.eslintrc.json', { parser: 'babel-eslint' })
-  })
 })
 
 describe('common (frontend w/ React)', () => {
@@ -79,9 +68,5 @@ describe('common (frontend w/ React)', () => {
 
   test('no pre-commit linting file configuration', () => {
     assert.noFile(['.huskyrc', '.lintstagedrc'])
-  })
-
-  test('has frontend + React config in .eslintrc.json', () => {
-    assert.jsonFileContent('.eslintrc.json', { parser: 'babel-eslint' })
   })
 })

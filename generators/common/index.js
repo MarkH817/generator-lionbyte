@@ -1,52 +1,16 @@
 const Generator = require('yeoman-generator')
 
-const { copy, copyTpl, getProjectInfo, sortObj } = require('../utils')
-
-const createEslintConfig = options => {
-  const { projectType } = options
-
-  const config = {
-    extends: ['standard', 'standard-jsx'],
-    rules: {
-      'no-var': 'error',
-      'react/jsx-uses-react': 'error',
-      'react/jsx-uses-vars': 'error'
-    },
-    parserOptions: {
-      ecmaVersion: 8
-    },
-    globals: {
-      afterAll: true,
-      afterEach: true,
-      beforeAll: true,
-      beforeEach: true,
-      describe: true,
-      expect: true,
-      jest: true,
-      test: true
-    }
-  }
-
-  if (projectType === 'frontend') {
-    config.parser = 'babel-eslint'
-  }
-
-  return sortObj(config)
-}
+const { copy, copyTpl, getProjectInfo } = require('../utils')
 
 module.exports = class Common extends Generator {
   writing () {
-    const eslintConfig = createEslintConfig(this.config.getAll())
     const data = getProjectInfo(this)
     const tplFiles = ['CODE_OF_CONDUCT.md', 'LICENSE.md', 'README.md']
     const staticFiles = [
-      '.github/ISSUE_TEMPLATE.md',
-      '.github/PULL_REQUEST_TEMPLATE.md',
       '.editorconfig',
       '.gitattributes',
       '.prettierrc',
       '.travis.yml',
-      'CHANGELOG.md',
       'CONTRIBUTING.md'
     ]
 
@@ -60,20 +24,16 @@ module.exports = class Common extends Generator {
     copy(this, '_gitignore', '.gitignore')
     copy(this, 'test/index.js', 'test/index.test.js')
 
-    this.fs.writeJSON(this.destinationPath('.eslintrc.json'), eslintConfig)
+    this.fs.writeJSON(this.destinationPath('.eslintrc.json'), {
+      extends: ['@lionbyte']
+    })
   }
 
   install () {
     const devDependencies = [
-      'jest',
+      '@lionbyte/eslint-config',
       'eslint',
-      'eslint-config-standard',
-      'eslint-config-standard-jsx',
-      'eslint-plugin-import',
-      'eslint-plugin-node',
-      'eslint-plugin-promise',
-      'eslint-plugin-react',
-      'eslint-plugin-standard',
+      'jest',
       'prettier'
     ]
 
