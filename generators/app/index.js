@@ -57,6 +57,7 @@ module.exports = class LionByte extends Generator {
   }
 
   install () {
+    // @ts-ignore
     const { devDependencies, dependencies } = getPackages(this.config.getAll())
 
     this.npmInstall(devDependencies, { saveDev: true })
