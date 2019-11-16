@@ -10,6 +10,7 @@ const getBabelrc = options => {
     [
       '@babel/preset-env',
       {
+        corejs: 3,
         modules: false,
         useBuiltIns: 'usage',
         targets: { browsers: ['defaults'] }
@@ -21,6 +22,7 @@ const getBabelrc = options => {
     [
       '@babel/preset-env',
       {
+        corejs: 3,
         modules: 'commonjs',
         useBuiltIns: 'usage',
         targets: { node: 'current' }
@@ -59,7 +61,6 @@ const getDevDeps = options => {
     '@babel/plugin-syntax-dynamic-import',
     '@babel/preset-env',
     'autoprefixer',
-    'babel-core@7.0.0-bridge.0', // To allow Jest to work with Babel 7
     'babel-loader',
     'babel-plugin-dynamic-import-node',
     'clean-webpack-plugin',
@@ -82,7 +83,9 @@ const getDevDeps = options => {
  * @param {object} options
  */
 const getDependencies = options => {
-  return ['@babel/polyfill'].concat(options.react ? ['react', 'react-dom'] : [])
+  return ['core-js@3', 'regenerator-runtime@latest'].concat(
+    options.react ? ['react', 'react-dom'] : []
+  )
 }
 
 module.exports = class StaticSite extends Generator {

@@ -1,18 +1,19 @@
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
+const { ProgressPlugin } = require('webpack')
 
 module.exports = {
   entry: {
     app: path.join(__dirname, './src/index.js')
   },
-
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: '[name].js',
+    chunkFilename: '[id].[chunkhash].js',
     publicPath: '/'
   },
-
   module: {
     rules: [
       {
@@ -46,8 +47,8 @@ module.exports = {
       }
     ]
   },
-
   plugins: [
+    new CleanWebpackPlugin(),
     new MiniCSSExtractPlugin({
       filename: '[name].css'
     }),
@@ -59,6 +60,7 @@ module.exports = {
         conservativeCollapse: true,
         removeComments: true
       }
-    })
+    }),
+    new ProgressPlugin()
   ]
 }

@@ -1,18 +1,10 @@
 # [2.1.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.0.0...v2.1.0) (2019-11-13)
 
-
 ### Features
 
-* use `@lionbyte/eslint-config` ([aa8cd52](https://github.com/MarkH817/generator-lionbyte/commit/aa8cd52cdb9a34927fd6e5078974c5540ca096a4))
+- use `@lionbyte/eslint-config` ([aa8cd52](https://github.com/MarkH817/generator-lionbyte/commit/aa8cd52cdb9a34927fd6e5078974c5540ca096a4))
 
-# Changelog
-
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
-and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
-
-## [2.0.0] - 2018-12-24
+# [2.0.0] - 2018-12-24
 
 ### Changes
 
@@ -30,7 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add Node v10 to travis-ci test suite environment
 - Update dependencies
 
-## [1.4.0] - 2018-10-04
+# [1.4.0] - 2018-10-04
 
 ### Changes
 
@@ -40,7 +32,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update `babel` configuration to v7 on `static-site`
 - Fix `babel-jest` to work with `babel` v7
 
-## [1.3.0] - 2018-06-09
+# [1.3.0] - 2018-06-09
 
 ### Changes
 
@@ -53,7 +45,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Removes `nsp` package, since npm@6 now performs security checks
 
-## [1.2.0] - 2018-05-08
+# [1.2.0] - 2018-05-08
 
 ### Changes
 
@@ -67,7 +59,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed gulp from build process
 - Added Travis CI configurations to test on Node v6, v8, and latest
 
-## [1.1.0] - 2018-04-08
+# [1.1.0] - 2018-04-08
 
 ### Changed
 
@@ -85,7 +77,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Use webpack plugin versions compatible with webpack@4
 - Fix typo in .babelrc
 
-## [1.0.0] - 2018-03-06
+# [1.0.0] - 2018-03-06
 
 ### Added
 
@@ -97,7 +89,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - gulp usage in project types
 - babel-node usage
 
-## [0.4.0] - 2017-12-15
+# [0.4.0] - 2017-12-15
 
 ### Added
 
@@ -109,7 +101,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Remove jsdoc-to-markdown
 
-## [0.3.1] - 2017-12-06
+# [0.3.2] - 2017-12-06
 
 ### Addded
 
@@ -127,13 +119,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - TestCafe from static-site template due to insecure dependencies
 
-## [0.3.1] - 2017-11-18
+# [0.3.1] - 2017-11-18
 
 ### Fixed
 
 - Fix require paths in static-site subgenerator
 
-## [0.3.0] - 2017-11-18
+# [0.3.0] - 2017-11-18
 
 ### Added
 
@@ -152,7 +144,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - NOW FIXED the .gitignore issue
   - :) I love seeing a fix actually fixing something (:
 
-## [0.2.1] - 2017-11-04
+# [0.2.1] - 2017-11-04
 
 ### Added
 
@@ -172,7 +164,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - NPM converted .gitignore to .npmignore when published
   - Resulted in 'file not found' error for other users
 
-## [0.2.0] - 2017-10-29
+# [0.2.0] - 2017-10-29
 
 ### Added
 
@@ -192,7 +184,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Separated template files among common, generic, and static-site subgenerators
 - Insert inline-sourcemaps to transpiled generators
 
-## [0.1.0] - 2017-10-28
+# [0.1.0] - 2017-10-28
 
 ### Added
 
