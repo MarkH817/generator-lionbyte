@@ -42,52 +42,6 @@ const getBabelrc = options => {
   }
 }
 
-/**
- * @param {object} options
- */
-const getAllDependencies = options => {
-  const devDependencies = getDevDeps(options)
-  const dependencies = getDependencies(options)
-
-  return { devDependencies, dependencies }
-}
-
-/**
- * @param {object} options
- */
-const getDevDeps = options => {
-  return [
-    '@babel/core',
-    '@babel/plugin-syntax-dynamic-import',
-    '@babel/preset-env',
-    'autoprefixer',
-    'babel-loader',
-    'babel-plugin-dynamic-import-node',
-    'clean-webpack-plugin',
-    'css-loader',
-    'cssnano',
-    'less',
-    'less-loader',
-    'postcss-loader',
-    'style-loader',
-    'mini-css-extract-plugin',
-    'html-webpack-plugin',
-    'webpack',
-    'webpack-cli',
-    'webpack-dev-server',
-    'webpack-merge'
-  ].concat(options.react ? ['@babel/preset-react'] : [])
-}
-
-/**
- * @param {object} options
- */
-const getDependencies = options => {
-  return ['core-js@3', 'regenerator-runtime@latest'].concat(
-    options.react ? ['react', 'react-dom'] : []
-  )
-}
-
 module.exports = class StaticSite extends Generator {
   prompting () {
     const prompts = [
@@ -120,14 +74,5 @@ module.exports = class StaticSite extends Generator {
       this.destinationPath('.babelrc'),
       getBabelrc(this.config.getAll())
     )
-  }
-
-  install () {
-    const { devDependencies, dependencies } = getAllDependencies(
-      this.config.getAll()
-    )
-
-    this.npmInstall(devDependencies, { saveDev: true })
-    this.npmInstall(dependencies)
   }
 }

@@ -2,6 +2,7 @@ const { red } = require('chalk')
 const Generator = require('yeoman-generator')
 const yosay = require('yosay')
 
+const { getPackages } = require('../packages')
 const { projectTypes } = require('../utils')
 
 module.exports = class LionByte extends Generator {
@@ -53,5 +54,16 @@ module.exports = class LionByte extends Generator {
         this.composeWith(require.resolve(sub), {})
       })
     })
+  }
+
+  install () {
+    // @ts-ignore
+    const { devDependencies, dependencies } = getPackages(this.config.getAll())
+
+    this.npmInstall(devDependencies, { saveDev: true })
+
+    if (dependencies.length > 0) {
+      this.npmInstall(dependencies)
+    }
   }
 }

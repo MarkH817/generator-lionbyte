@@ -28,25 +28,4 @@ module.exports = class Common extends Generator {
       extends: ['@lionbyte']
     })
   }
-
-  install () {
-    const devDependencies = [
-      '@lionbyte/eslint-config',
-      'eslint',
-      'jest',
-      'prettier'
-    ]
-
-    const { gitHooks, projectType } = this.config.getAll()
-
-    if (gitHooks) {
-      devDependencies.push('husky', 'lint-staged')
-    }
-
-    if (projectType === 'frontend') {
-      devDependencies.push('babel-jest', 'babel-eslint')
-    }
-
-    this.npmInstall(devDependencies, { saveDev: true })
-  }
 }
