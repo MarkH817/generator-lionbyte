@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.1.0...v2.1.1) (2019-11-16)
+
+
+### Bug Fixes
+
+* repair default webpack configurations ([06d2a23](https://github.com/MarkH817/generator-lionbyte/commit/06d2a23c3ebda0f355a914260c6b0baa633dccd7))
+
 # [2.1.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.0.0...v2.1.0) (2019-11-13)
 
 ### Features
