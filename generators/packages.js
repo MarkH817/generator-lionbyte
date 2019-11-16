@@ -1,6 +1,8 @@
 /**
  * @param {object} options
- * @returns {{ devDependencies: string[], dependencies: string[] }}
+ * @param {boolean} [options.gitHooks]
+ * @param {string} options.projectType
+ * @param {boolean} [options.react]
  */
 exports.getPackages = function getPackages (options) {
   /** @type {Array<string>} */

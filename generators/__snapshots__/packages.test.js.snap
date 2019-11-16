@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getPackages base frontend + react 1`] = `
+Object {
+  "dependencies": Array [
+    "core-js@3",
+    "react",
+    "react-dom",
+    "regenerator-runtime",
+  ],
+  "devDependencies": Array [
+    "@babel/core",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "@lionbyte/eslint-config",
+    "@types/jest",
+    "@types/node",
+    "@types/react",
+    "@types/react-dom",
+    "autoprefixer",
+    "babel-jest",
+    "babel-loader",
+    "babel-plugin-dynamic-import-node",
+    "clean-webpack-plugin",
+    "css-loader",
+    "cssnano",
+    "eslint",
+    "html-webpack-plugin",
+    "jest",
+    "less",
+    "less-loader",
+    "mini-css-extract-plugin",
+    "postcss-loader",
+    "prettier",
+    "style-loader",
+    "typescript",
+    "webpack",
+    "webpack-cli",
+    "webpack-dev-server",
+    "webpack-merge",
+  ],
+}
+`;
+
+exports[`getPackages base frontend 1`] = `
+Object {
+  "dependencies": Array [
+    "core-js@3",
+    "regenerator-runtime",
+  ],
+  "devDependencies": Array [
+    "@babel/core",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/preset-env",
+    "@lionbyte/eslint-config",
+    "@types/jest",
+    "@types/node",
+    "autoprefixer",
+    "babel-jest",
+    "babel-loader",
+    "babel-plugin-dynamic-import-node",
+    "clean-webpack-plugin",
+    "css-loader",
+    "cssnano",
+    "eslint",
+    "html-webpack-plugin",
+    "jest",
+    "less",
+    "less-loader",
+    "mini-css-extract-plugin",
+    "postcss-loader",
+    "prettier",
+    "style-loader",
+    "typescript",
+    "webpack",
+    "webpack-cli",
+    "webpack-dev-server",
+    "webpack-merge",
+  ],
+}
+`;
+
+exports[`getPackages base node + git hooks 1`] = `
+Object {
+  "dependencies": Array [],
+  "devDependencies": Array [
+    "@lionbyte/eslint-config",
+    "@types/jest",
+    "@types/node",
+    "eslint",
+    "husky",
+    "jest",
+    "lint-staged",
+    "prettier",
+    "typescript",
+  ],
+}
+`;
+
+exports[`getPackages base node 1`] = `
+Object {
+  "dependencies": Array [],
+  "devDependencies": Array [
+    "@lionbyte/eslint-config",
+    "@types/jest",
+    "@types/node",
+    "eslint",
+    "jest",
+    "prettier",
+    "typescript",
+  ],
+}
+`;
