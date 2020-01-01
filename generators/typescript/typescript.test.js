@@ -6,12 +6,12 @@ const genPath = resolve(__dirname, './index')
 const tsFiles = ['declarations.d.ts', 'tsconfig.json']
 
 describe('TypeScript (node)', () => {
-  beforeAll(() => {
-    return helpers.run(genPath).withLocalConfig({
+  beforeAll(() =>
+    helpers.run(genPath).withLocalConfig({
       projectType: 'node',
       react: false
     })
-  })
+  )
 
   test('creates tsconfig.json', () => {
     assert.file(tsFiles)
@@ -23,12 +23,12 @@ describe('TypeScript (node)', () => {
 })
 
 describe('TypeScript (frontend)', () => {
-  beforeAll(() => {
-    return helpers.run(genPath).withLocalConfig({
+  beforeAll(() =>
+    helpers.run(genPath).withLocalConfig({
       projectType: 'frontend',
       react: false
     })
-  })
+  )
 
   test('creates tsconfig.json', () => {
     assert.file(tsFiles)
@@ -40,12 +40,12 @@ describe('TypeScript (frontend)', () => {
 })
 
 describe('TypeScript (frontend w/ React)', () => {
-  beforeAll(() => {
-    return helpers.run(genPath).withLocalConfig({
+  beforeAll(() =>
+    helpers.run(genPath).withLocalConfig({
       projectType: 'frontend',
       react: true
     })
-  })
+  )
 
   test('creates tsconfig.json', () => {
     assert.file(tsFiles)

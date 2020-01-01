@@ -6,9 +6,7 @@ const genPath = resolve(__dirname, './index')
 const nodeFiles = ['src/index.js']
 
 describe('node', () => {
-  beforeAll(() => {
-    return helpers.run(genPath)
-  })
+  beforeAll(() => helpers.run(genPath))
 
   test('creates files', () => {
     assert.file(nodeFiles)

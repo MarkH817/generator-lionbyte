@@ -1,16 +1,14 @@
 # [2.2.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.1.1...v2.2.0) (2019-11-16)
 
-
 ### Features
 
-* reduce calls to `npm install` ([edc058c](https://github.com/MarkH817/generator-lionbyte/commit/edc058c6d7e0093f788dd594b35234ed5cc8d3fd))
+- reduce calls to `npm install` ([edc058c](https://github.com/MarkH817/generator-lionbyte/commit/edc058c6d7e0093f788dd594b35234ed5cc8d3fd))
 
 ## [2.1.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.1.0...v2.1.1) (2019-11-16)
 
-
 ### Bug Fixes
 
-* repair default webpack configurations ([06d2a23](https://github.com/MarkH817/generator-lionbyte/commit/06d2a23c3ebda0f355a914260c6b0baa633dccd7))
+- repair default webpack configurations ([06d2a23](https://github.com/MarkH817/generator-lionbyte/commit/06d2a23c3ebda0f355a914260c6b0baa633dccd7))
 
 # [2.1.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.0.0...v2.1.0) (2019-11-13)
 

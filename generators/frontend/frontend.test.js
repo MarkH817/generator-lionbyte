@@ -5,7 +5,6 @@ const { resolve } = require('path')
 const genPath = resolve(__dirname, './index')
 const frontendFiles = [
   'static/index.html',
-  'src/styles/main.less',
   'src/index.js',
   '.babelrc',
   'webpack.common.js',
@@ -14,9 +13,7 @@ const frontendFiles = [
 ]
 
 describe('frontend (React)', () => {
-  beforeAll(() => {
-    return helpers.run(genPath).withPrompts({ react: true })
-  })
+  beforeAll(() => helpers.run(genPath).withPrompts({ react: true }))
 
   test('creates files', () => {
     assert.file(frontendFiles)
@@ -28,9 +25,7 @@ describe('frontend (React)', () => {
 })
 
 describe('frontend', () => {
-  beforeAll(() => {
-    return helpers.run(genPath).withPrompts({ react: false })
-  })
+  beforeAll(() => helpers.run(genPath).withPrompts({ react: false }))
 
   test('creates files', () => {
     assert.file(frontendFiles)

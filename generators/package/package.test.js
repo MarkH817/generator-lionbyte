@@ -6,13 +6,13 @@ const genPath = resolve(__dirname, './index')
 const packageFiles = ['package.json']
 
 describe('package (node)', () => {
-  beforeAll(() => {
-    return helpers.run(genPath).withLocalConfig({
+  beforeAll(() =>
+    helpers.run(genPath).withLocalConfig({
       name: 'test',
       description: 'testing',
       projectType: 'node'
     })
-  })
+  )
 
   test('creates package.json', () => {
     assert.file(packageFiles)
@@ -24,13 +24,13 @@ describe('package (node)', () => {
 })
 
 describe('package (frontend)', () => {
-  beforeAll(() => {
-    return helpers.run(genPath).withLocalConfig({
+  beforeAll(() =>
+    helpers.run(genPath).withLocalConfig({
       name: 'test',
       description: 'testing',
       projectType: 'frontend'
     })
-  })
+  )
 
   test('creates package.json', () => {
     assert.file(packageFiles)

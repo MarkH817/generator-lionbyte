@@ -60,7 +60,6 @@ module.exports = class StaticSite extends Generator {
 
   writing () {
     const staticFiles = [
-      'src/styles/main.less',
       'src/index.js',
       'static/index.html',
       'webpack.dev.js',

@@ -1,12 +1,14 @@
+const autoprefixer = require('autoprefixer')
+const cssnano = require('cssnano')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
-const { ProgressPlugin } = require('webpack')
+const webpack = require('webpack')
 
 module.exports = {
   entry: {
-    app: path.join(__dirname, './src/index.js')
+    main: path.join(__dirname, './src/index.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist/'),
@@ -17,14 +19,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.js$/,
+        test: /\.js$/,
         exclude: [/node_modules/],
         use: {
           loader: 'babel-loader'
         }
       },
       {
-        test: /.less$/,
+        test: /\.(css|less)$/,
         use: [
           'style-loader',
           MiniCSSExtractPlugin.loader,
@@ -35,7 +37,7 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [require('autoprefixer')(), require('cssnano')()],
+              plugins: [autoprefixer(), cssnano()],
               sourceMap: true
             }
           },
@@ -50,7 +52,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCSSExtractPlugin({
-      filename: '[name].css'
+      filename: '[name].css',
+      chunkFilename: '[id].[contenthash].css'
     }),
     new HtmlWebpackPlugin({
       title: 'Hello',
@@ -61,6 +64,6 @@ module.exports = {
         removeComments: true
       }
     }),
-    new ProgressPlugin()
+    new webpack.ProgressPlugin()
   ]
 }

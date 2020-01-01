@@ -18,13 +18,13 @@ const commonFiles = [
 ]
 
 describe('common (node)', () => {
-  beforeAll(() => {
-    return helpers.run(genPath).withLocalConfig({
+  beforeAll(() =>
+    helpers.run(genPath).withLocalConfig({
       gitHooks: true,
       projectType: 'node',
       react: false
     })
-  })
+  )
 
   test('creates files', () => {
     assert.file(commonFiles)
@@ -36,13 +36,13 @@ describe('common (node)', () => {
 })
 
 describe('common (frontend)', () => {
-  beforeAll(() => {
-    return helpers.run(genPath).withLocalConfig({
+  beforeAll(() =>
+    helpers.run(genPath).withLocalConfig({
       gitHooks: false,
       projectType: 'frontend',
       react: false
     })
-  })
+  )
 
   test('creates files', () => {
     assert.file(commonFiles)
@@ -54,13 +54,13 @@ describe('common (frontend)', () => {
 })
 
 describe('common (frontend w/ React)', () => {
-  beforeAll(() => {
-    return helpers.run(genPath).withLocalConfig({
+  beforeAll(() =>
+    helpers.run(genPath).withLocalConfig({
       gitHooks: false,
       projectType: 'frontend',
       react: true
     })
-  })
+  )
 
   test('creates files', () => {
     assert.file(commonFiles)
