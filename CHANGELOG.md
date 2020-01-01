@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.2.0...v2.2.1) (2020-01-01)
+
+
+### Bug Fixes
+
+* **frontend:** fix regex in webpack configuration file ([639a226](https://github.com/MarkH817/generator-lionbyte/commit/639a2261ece8823d47e39c6598ac032ddf55fa4e))
+
 # [2.2.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.1.1...v2.2.0) (2019-11-16)
 
 ### Features
