@@ -28,27 +28,27 @@
     "yeoman-generator"
   ],
   "devDependencies": {
-    "@lionbyte/eslint-config": "^1.2.0",
-    "@semantic-release/changelog": "^3.0.5",
+    "@lionbyte/eslint-config": "^1.4.0",
+    "@semantic-release/changelog": "^3.0.6",
     "@semantic-release/git": "^7.0.18",
-    "@types/jest": "^24.0.23",
-    "@types/node": "^12.12.7",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.1.2",
     "@types/yeoman-generator": "^3.1.4",
     "@types/yeoman-test": "^2.0.3",
     "@types/yosay": "0.0.29",
-    "eslint": "^6.6.0",
-    "husky": "^3.0.9",
+    "eslint": "^6.8.0",
+    "husky": "^3.1.0",
     "jest": "^24.9.0",
-    "lint-staged": "^9.4.2",
+    "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
-    "semantic-release": "^15.13.30",
-    "typescript": "^3.7.2",
+    "semantic-release": "^15.14.0",
+    "typescript": "^3.7.4",
     "yeoman-assert": "^3.1.1",
     "yeoman-test": "^2.0.0"
   },
   "dependencies": {
     "chalk": "^3.0.0",
-    "yeoman-generator": "^4.2.0",
+    "yeoman-generator": "^4.4.0",
     "yosay": "^2.0.2"
   }
 }
