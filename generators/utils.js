@@ -1,10 +1,10 @@
 /**
  * Copy static template files
- * @param  {any} generator         Reference to generator instance
- * @param  {string} filename          File to copy.
- * @param  {string} [output=filename] File destination. Keeps the same filename by default.
+ * @param {import('yeoman-generator')} generator Reference to generator instance
+ * @param {string} filename File to copy.
+ * @param {string} [output=filename] File destination. Keeps the same filename by default.
  */
-const copy = (generator, filename, output = filename) => {
+function copy (generator, filename, output = filename) {
   generator.fs.copy(
     generator.templatePath(filename),
     generator.destinationPath(output)
@@ -13,12 +13,12 @@ const copy = (generator, filename, output = filename) => {
 
 /**
  * Copy dynamic template files with data
- * @param  {any} generator         Reference to generator instance
- * @param  {any} data              Data to write to the template file
- * @param  {string} filename          File to copy.
- * @param  {string} [output=filename] File destination. Keeps the same filename by default.
+ * @param {import('yeoman-generator')} generator Reference to generator instance
+ * @param {any} data Data to write to the template file
+ * @param {string} filename File to copy.
+ * @param {string} [output=filename] File destination. Keeps the same filename by default.
  */
-const copyTpl = (generator, data, filename, output = filename) => {
+function copyTpl (generator, data, filename, output = filename) {
   generator.fs.copyTpl(
     generator.templatePath(filename),
     generator.destinationPath(output),
@@ -27,28 +27,30 @@ const copyTpl = (generator, data, filename, output = filename) => {
 }
 
 /**
- * @param {any} generator
+ * @param {import('yeoman-generator')} generator
  * @returns {{ description: string, name: string, projectType: string, user: {name: string, email: string} }}
  */
-const getProjectInfo = generator => ({
-  description: generator.config.get('description'),
-  name: generator.config.get('name'),
-  projectType: generator.config.get('projectType'),
-  user: {
-    name: generator.user.git.name(),
-    email: generator.user.git.email()
+function getProjectInfo (generator) {
+  return {
+    description: generator.config.get('description'),
+    name: generator.config.get('name'),
+    projectType: generator.config.get('projectType'),
+    user: {
+      name: generator.user.git.name(),
+      email: generator.user.git.email()
+    }
   }
-})
+}
 
 /** @type {ReadonlyArray<string>} */
 const projectTypes = ['node', 'frontend']
 
 /**
- * @template {any} T
+ * @template T
  * @param {T} obj
  * @returns {T}
  */
-const sortObj = obj => {
+function sortObj (obj) {
   const keys = Object.keys(obj).sort()
   const sorted = {}
 

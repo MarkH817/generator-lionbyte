@@ -4,9 +4,9 @@ const { getProjectInfo, sortObj } = require('../utils')
 
 /**
  * @param {string} type
- * @returns {TypedObject<string>}
+ * @returns {Record<string, string>}
  */
-const createScripts = type => {
+function createScripts (type) {
   const scripts = {
     format: 'npm run prettier && npm run lint -- --fix',
     lint: 'eslint --ignore-path .gitignore .',
