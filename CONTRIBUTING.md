@@ -5,5 +5,3 @@ First of all, thank you for your consideration for contributing to this project!
 ## Local Testing
 
 Running `npm test` is pretty good for basic testing. To see how the generator runs, run `npm link` to "`install`" this generator to your global package list. (You might need to also run `npm i -g yo` if you haven't already.)
-
-If your changes fail the test suite, either fix your code or refactor the tests to reflect the additions/changes. Also try to keep code coverage at least 90%.
