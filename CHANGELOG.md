@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.2.1...v2.3.0) (2020-01-03)
+
+
+### Features
+
+* add jest-runner-eslint to generated projects ([b8d896f](https://github.com/MarkH817/generator-lionbyte/commit/b8d896f245010bb04c97073bb940d5ae04bad1fd))
+
 ## [2.2.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.2.0...v2.2.1) (2020-01-01)
 
 ### Bug Fixes
