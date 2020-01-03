@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.3.0...v2.3.1) (2020-01-03)
+
+
+### Bug Fixes
+
+* **docs:** update CONTRIBUTING.md to reflect project priorities ([e777c9d](https://github.com/MarkH817/generator-lionbyte/commit/e777c9d1b89bdf852fae6f78d3f146129057f2a4))
+
 # [2.3.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.2.1...v2.3.0) (2020-01-03)
 
 

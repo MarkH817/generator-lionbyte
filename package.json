@@ -1,6 +1,6 @@
 {
   "name": "generator-lionbyte",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Generate a JavaScript project",
   "scripts": {
     "format": "npm run prettier && npm run lint -- --fix",
