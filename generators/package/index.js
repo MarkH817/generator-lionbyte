@@ -11,8 +11,8 @@ const createScripts = type => {
     format: 'npm run prettier && npm run lint -- --fix',
     lint: 'eslint --ignore-path .gitignore .',
     prettier:
-      'prettier --ignore-path .gitignore --write "**/*.+(js|json|yml|yaml|css|less|ts|md|graphql|mdx)"',
-    test: 'npm run lint && npm run type && jest --coverage',
+      'prettier --ignore-path .gitignore --write "**/*.+(js|json|yml|yaml|css|less|ts|md|graphql|mdx|html)"',
+    test: 'npm run type && jest --coverage',
     type: 'tsc --pretty'
   }
 

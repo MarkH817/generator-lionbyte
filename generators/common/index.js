@@ -11,7 +11,9 @@ module.exports = class Common extends Generator {
       '.gitattributes',
       '.prettierrc',
       '.travis.yml',
-      'CONTRIBUTING.md'
+      'CONTRIBUTING.md',
+      'jest.config.js',
+      'jest-runner-eslint.config.js'
     ]
 
     if (this.config.get('gitHooks')) {

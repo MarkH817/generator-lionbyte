@@ -13,6 +13,8 @@ const commonFiles = [
   '.travis.yml',
   'CODE_OF_CONDUCT.md',
   'CONTRIBUTING.md',
+  'jest.config.js',
+  'jest-runner-eslint.config.js',
   'LICENSE.md',
   'README.md'
 ]

@@ -12,6 +12,7 @@ exports.getPackages = function getPackages (options) {
     '@types/node',
     'eslint',
     'jest',
+    'jest-runner-eslint',
     'prettier',
     'typescript'
   ]
