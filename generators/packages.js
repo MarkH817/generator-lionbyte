@@ -26,12 +26,13 @@ exports.getPackages = function getPackages (options) {
   if (options.projectType === 'frontend') {
     devDependencies.push(
       '@babel/core',
-      '@babel/plugin-syntax-dynamic-import',
       '@babel/preset-env',
+      '@types/webpack',
+      '@types/webpack-bundle-analyzer',
+      '@types/webpack-merge',
       'autoprefixer',
       'babel-jest',
       'babel-loader',
-      'babel-plugin-dynamic-import-node',
       'clean-webpack-plugin',
       'css-loader',
       'cssnano',
@@ -44,6 +45,7 @@ exports.getPackages = function getPackages (options) {
       'webpack',
       'webpack-cli',
       'webpack-dev-server',
+      'webpack-bundle-analyzer',
       'webpack-merge'
     )
     dependencies.push('core-js@3', 'regenerator-runtime')

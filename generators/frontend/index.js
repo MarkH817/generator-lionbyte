@@ -4,8 +4,9 @@ const { copy } = require('../utils')
 
 /**
  * @param {object} options
+ * @param {boolean} [options.react]
  */
-const getBabelrc = options => {
+function getBabelrc (options) {
   const basePresets = [
     [
       '@babel/preset-env',
@@ -30,16 +31,7 @@ const getBabelrc = options => {
     ]
   ].concat(options.react ? ['@babel/preset-react'] : [])
 
-  return {
-    presets: basePresets,
-    plugins: ['@babel/syntax-dynamic-import'],
-    env: {
-      test: {
-        presets: testPresets,
-        plugins: ['dynamic-import-node']
-      }
-    }
-  }
+  return { presets: basePresets, env: { test: { presets: testPresets } } }
 }
 
 module.exports = class StaticSite extends Generator {
