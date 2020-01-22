@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.3.2...v2.4.0) (2020-01-22)
+
+
+### Features
+
+* **frontend:** update babelrc and webpack settings ([2c123da](https://github.com/MarkH817/generator-lionbyte/commit/2c123dae4cb42fb54a42e9baf8c939e4a13c22db))
+
 ## [2.3.2](https://github.com/MarkH817/generator-lionbyte/compare/v2.3.1...v2.3.2) (2020-01-11)
 
 
