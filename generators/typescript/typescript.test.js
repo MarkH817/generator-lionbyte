@@ -1,6 +1,6 @@
+const { resolve } = require('path')
 const assert = require('yeoman-assert')
 const helpers = require('yeoman-test')
-const { resolve } = require('path')
 
 const genPath = resolve(__dirname, './index')
 const tsFiles = ['declarations.d.ts', 'tsconfig.json']
