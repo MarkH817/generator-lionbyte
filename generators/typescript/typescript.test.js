@@ -1,9 +1,8 @@
-const { resolve } = require('path')
 const assert = require('yeoman-assert')
 const helpers = require('yeoman-test')
 
-const genPath = resolve(__dirname, './index')
-const tsFiles = ['declarations.d.ts', 'tsconfig.json']
+const genPath = require.resolve('./index')
+const tsFiles = ['tsconfig.json']
 
 describe('TypeScript (node)', () => {
   beforeAll(() =>
@@ -18,7 +17,7 @@ describe('TypeScript (node)', () => {
   })
 
   test('uses "esnext" module type', () => {
-    assert.fileContent('tsconfig.json', `"module": "commonjs"`)
+    assert.fileContent('tsconfig.json', `"module": "CommonJS"`)
   })
 })
 
@@ -35,7 +34,7 @@ describe('TypeScript (frontend)', () => {
   })
 
   test('uses "esnext" module type', () => {
-    assert.fileContent('tsconfig.json', `"module": "esnext"`)
+    assert.fileContent('tsconfig.json', `"module": "ESNext"`)
   })
 })
 
@@ -52,7 +51,7 @@ describe('TypeScript (frontend w/ React)', () => {
   })
 
   test('uses "esnext" module type', () => {
-    assert.fileContent('tsconfig.json', `"module": "esnext"`)
+    assert.fileContent('tsconfig.json', `"module": "ESNext"`)
   })
 
   test('contains JSX configuration', () => {

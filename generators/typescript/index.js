@@ -8,13 +8,14 @@ module.exports = class TypeScript extends Generator {
         alwaysStrict: true,
         checkJs: true,
         esModuleInterop: true,
+        forceConsistentCasingInFileNames: true,
         module:
-          this.config.get('projectType') === 'frontend' ? 'esnext' : 'commonjs',
-        moduleResolution: 'node',
+          this.config.get('projectType') === 'frontend' ? 'ESNext' : 'CommonJS',
+        moduleResolution: 'Node',
         noEmit: true,
-        target: 'es2017'
+        target: 'ESNext'
       },
-      include: ['declarations.d.ts', 'src/**/*.js']
+      include: ['./']
     }
 
     if (this.config.get('react')) {
@@ -22,6 +23,5 @@ module.exports = class TypeScript extends Generator {
     }
 
     this.fs.writeJSON(this.destinationPath('tsconfig.json'), tsconfig)
-    this.fs.write(this.destinationPath('declarations.d.ts'), '')
   }
 }

@@ -36,16 +36,14 @@ function getBabelrc (options) {
 
 module.exports = class StaticSite extends Generator {
   prompting () {
-    const prompts = [
+    return this.prompt([
       {
         type: 'confirm',
         name: 'react',
         message: 'Include React?',
         default: false
       }
-    ]
-
-    return this.prompt(prompts).then(props => {
+    ]).then(props => {
       this.config.set('react', props.react)
     })
   }

@@ -4,7 +4,6 @@ const { getProjectInfo, sortObj } = require('../utils')
 
 /**
  * @param {string} type
- * @returns {Record<string, string>}
  */
 function createScripts (type) {
   const scripts = {

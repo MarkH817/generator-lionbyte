@@ -1,7 +1,8 @@
 const path = require('path')
+
 const autoprefixer = require('autoprefixer')
-const cssnano = require('cssnano')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const cssnano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
@@ -53,7 +54,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new MiniCSSExtractPlugin({
       filename: '[name].css',
-      chunkFilename: '[name].[contenthash].css'
+      chunkFilename: '[name].[chunkhash].css'
     }),
     new HtmlWebpackPlugin({
       title: 'Hello',

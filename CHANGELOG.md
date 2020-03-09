@@ -1,16 +1,14 @@
 # [2.4.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.3.2...v2.4.0) (2020-01-22)
 
-
 ### Features
 
-* **frontend:** update babelrc and webpack settings ([2c123da](https://github.com/MarkH817/generator-lionbyte/commit/2c123dae4cb42fb54a42e9baf8c939e4a13c22db))
+- **frontend:** update babelrc and webpack settings ([2c123da](https://github.com/MarkH817/generator-lionbyte/commit/2c123dae4cb42fb54a42e9baf8c939e4a13c22db))
 
 ## [2.3.2](https://github.com/MarkH817/generator-lionbyte/compare/v2.3.1...v2.3.2) (2020-01-11)
 
-
 ### Bug Fixes
 
-* remove Standard code style badge from generated README ([e38ac1f](https://github.com/MarkH817/generator-lionbyte/commit/e38ac1feeede4f83f1db5f49c8a4a8b58e1b93a8))
+- remove Standard code style badge from generated README ([e38ac1f](https://github.com/MarkH817/generator-lionbyte/commit/e38ac1feeede4f83f1db5f49c8a4a8b58e1b93a8))
 
 ## [2.3.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.3.0...v2.3.1) (2020-01-03)
 

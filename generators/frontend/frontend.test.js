@@ -1,8 +1,10 @@
-const { resolve } = require('path')
 const assert = require('yeoman-assert')
 const helpers = require('yeoman-test')
 
-const genPath = resolve(__dirname, './index')
+const StaticSite = require('./index')
+
+const genPath = require.resolve('./index')
+
 const frontendFiles = [
   'static/index.html',
   'src/index.js',
@@ -12,26 +14,31 @@ const frontendFiles = [
   'webpack.prod.js'
 ]
 
-describe('frontend (React)', () => {
-  beforeAll(() => helpers.run(genPath).withPrompts({ react: true }))
-
-  test('creates files', () => {
-    assert.file(frontendFiles)
+describe('Frontend', () => {
+  beforeAll(() => {
+    // Prompts cause the test suite to error out
+    StaticSite.prototype.prompting = () => Promise.resolve()
   })
 
-  test('React in .babelrc', () => {
-    assert.fileContent('.babelrc', 'react')
-  })
-})
+  test('React', () =>
+    expect(
+      helpers
+        .run(StaticSite, { resolved: genPath })
+        .withLocalConfig({ react: true })
+        .then(() => {
+          assert.file(frontendFiles)
+          assert.fileContent('.babelrc', 'react')
+        })
+    ).resolves.toBeUndefined())
 
-describe('frontend', () => {
-  beforeAll(() => helpers.run(genPath).withPrompts({ react: false }))
-
-  test('creates files', () => {
-    assert.file(frontendFiles)
-  })
-
-  test('no React in .babelrc', () => {
-    assert.noFileContent('.babelrc', 'react')
-  })
+  test('Vanilla', () =>
+    expect(
+      helpers
+        .run(StaticSite, { resolved: genPath })
+        .withLocalConfig({ react: false })
+        .then(() => {
+          assert.file(frontendFiles)
+          assert.noFileContent('.babelrc', 'react')
+        })
+    ).resolves.toBeUndefined())
 })

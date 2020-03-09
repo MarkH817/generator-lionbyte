@@ -1,8 +1,7 @@
-const { resolve } = require('path')
 const assert = require('yeoman-assert')
 const helpers = require('yeoman-test')
 
-const genPath = resolve(__dirname, './index')
+const genPath = require.resolve('./index')
 const packageFiles = ['package.json']
 
 describe('package (node)', () => {

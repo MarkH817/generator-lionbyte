@@ -4,6 +4,7 @@
     "alwaysStrict": true,
     "checkJs": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "module": "commonjs",
     "noEmit": true,
