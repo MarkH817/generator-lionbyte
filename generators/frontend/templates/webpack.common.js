@@ -22,30 +22,19 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: [/node_modules/],
-        use: {
-          loader: 'babel-loader'
-        }
+        use: { loader: 'babel-loader' }
       },
       {
         test: /\.(css|less)$/,
         use: [
           'style-loader',
           MiniCSSExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: { sourceMap: true }
-          },
+          { loader: 'css-loader', options: { sourceMap: true } },
           {
             loader: 'postcss-loader',
-            options: {
-              plugins: [autoprefixer(), cssnano()],
-              sourceMap: true
-            }
+            options: { plugins: [autoprefixer(), cssnano()], sourceMap: true }
           },
-          {
-            loader: 'less-loader',
-            options: { sourceMap: true }
-          }
+          { loader: 'less-loader', options: { sourceMap: true } }
         ]
       }
     ]
@@ -57,6 +46,9 @@ module.exports = {
       chunkFilename: '[name].[chunkhash].css'
     }),
     new HtmlWebpackPlugin({
+      inject: true,
+      meta: {},
+      scriptLoading: 'defer',
       title: 'Hello',
       template: 'static/index.html',
       minify: {

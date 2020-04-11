@@ -2,38 +2,6 @@ const Generator = require('yeoman-generator')
 
 const { copy } = require('../utils')
 
-/**
- * @param {object} options
- * @param {boolean} [options.react]
- */
-function getBabelrc (options) {
-  const basePresets = [
-    [
-      '@babel/preset-env',
-      {
-        corejs: 3,
-        modules: false,
-        useBuiltIns: 'usage',
-        targets: { browsers: ['defaults'] }
-      }
-    ]
-  ].concat(options.react ? ['@babel/preset-react'] : [])
-
-  const testPresets = [
-    [
-      '@babel/preset-env',
-      {
-        corejs: 3,
-        modules: 'commonjs',
-        useBuiltIns: 'usage',
-        targets: { node: 'current' }
-      }
-    ]
-  ].concat(options.react ? ['@babel/preset-react'] : [])
-
-  return { presets: basePresets, env: { test: { presets: testPresets } } }
-}
-
 module.exports = class StaticSite extends Generator {
   prompting () {
     return this.prompt([
@@ -64,4 +32,36 @@ module.exports = class StaticSite extends Generator {
       getBabelrc(this.config.getAll())
     )
   }
+}
+
+/**
+ * @param {object} options
+ * @param {boolean} [options.react]
+ */
+function getBabelrc (options) {
+  const basePresets = [
+    [
+      '@babel/preset-env',
+      {
+        corejs: 3,
+        modules: false,
+        useBuiltIns: 'usage',
+        targets: { esmodules: true }
+      }
+    ]
+  ].concat(options.react ? ['@babel/preset-react'] : [])
+
+  const testPresets = [
+    [
+      '@babel/preset-env',
+      {
+        corejs: 3,
+        modules: 'commonjs',
+        useBuiltIns: 'usage',
+        targets: { node: 'current' }
+      }
+    ]
+  ].concat(options.react ? ['@babel/preset-react'] : [])
+
+  return { presets: basePresets, env: { test: { presets: testPresets } } }
 }
