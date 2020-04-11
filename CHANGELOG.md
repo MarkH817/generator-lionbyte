@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.4.0...v2.5.0) (2020-04-11)
+
+
+### Features
+
+* update configs for dependency updates ([58c9ba5](https://github.com/MarkH817/generator-lionbyte/commit/58c9ba5a011bbe70a043adc6cfabaac1ff817be4))
+
 # [2.4.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.3.2...v2.4.0) (2020-01-22)
 
 ### Features
