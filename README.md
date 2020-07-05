@@ -1,7 +1,7 @@
 # generator-lionbyte
 
 [![NPM version][npm-image]][npm-url]
-[![Build Status](https://travis-ci.org/MarkH817/generator-lionbyte.svg?branch=master)](https://travis-ci.org/MarkH817/generator-lionbyte)
+[![Build Status](https://travis-ci.org/MarkH817/generator-lionbyte.svg?branch=main)](https://travis-ci.org/MarkH817/generator-lionbyte)
 
 > Generate a JavaScript project
 
