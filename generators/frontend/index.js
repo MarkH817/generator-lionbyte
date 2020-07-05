@@ -45,6 +45,7 @@ function getBabelrc (options) {
       {
         corejs: 3,
         modules: false,
+        shippedProposals: true,
         useBuiltIns: 'usage',
         targets: { esmodules: true }
       }
@@ -57,6 +58,7 @@ function getBabelrc (options) {
       {
         corejs: 3,
         modules: 'commonjs',
+        shippedProposals: true,
         useBuiltIns: 'usage',
         targets: { node: 'current' }
       }
