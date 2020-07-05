@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.5.0...v2.6.0) (2020-07-05)
+
+
+### Features
+
+* **babel:** turn on shippedProposals option in preset-env ([46d78d8](https://github.com/MarkH817/generator-lionbyte/commit/46d78d84226b52d251b7a36a99a6a8a849939735))
+
 # [2.5.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.4.0...v2.5.0) (2020-04-11)
 
 
