@@ -1,3 +1,10 @@
+## [2.6.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.6.0...v2.6.1) (2020-07-11)
+
+
+### Bug Fixes
+
+* **frontend:** fix default webpack config ([9e2622e](https://github.com/MarkH817/generator-lionbyte/commit/9e2622e6087e828c38a31b03158f9ff8dd91dfbf))
+
 # [2.6.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.5.0...v2.6.0) (2020-07-05)
 
 
