@@ -29,6 +29,7 @@ exports.getPackages = function getPackages (options) {
       '@babel/preset-env',
       '@types/webpack',
       '@types/webpack-bundle-analyzer',
+      '@types/webpack-dev-server',
       '@types/webpack-merge',
       'autoprefixer',
       'babel-jest',
@@ -43,9 +44,9 @@ exports.getPackages = function getPackages (options) {
       'mini-css-extract-plugin',
       'html-webpack-plugin',
       'webpack',
+      'webpack-bundle-analyzer',
       'webpack-cli',
       'webpack-dev-server',
-      'webpack-bundle-analyzer',
       'webpack-merge'
     )
     dependencies.push('core-js@3', 'regenerator-runtime')
