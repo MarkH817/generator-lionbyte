@@ -38,11 +38,11 @@ describe('package (frontend)', () => {
   test('frontend scripts', () => {
     assert.fileContent(
       'package.json',
-      `"build": "webpack --config webpack.prod.js"`
+      `"build": "webpack --config webpack/webpack.prod.js"`
     )
     assert.fileContent(
       'package.json',
-      `"dev": "webpack-dev-server --config webpack.dev.js --open"`
+      `"dev": "webpack-dev-server --config webpack/webpack.dev.js --open"`
     )
   })
 })

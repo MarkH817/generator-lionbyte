@@ -37,6 +37,7 @@ exports.getPackages = function getPackages (options) {
       'clean-webpack-plugin',
       'css-loader',
       'cssnano',
+      'file-loader',
       'less',
       'less-loader',
       'postcss-loader',
