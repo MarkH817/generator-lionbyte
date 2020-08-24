@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.6.1...v2.7.0) (2020-08-24)
+
+
+### Features
+
+* **frontend:** expand webpack config ([d535131](https://github.com/MarkH817/generator-lionbyte/commit/d535131cb078362e98a0cb2f9c145bc1cd5794c5))
+
 ## [2.6.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.6.0...v2.6.1) (2020-07-11)
 
 
