@@ -6,12 +6,14 @@ const StaticSite = require('./index')
 const genPath = require.resolve('./index')
 
 const frontendFiles = [
-  'static/index.html',
-  'src/index.js',
   '.babelrc',
-  'webpack.common.js',
-  'webpack.dev.js',
-  'webpack.prod.js'
+  'src/index.js',
+  'src/images/.gitkeep',
+  'src/styles/.gitkeep',
+  'webpack/template.html',
+  'webpack/webpack.common.js',
+  'webpack/webpack.dev.js',
+  'webpack/webpack.prod.js'
 ]
 
 describe('Frontend', () => {

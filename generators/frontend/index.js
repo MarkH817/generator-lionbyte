@@ -18,11 +18,13 @@ module.exports = class StaticSite extends Generator {
 
   writing () {
     const staticFiles = [
+      'src/images/.gitkeep',
+      'src/styles/.gitkeep',
       'src/index.js',
-      'static/index.html',
-      'webpack.dev.js',
-      'webpack.prod.js',
-      'webpack.common.js'
+      'webpack/template.html',
+      'webpack/webpack.dev.js',
+      'webpack/webpack.prod.js',
+      'webpack/webpack.common.js'
     ]
 
     staticFiles.forEach(file => copy(this, file))

@@ -9,12 +9,12 @@ const webpack = require('webpack')
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, './src/index.js')
+    main: path.resolve(__dirname, '../src/index.js')
   },
   output: {
-    path: path.resolve(__dirname, 'dist/'),
-    filename: '[name].js',
-    chunkFilename: '[name].[chunkhash].js',
+    path: path.resolve(__dirname, '../dist/'),
+    filename: 'scripts/[name].js',
+    chunkFilename: 'scripts/[name].[chunkhash].js',
     publicPath: '/'
   },
   module: {
@@ -36,21 +36,45 @@ module.exports = {
           },
           { loader: 'less-loader', options: { sourceMap: true } }
         ]
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'fonts/[name].[contenthash].[ext]'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/[path][name].[contenthash].[ext]',
+              context: 'src/images/'
+            }
+          }
+        ]
       }
     ]
   },
+  resolve: { alias: { src: path.resolve(__dirname, '../src') } },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCSSExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[name].[chunkhash].css'
+      filename: 'styles/[name].css',
+      chunkFilename: 'styles/[name].[chunkhash].css'
     }),
     new HtmlWebpackPlugin({
       inject: true,
       meta: {},
       scriptLoading: 'defer',
       title: 'Hello',
-      template: 'static/index.html',
+      template: path.resolve(__dirname, './template.html'),
       minify: {
         collapseWhitespace: true,
         conservativeCollapse: true,
