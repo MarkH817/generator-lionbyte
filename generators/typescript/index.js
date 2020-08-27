@@ -1,5 +1,7 @@
 const Generator = require('yeoman-generator')
 
+const { sortObj } = require('../utils')
+
 module.exports = class TypeScript extends Generator {
   writing () {
     const tsconfig = {
@@ -18,8 +20,15 @@ module.exports = class TypeScript extends Generator {
       include: ['./']
     }
 
-    if (this.config.get('react')) {
-      tsconfig.compilerOptions.jsx = 'react'
+    if (this.config.get('projectType') === 'frontend') {
+      tsconfig.compilerOptions.baseUrl = './'
+      tsconfig.compilerOptions.paths = { 'src/*': ['src/*'] }
+
+      if (this.config.get('react')) {
+        tsconfig.compilerOptions.jsx = 'react'
+      }
+
+      tsconfig.compilerOptions = sortObj(tsconfig.compilerOptions)
     }
 
     this.fs.writeJSON(this.destinationPath('tsconfig.json'), tsconfig)
