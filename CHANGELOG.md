@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.7.0...v2.8.0) (2020-08-27)
+
+
+### Features
+
+* **frontend:** add `src` import alias ([8371835](https://github.com/MarkH817/generator-lionbyte/commit/8371835b6791460385236f1cbcc1019ee5c553f7))
+
 # [2.7.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.6.1...v2.7.0) (2020-08-24)
 
 
