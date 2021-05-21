@@ -27,10 +27,10 @@ exports.getPackages = function getPackages (options) {
     devDependencies.push(
       '@babel/core@latest',
       '@babel/preset-env@latest',
-      '@types/webpack@latest',
-      '@types/webpack-bundle-analyzer@latest',
-      '@types/webpack-dev-server@latest',
-      '@types/webpack-merge@latest',
+      '@types/webpack@4',
+      '@types/webpack-bundle-analyzer@3',
+      '@types/webpack-dev-server@3',
+      '@types/webpack-merge@4',
       'autoprefixer@9',
       'babel-jest@latest',
       'babel-loader@latest',
@@ -48,7 +48,7 @@ exports.getPackages = function getPackages (options) {
       'webpack-bundle-analyzer@3',
       'webpack-cli@3',
       'webpack-dev-server@3',
-      'webpack-merge@5'
+      'webpack-merge@4'
     )
     dependencies.push('core-js@3', 'regenerator-runtime@latest')
   }
