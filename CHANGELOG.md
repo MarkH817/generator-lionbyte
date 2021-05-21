@@ -1,3 +1,10 @@
+## [2.8.2](https://github.com/MarkH817/generator-lionbyte/compare/v2.8.1...v2.8.2) (2021-05-21)
+
+
+### Bug Fixes
+
+* scope more package versions to prevent future breaking changes ([3dfb165](https://github.com/MarkH817/generator-lionbyte/commit/3dfb165f67c38152883a76f27abdbc7bd9d8dbbc))
+
 ## [2.8.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.8.0...v2.8.1) (2020-09-20)
 
 
