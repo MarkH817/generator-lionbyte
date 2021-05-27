@@ -8,11 +8,11 @@ exports.getPackages = function getPackages (options) {
   /** @type {Array<string>} */
   const devDependencies = [
     '@lionbyte/eslint-config@latest',
-    '@types/jest@latest',
+    '@types/jest@26',
     '@types/node@latest',
-    'eslint@latest',
-    'jest@latest',
-    'jest-runner-eslint@latest',
+    'eslint@7',
+    'jest@26',
+    'jest-runner-eslint@0.10',
     'prettier@2',
     'typescript@latest'
   ]
@@ -25,14 +25,14 @@ exports.getPackages = function getPackages (options) {
 
   if (options.projectType === 'frontend') {
     devDependencies.push(
-      '@babel/core@latest',
-      '@babel/preset-env@latest',
+      '@babel/core@7',
+      '@babel/preset-env@7',
       '@types/webpack@4',
       '@types/webpack-bundle-analyzer@3',
       '@types/webpack-dev-server@3',
       '@types/webpack-merge@4',
       'autoprefixer@9',
-      'babel-jest@latest',
+      'babel-jest@26',
       'babel-loader@latest',
       'clean-webpack-plugin@3',
       'css-loader@3',
