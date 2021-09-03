@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.8.3...v2.9.0) (2021-09-03)
+
+
+### Features
+
+* update frontend template to webpack 5 ([35a153c](https://github.com/MarkH817/generator-lionbyte/commit/35a153c3391a9c9fe7321f35445dc57baf8a7463))
+
 ## [2.8.3](https://github.com/MarkH817/generator-lionbyte/compare/v2.8.2...v2.8.3) (2021-05-27)
 
 ### Bug Fixes
