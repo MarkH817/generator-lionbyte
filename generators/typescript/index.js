@@ -15,6 +15,7 @@ module.exports = class TypeScript extends Generator {
           this.config.get('projectType') === 'frontend' ? 'ESNext' : 'CommonJS',
         moduleResolution: 'Node',
         noEmit: true,
+        strictNullChecks: true,
         target: 'ESNext'
       },
       include: ['./']

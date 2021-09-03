@@ -8,7 +8,8 @@
     "moduleResolution": "node",
     "module": "commonjs",
     "noEmit": true,
-    "target": "es2017"
+    "strictNullChecks": true,
+    "target": "ES2021"
   },
   "include": ["declarations.d.ts", "generators/**/*.js"],
   "exclude": ["**/templates/**/*.js"]

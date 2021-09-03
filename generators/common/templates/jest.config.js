@@ -4,7 +4,7 @@ module.exports = {
     {
       displayName: 'lint',
       runner: 'jest-runner-eslint',
-      testMatch: ['<rootDir>/generators/**/*.js']
+      testMatch: ['<rootDir>/**/*.{js,ts,tsx}']
     }
   ]
 }

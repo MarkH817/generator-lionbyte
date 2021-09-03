@@ -16,26 +16,26 @@ module.exports = class LionByte extends Generator {
         type: 'input',
         name: 'name',
         message: 'Your project name',
-        default: this.appname.replace(/ /g, '-').toLowerCase()
+        'default': this.appname.replace(/ /g, '-').toLowerCase()
       },
       {
         type: 'input',
         name: 'description',
         message: 'Project description',
-        default: ''
+        'default': ''
       },
       {
         type: 'list',
         name: 'projectType',
         message: 'What type of project are you doing?',
         choices: projectTypes,
-        default: 'node'
+        'default': 'node'
       },
       {
         type: 'confirm',
         name: 'gitHooks',
         message: 'Do you want to add linting to your pre-commit hooks?',
-        default: false
+        'default': false
       }
     ]).then(props => {
       this.config.set('name', props.name.replace(/ /g, '-').toLowerCase())
@@ -43,14 +43,14 @@ module.exports = class LionByte extends Generator {
       this.config.set('projectType', props.projectType)
       this.config.set('gitHooks', props.gitHooks)
 
-      const subgenerators = [
+      const subGenerators = [
         '../common',
         `../${props.projectType}`,
         '../package',
         '../typescript'
       ]
 
-      subgenerators.forEach(sub => {
+      subGenerators.forEach(sub => {
         this.composeWith(require.resolve(sub), {})
       })
     })

@@ -2,7 +2,8 @@
  * Copy static template files
  * @param {import('yeoman-generator')} generator Reference to generator instance
  * @param {string} filename File to copy.
- * @param {string} [output=filename] File destination. Keeps the same filename by default.
+ * @param {string} [output=filename]
+ * File destination. Keeps the same filename by default.
  */
 function copy (generator, filename, output = filename) {
   generator.fs.copy(
@@ -16,7 +17,8 @@ function copy (generator, filename, output = filename) {
  * @param {import('yeoman-generator')} generator Reference to generator instance
  * @param {any} data Data to write to the template file
  * @param {string} filename File to copy.
- * @param {string} [output=filename] File destination. Keeps the same filename by default.
+ * @param {string} [output=filename]
+ * File destination. Keeps the same filename by default.
  */
 function copyTpl (generator, data, filename, output = filename) {
   generator.fs.copyTpl(
@@ -28,7 +30,9 @@ function copyTpl (generator, data, filename, output = filename) {
 
 /**
  * @param {import('yeoman-generator')} generator
- * @returns {{ description: string, name: string, projectType: string, user: {name: string, email: string} }}
+ * @returns {{
+ * description: string,
+ * name: string, projectType: string, user: {name: string, email: string} }}
  */
 function getProjectInfo (generator) {
   return {

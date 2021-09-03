@@ -9,7 +9,7 @@ module.exports = class StaticSite extends Generator {
         type: 'confirm',
         name: 'react',
         message: 'Include React?',
-        default: false
+        'default': false
       }
     ]).then(props => {
       this.config.set('react', props.react)
@@ -21,6 +21,7 @@ module.exports = class StaticSite extends Generator {
       'src/images/.gitkeep',
       'src/styles/.gitkeep',
       'src/index.js',
+      'webpack/postcss.config.js',
       'webpack/template.html',
       'webpack/webpack.dev.js',
       'webpack/webpack.prod.js',
@@ -51,7 +52,8 @@ function getBabelrc (options) {
         useBuiltIns: 'usage',
         targets: { esmodules: true }
       }
-    ]
+    ],
+    '@babel/preset-typescript'
   ].concat(options.react ? ['@babel/preset-react'] : [])
 
   const testPresets = [
@@ -64,7 +66,8 @@ function getBabelrc (options) {
         useBuiltIns: 'usage',
         targets: { node: 'current' }
       }
-    ]
+    ],
+    '@babel/preset-typescript'
   ].concat(options.react ? ['@babel/preset-react'] : [])
 
   return { presets: basePresets, env: { test: { presets: testPresets } } }

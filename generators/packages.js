@@ -8,10 +8,10 @@ exports.getPackages = function getPackages (options) {
   /** @type {Array<string>} */
   const devDependencies = [
     '@lionbyte/eslint-config@latest',
-    '@types/jest@26',
+    '@types/jest@27',
     '@types/node@latest',
     'eslint@7',
-    'jest@26',
+    'jest@27',
     'jest-runner-eslint@0.10',
     'prettier@2',
     'typescript@latest'
@@ -27,28 +27,24 @@ exports.getPackages = function getPackages (options) {
     devDependencies.push(
       '@babel/core@7',
       '@babel/preset-env@7',
-      '@types/webpack@4',
-      '@types/webpack-bundle-analyzer@3',
-      '@types/webpack-dev-server@3',
-      '@types/webpack-merge@4',
-      'autoprefixer@9',
-      'babel-jest@26',
+      '@babel/preset-typescript@7',
+      '@types/webpack@5',
+      '@types/webpack-bundle-analyzer@4',
+      'autoprefixer@10',
+      'babel-jest@27',
       'babel-loader@latest',
-      'clean-webpack-plugin@3',
-      'css-loader@3',
-      'cssnano@4',
-      'file-loader@6',
-      'less@3',
-      'less-loader@6',
-      'postcss-loader@3',
-      'style-loader@1',
-      'mini-css-extract-plugin@latest',
-      'html-webpack-plugin@4',
-      'webpack@4',
-      'webpack-bundle-analyzer@3',
-      'webpack-cli@3',
-      'webpack-dev-server@3',
-      'webpack-merge@4'
+      'css-loader@6',
+      'cssnano@5',
+      'less@4',
+      'less-loader@10',
+      'postcss-loader@6',
+      'mini-css-extract-plugin@2',
+      'html-webpack-plugin@5',
+      'webpack@5',
+      'webpack-bundle-analyzer@4',
+      'webpack-cli@4',
+      'webpack-dev-server@4',
+      'webpack-merge@5'
     )
     dependencies.push('core-js@3', 'regenerator-runtime@latest')
   }

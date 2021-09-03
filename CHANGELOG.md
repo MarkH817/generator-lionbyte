@@ -1,58 +1,50 @@
 ## [2.8.3](https://github.com/MarkH817/generator-lionbyte/compare/v2.8.2...v2.8.3) (2021-05-27)
 
-
 ### Bug Fixes
 
-* scope more packages ([789fe3e](https://github.com/MarkH817/generator-lionbyte/commit/789fe3e6338d48e35c391a9bcd17c9b0527f0863))
+- scope more packages ([789fe3e](https://github.com/MarkH817/generator-lionbyte/commit/789fe3e6338d48e35c391a9bcd17c9b0527f0863))
 
 ## [2.8.2](https://github.com/MarkH817/generator-lionbyte/compare/v2.8.1...v2.8.2) (2021-05-21)
 
-
 ### Bug Fixes
 
-* scope more package versions to prevent future breaking changes ([3dfb165](https://github.com/MarkH817/generator-lionbyte/commit/3dfb165f67c38152883a76f27abdbc7bd9d8dbbc))
+- scope more package versions to prevent future breaking changes ([3dfb165](https://github.com/MarkH817/generator-lionbyte/commit/3dfb165f67c38152883a76f27abdbc7bd9d8dbbc))
 
 ## [2.8.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.8.0...v2.8.1) (2020-09-20)
 
-
 ### Bug Fixes
 
-* scope dependency versions to prevent breaking changes ([b2827fb](https://github.com/MarkH817/generator-lionbyte/commit/b2827fb6e384fbf901c6b91d3b31d98e562f7448))
+- scope dependency versions to prevent breaking changes ([b2827fb](https://github.com/MarkH817/generator-lionbyte/commit/b2827fb6e384fbf901c6b91d3b31d98e562f7448))
 
 # [2.8.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.7.0...v2.8.0) (2020-08-27)
 
-
 ### Features
 
-* **frontend:** add `src` import alias ([8371835](https://github.com/MarkH817/generator-lionbyte/commit/8371835b6791460385236f1cbcc1019ee5c553f7))
+- **frontend:** add `src` import alias ([8371835](https://github.com/MarkH817/generator-lionbyte/commit/8371835b6791460385236f1cbcc1019ee5c553f7))
 
 # [2.7.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.6.1...v2.7.0) (2020-08-24)
 
-
 ### Features
 
-* **frontend:** expand webpack config ([d535131](https://github.com/MarkH817/generator-lionbyte/commit/d535131cb078362e98a0cb2f9c145bc1cd5794c5))
+- **frontend:** expand webpack config ([d535131](https://github.com/MarkH817/generator-lionbyte/commit/d535131cb078362e98a0cb2f9c145bc1cd5794c5))
 
 ## [2.6.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.6.0...v2.6.1) (2020-07-11)
 
-
 ### Bug Fixes
 
-* **frontend:** fix default webpack config ([9e2622e](https://github.com/MarkH817/generator-lionbyte/commit/9e2622e6087e828c38a31b03158f9ff8dd91dfbf))
+- **frontend:** fix default webpack config ([9e2622e](https://github.com/MarkH817/generator-lionbyte/commit/9e2622e6087e828c38a31b03158f9ff8dd91dfbf))
 
 # [2.6.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.5.0...v2.6.0) (2020-07-05)
 
-
 ### Features
 
-* **babel:** turn on shippedProposals option in preset-env ([46d78d8](https://github.com/MarkH817/generator-lionbyte/commit/46d78d84226b52d251b7a36a99a6a8a849939735))
+- **babel:** turn on shippedProposals option in preset-env ([46d78d8](https://github.com/MarkH817/generator-lionbyte/commit/46d78d84226b52d251b7a36a99a6a8a849939735))
 
 # [2.5.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.4.0...v2.5.0) (2020-04-11)
 
-
 ### Features
 
-* update configs for dependency updates ([58c9ba5](https://github.com/MarkH817/generator-lionbyte/commit/58c9ba5a011bbe70a043adc6cfabaac1ff817be4))
+- update configs for dependency updates ([58c9ba5](https://github.com/MarkH817/generator-lionbyte/commit/58c9ba5a011bbe70a043adc6cfabaac1ff817be4))
 
 # [2.4.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.3.2...v2.4.0) (2020-01-22)
 

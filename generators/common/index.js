@@ -27,7 +27,7 @@ module.exports = class Common extends Generator {
     copy(this, 'test/index.js', 'test/index.test.js')
 
     this.fs.writeJSON(this.destinationPath('.eslintrc.json'), {
-      extends: ['@lionbyte']
+      'extends': ['@lionbyte']
     })
   }
 }

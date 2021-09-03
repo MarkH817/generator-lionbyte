@@ -1,11 +1,7 @@
 const path = require('path')
 
-const autoprefixer = require('autoprefixer')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const cssnano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
-const webpack = require('webpack')
 
 module.exports = {
   entry: {
@@ -15,56 +11,50 @@ module.exports = {
     path: path.resolve(__dirname, '../dist/'),
     filename: 'scripts/[name].js',
     chunkFilename: 'scripts/[name].[chunkhash].js',
-    publicPath: '/'
+    publicPath: '/',
+    clean: true
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(t|j)sx?$/,
         exclude: [/node_modules/],
         use: { loader: 'babel-loader' }
       },
       {
         test: /\.(css|less)$/,
         use: [
-          'style-loader',
           MiniCSSExtractPlugin.loader,
           { loader: 'css-loader', options: { sourceMap: true } },
           {
             loader: 'postcss-loader',
-            options: { plugins: [autoprefixer(), cssnano()], sourceMap: true }
+            options: {
+              sourceMap: true,
+              postcssOptions: {
+                config: path.resolve(__dirname, './postcss.config.js')
+              }
+            }
           },
           { loader: 'less-loader', options: { sourceMap: true } }
         ]
       },
       {
-        test: /\.(woff(2)?|ttf|eot)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'fonts/[name].[contenthash].[ext]'
-            }
-          }
-        ]
+        test: /\.(woff(2)?|ttf|eot|otf)$/i,
+        type: 'asset/resource',
+        generator: { filename: 'fonts/[name].[ext]' }
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'images/[path][name].[contenthash].[ext]',
-              context: 'src/images/'
-            }
-          }
-        ]
+        type: 'asset/resource',
+        generator: { filename: 'images/[path][name].[contenthash].[ext]' }
       }
     ]
   },
-  resolve: { alias: { src: path.resolve(__dirname, '../src') } },
+  resolve: {
+    alias: { src: path.resolve(__dirname, '../src') },
+    extensions: ['.wasm', '.mjs', '.js', '.ts', '.tsx', '.json']
+  },
   plugins: [
-    new CleanWebpackPlugin(),
     new MiniCSSExtractPlugin({
       filename: 'styles/[name].css',
       chunkFilename: 'styles/[name].[chunkhash].css'
@@ -80,7 +70,6 @@ module.exports = {
         conservativeCollapse: true,
         removeComments: true
       }
-    }),
-    new webpack.ProgressPlugin()
+    })
   ]
 }
