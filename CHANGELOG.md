@@ -1,3 +1,15 @@
+# [3.0.0-next.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.9.0...v3.0.0-next.1) (2021-12-10)
+
+
+### Features
+
+* **frontend:** add JSX runtime and React-Refresh to React projects ([71d5fc9](https://github.com/MarkH817/generator-lionbyte/commit/71d5fc93d4b943da523be3dd599b55fc8d83b040))
+
+
+### BREAKING CHANGES
+
+* **frontend:** Node.js >= 14.17.4 required
+
 # [2.9.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.8.3...v2.9.0) (2021-09-03)
 
 
