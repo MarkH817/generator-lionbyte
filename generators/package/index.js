@@ -19,8 +19,8 @@ function createScripts (type) {
   switch (type) {
     case 'frontend':
       Object.assign(scripts, {
-        build: 'webpack --config webpack/webpack.prod.js',
-        dev: 'webpack-dev-server --config webpack/webpack.dev.js --open'
+        build: 'webpack --node-env=production --config webpack/webpack.prod.js',
+        dev: 'webpack serve --config webpack/webpack.dev.js'
       })
       break
 

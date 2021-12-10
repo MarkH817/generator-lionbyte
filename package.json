@@ -27,6 +27,9 @@
     "nodejs",
     "yeoman-generator"
   ],
+  "engines": {
+    "node": ">=14.17.4"
+  },
   "devDependencies": {
     "@lionbyte/eslint-config": "^1.9.0",
     "@semantic-release/changelog": "^5.0.1",

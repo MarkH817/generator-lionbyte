@@ -20,8 +20,8 @@ module.exports = class Common extends Generator {
       staticFiles.push('.huskyrc', '.lintstagedrc')
     }
 
-    staticFiles.forEach(file => copy(this, file))
     tplFiles.forEach(file => copyTpl(this, data, file))
+    staticFiles.forEach(file => copy(this, file))
 
     copy(this, '_gitignore', '.gitignore')
     copy(this, 'test/index.js', 'test/index.test.js')

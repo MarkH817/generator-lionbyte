@@ -8,5 +8,10 @@ module.exports = merge(common, {
   devtool: 'source-map',
   plugins: [
     new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false })
-  ]
+  ],
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  }
 })
