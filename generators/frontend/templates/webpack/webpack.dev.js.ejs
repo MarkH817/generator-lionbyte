@@ -1,0 +1,22 @@
+<% if (react) { %>
+const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+<% } %>
+const { merge } = require('webpack-merge')
+
+const common = require('./webpack.common')
+
+module.exports = merge(common, {
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    historyApiFallback: true,
+    open: false,
+    hot: true,
+    port: 3000
+  },
+  plugins: [
+    <% if (react) { %>
+      new ReactRefreshPlugin()
+    <% } %>
+  ]
+})

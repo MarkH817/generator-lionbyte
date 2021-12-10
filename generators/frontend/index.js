@@ -1,6 +1,6 @@
 const Generator = require('yeoman-generator')
 
-const { copy } = require('../utils')
+const { copy, copyTpl } = require('../utils')
 
 module.exports = class StaticSite extends Generator {
   prompting () {
@@ -17,31 +17,35 @@ module.exports = class StaticSite extends Generator {
   }
 
   writing () {
+    const config = this.config.getAll()
+
+    const templateFiles = [
+      { from: 'webpack/webpack.dev.js.ejs', to: 'webpack/webpack.dev.js' }
+    ]
     const staticFiles = [
       'src/images/.gitkeep',
       'src/styles/.gitkeep',
       'src/index.js',
       'webpack/postcss.config.js',
       'webpack/template.html',
-      'webpack/webpack.dev.js',
       'webpack/webpack.prod.js',
       'webpack/webpack.common.js'
     ]
 
+    templateFiles.forEach(file => copyTpl(this, config, file.from, file.to))
     staticFiles.forEach(file => copy(this, file))
 
-    this.fs.writeJSON(
-      this.destinationPath('.babelrc'),
-      getBabelrc(this.config.getAll())
-    )
+    this.fs.writeJSON(this.destinationPath('.babelrc'), getBabelrc(config))
   }
 }
 
 /**
  * @param {object} options
  * @param {boolean} [options.react]
+ * @returns {import('@babel/core').TransformOptions}
  */
 function getBabelrc (options) {
+  /** @type {import('@babel/core').TransformOptions['presets']} */
   const basePresets = [
     [
       '@babel/preset-env',
@@ -54,7 +58,11 @@ function getBabelrc (options) {
       }
     ],
     '@babel/preset-typescript'
-  ].concat(options.react ? ['@babel/preset-react'] : [])
+  ]
+
+  if (options.react) {
+    basePresets.push(['@babel/preset-react', { runtime: 'automatic' }])
+  }
 
   const testPresets = [
     [
@@ -66,9 +74,16 @@ function getBabelrc (options) {
         useBuiltIns: 'usage',
         targets: { node: 'current' }
       }
-    ],
-    '@babel/preset-typescript'
-  ].concat(options.react ? ['@babel/preset-react'] : [])
+    ]
+  ]
 
-  return { presets: basePresets, env: { test: { presets: testPresets } } }
+  return {
+    presets: basePresets,
+    env: {
+      development: {
+        plugins: options.react ? ['react-refresh/babel'] : []
+      },
+      test: { presets: testPresets }
+    }
+  }
 }

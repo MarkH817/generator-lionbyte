@@ -30,6 +30,7 @@ exports.getPackages = function getPackages (options) {
       '@babel/preset-typescript@7',
       '@types/webpack@5',
       '@types/webpack-bundle-analyzer@4',
+      '@types/webpack-dev-server@4',
       'autoprefixer@10',
       'babel-jest@27',
       'babel-loader@latest',
@@ -52,8 +53,10 @@ exports.getPackages = function getPackages (options) {
   if (options.react) {
     devDependencies.push(
       '@babel/preset-react@latest',
+      '@pmmmwh/react-refresh-webpack-plugin',
       '@types/react@latest',
-      '@types/react-dom@latest'
+      '@types/react-dom@latest',
+      'react-refresh'
     )
     dependencies.push('react@latest', 'react-dom@latest')
   }

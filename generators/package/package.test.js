@@ -38,11 +38,12 @@ describe('package (frontend)', () => {
   test('frontend scripts', () => {
     assert.fileContent(
       'package.json',
-      `"build": "webpack --config webpack/webpack.prod.js"`
+      // eslint-disable-next-line max-len
+      `"build": "webpack --node-env=production --config webpack/webpack.prod.js"`
     )
     assert.fileContent(
       'package.json',
-      `"dev": "webpack-dev-server --config webpack/webpack.dev.js --open"`
+      `"dev": "webpack serve --config webpack/webpack.dev.js"`
     )
   })
 })
