@@ -3,7 +3,7 @@ const Generator = require('yeoman-generator')
 const { copy, copyTpl } = require('../utils')
 
 module.exports = class StaticSite extends Generator {
-  prompting () {
+  prompting() {
     return this.prompt([
       {
         type: 'confirm',
@@ -16,7 +16,7 @@ module.exports = class StaticSite extends Generator {
     })
   }
 
-  writing () {
+  writing() {
     const config = this.config.getAll()
 
     const templateFiles = [
@@ -44,7 +44,7 @@ module.exports = class StaticSite extends Generator {
  * @param {boolean} [options.react]
  * @returns {import('@babel/core').TransformOptions}
  */
-function getBabelrc (options) {
+function getBabelrc(options) {
   /** @type {import('@babel/core').TransformOptions['presets']} */
   const basePresets = [
     [

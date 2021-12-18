@@ -4,7 +4,7 @@
  * @param {string} options.projectType
  * @param {boolean} [options.react]
  */
-exports.getPackages = function getPackages (options) {
+exports.getPackages = function getPackages(options) {
   /** @type {Array<string>} */
   const devDependencies = [
     '@lionbyte/eslint-config@latest',

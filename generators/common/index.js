@@ -3,7 +3,7 @@ const Generator = require('yeoman-generator')
 const { copy, copyTpl, getProjectInfo } = require('../utils')
 
 module.exports = class Common extends Generator {
-  writing () {
+  writing() {
     const data = getProjectInfo(this)
     const tplFiles = ['CODE_OF_CONDUCT.md', 'LICENSE.md', 'README.md']
     const staticFiles = [

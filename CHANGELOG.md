@@ -1,21 +1,18 @@
 # [3.0.0-next.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.9.0...v3.0.0-next.1) (2021-12-10)
 
-
 ### Features
 
-* **frontend:** add JSX runtime and React-Refresh to React projects ([71d5fc9](https://github.com/MarkH817/generator-lionbyte/commit/71d5fc93d4b943da523be3dd599b55fc8d83b040))
-
+- **frontend:** add JSX runtime and React-Refresh to React projects ([71d5fc9](https://github.com/MarkH817/generator-lionbyte/commit/71d5fc93d4b943da523be3dd599b55fc8d83b040))
 
 ### BREAKING CHANGES
 
-* **frontend:** Node.js >= 14.17.4 required
+- **frontend:** Node.js >= 14.17.4 required
 
 # [2.9.0](https://github.com/MarkH817/generator-lionbyte/compare/v2.8.3...v2.9.0) (2021-09-03)
 
-
 ### Features
 
-* update frontend template to webpack 5 ([35a153c](https://github.com/MarkH817/generator-lionbyte/commit/35a153c3391a9c9fe7321f35445dc57baf8a7463))
+- update frontend template to webpack 5 ([35a153c](https://github.com/MarkH817/generator-lionbyte/commit/35a153c3391a9c9fe7321f35445dc57baf8a7463))
 
 ## [2.8.3](https://github.com/MarkH817/generator-lionbyte/compare/v2.8.2...v2.8.3) (2021-05-27)
 

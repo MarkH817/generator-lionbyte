@@ -1,4 +1,3 @@
-const { red } = require('chalk')
 const Generator = require('yeoman-generator')
 const yosay = require('yosay')
 
@@ -6,10 +5,8 @@ const { getPackages } = require('../packages')
 const { projectTypes } = require('../utils')
 
 module.exports = class LionByte extends Generator {
-  prompting () {
-    this.log(
-      yosay(`Welcome to the best ${red('generator-lionbyte')} generator!`)
-    )
+  prompting() {
+    this.log(yosay(`Welcome to the best ${'generator-lionbyte'} generator!`))
 
     return this.prompt([
       {
@@ -56,14 +53,15 @@ module.exports = class LionByte extends Generator {
     })
   }
 
-  install () {
+  async install() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { devDependencies, dependencies } = getPackages(this.config.getAll())
-
-    this.npmInstall(devDependencies, { saveDev: true })
 
     if (dependencies.length > 0) {
       this.npmInstall(dependencies)
     }
+
+    this.npmInstall(devDependencies, { saveDev: true })
   }
 }

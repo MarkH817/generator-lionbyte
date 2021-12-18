@@ -5,7 +5,7 @@
  * @param {string} [output=filename]
  * File destination. Keeps the same filename by default.
  */
-function copy (generator, filename, output = filename) {
+function copy(generator, filename, output = filename) {
   generator.fs.copy(
     generator.templatePath(filename),
     generator.destinationPath(output)
@@ -20,7 +20,7 @@ function copy (generator, filename, output = filename) {
  * @param {string} [output=filename]
  * File destination. Keeps the same filename by default.
  */
-function copyTpl (generator, data, filename, output = filename) {
+function copyTpl(generator, data, filename, output = filename) {
   generator.fs.copyTpl(
     generator.templatePath(filename),
     generator.destinationPath(output),
@@ -34,7 +34,7 @@ function copyTpl (generator, data, filename, output = filename) {
  * description: string,
  * name: string, projectType: string, user: {name: string, email: string} }}
  */
-function getProjectInfo (generator) {
+function getProjectInfo(generator) {
   return {
     description: generator.config.get('description'),
     name: generator.config.get('name'),
@@ -50,19 +50,22 @@ function getProjectInfo (generator) {
 const projectTypes = ['node', 'frontend']
 
 /**
- * @template T
+ * @template {Record<string, any>} T
  * @param {T} obj
  * @returns {T}
  */
-function sortObj (obj) {
+function sortObj(obj) {
+  /** @type {(keyof T)[]} */
   const keys = Object.keys(obj).sort()
+  /** @type {T} */
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const sorted = {}
 
-  keys.forEach(key => {
+  for (const key of keys) {
     sorted[key] = obj[key]
-  })
+  }
 
-  // @ts-ignore
   return sorted
 }
 

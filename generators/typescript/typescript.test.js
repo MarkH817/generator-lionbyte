@@ -55,6 +55,6 @@ describe('TypeScript (frontend w/ React)', () => {
   })
 
   test('contains JSX configuration', () => {
-    assert.fileContent('tsconfig.json', `"jsx": "react"`)
+    assert.fileContent('tsconfig.json', `"jsx": "react-jsx"`)
   })
 })
