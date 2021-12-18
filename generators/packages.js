@@ -4,7 +4,7 @@
  * @param {string} options.projectType
  * @param {boolean} [options.react]
  */
-exports.getPackages = function getPackages (options) {
+exports.getPackages = function getPackages(options) {
   /** @type {Array<string>} */
   const devDependencies = [
     '@lionbyte/eslint-config@latest',
@@ -34,6 +34,7 @@ exports.getPackages = function getPackages (options) {
       'autoprefixer@10',
       'babel-jest@27',
       'babel-loader@latest',
+      'copy-webpack-plugin@10',
       'css-loader@6',
       'cssnano@5',
       'less@4',

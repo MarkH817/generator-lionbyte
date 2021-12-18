@@ -1,15 +1,18 @@
 const path = require('path')
 
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
+
+const paths = require('./paths')
 
 /** @type {import('webpack').Configuration} */
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, '../src/index.js')
+    main: path.resolve(paths.src, './index.js')
   },
   output: {
-    path: path.resolve(__dirname, '../dist/'),
+    path: paths.dist,
     filename: 'scripts/[name].js',
     chunkFilename: 'scripts/[name].[chunkhash].js',
     publicPath: '/',
@@ -18,7 +21,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(t|j)sx?$/,
+        test: /\.(mj|t|j)sx?$/,
         exclude: [/node_modules/],
         use: { loader: 'babel-loader' }
       },
@@ -52,10 +55,19 @@ module.exports = {
     ]
   },
   resolve: {
-    alias: { src: path.resolve(__dirname, '../src') },
-    extensions: ['.wasm', '.mjs', '.js', '.ts', '.tsx', '.json']
+    alias: { src: paths.src },
+    extensions: ['.wasm', '.mjs', '.js', '.jsx', '.ts', '.tsx', '.json']
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: '**/*',
+          context: paths.public,
+          globOptions: { dot: true }
+        }
+      ]
+    }),
     new MiniCSSExtractPlugin({
       filename: 'styles/[name].css',
       chunkFilename: 'styles/[name].[chunkhash].css'

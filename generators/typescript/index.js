@@ -3,7 +3,7 @@ const Generator = require('yeoman-generator')
 const { sortObj } = require('../utils')
 
 module.exports = class TypeScript extends Generator {
-  writing () {
+  writing() {
     const tsconfig = {
       compilerOptions: {
         allowJs: true,
@@ -26,7 +26,7 @@ module.exports = class TypeScript extends Generator {
       tsconfig.compilerOptions.paths = { 'src/*': ['src/*'] }
 
       if (this.config.get('react')) {
-        tsconfig.compilerOptions.jsx = 'react'
+        tsconfig.compilerOptions.jsx = 'react-jsx'
       }
 
       tsconfig.compilerOptions = sortObj(tsconfig.compilerOptions)

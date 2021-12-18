@@ -3,7 +3,7 @@ const Generator = require('yeoman-generator')
 const { copy, copyTpl } = require('../utils')
 
 module.exports = class StaticSite extends Generator {
-  prompting () {
+  prompting() {
     return this.prompt([
       {
         type: 'confirm',
@@ -16,16 +16,18 @@ module.exports = class StaticSite extends Generator {
     })
   }
 
-  writing () {
+  writing() {
     const config = this.config.getAll()
 
     const templateFiles = [
       { from: 'webpack/webpack.dev.js.ejs', to: 'webpack/webpack.dev.js' }
     ]
     const staticFiles = [
+      'public/.gitkeep',
       'src/images/.gitkeep',
       'src/styles/.gitkeep',
       'src/index.js',
+      'webpack/paths.js',
       'webpack/postcss.config.js',
       'webpack/template.html',
       'webpack/webpack.prod.js',
@@ -44,7 +46,7 @@ module.exports = class StaticSite extends Generator {
  * @param {boolean} [options.react]
  * @returns {import('@babel/core').TransformOptions}
  */
-function getBabelrc (options) {
+function getBabelrc(options) {
   /** @type {import('@babel/core').TransformOptions['presets']} */
   const basePresets = [
     [

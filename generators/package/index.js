@@ -5,7 +5,7 @@ const { getProjectInfo, sortObj } = require('../utils')
 /**
  * @param {string} type
  */
-function createScripts (type) {
+function createScripts(type) {
   const scripts = {
     format: 'npm run prettier && npm run lint -- --fix',
     lint: 'eslint --ignore-path .gitignore .',
@@ -33,7 +33,7 @@ function createScripts (type) {
 }
 
 module.exports = class Package extends Generator {
-  writing () {
+  writing() {
     const { description, name, user, projectType } = getProjectInfo(this)
 
     const scripts = createScripts(projectType)
@@ -47,8 +47,8 @@ module.exports = class Package extends Generator {
       license: 'MIT',
       main: 'src/index.js',
       author: `${user.name} <${user.email}>`,
-      devDependencies: {},
-      dependencies: {}
+      dependencies: {},
+      devDependencies: {}
     }
 
     this.fs.writeJSON(this.destinationPath('package.json'), fullPackage)
