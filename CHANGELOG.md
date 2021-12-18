@@ -1,3 +1,15 @@
+# [3.0.0-next.2](https://github.com/MarkH817/generator-lionbyte/compare/v3.0.0-next.1...v3.0.0-next.2) (2021-12-18)
+
+
+### Bug Fixes
+
+* remove `chalk` ([d8d1050](https://github.com/MarkH817/generator-lionbyte/commit/d8d1050c4119639ad5136973008fa7508b871303))
+
+
+### Features
+
+* **frontend:** add `copy-webpack-plugin` ([6f08945](https://github.com/MarkH817/generator-lionbyte/commit/6f08945d287d8da2fc52d76851c4f284ad277703))
+
 # [3.0.0-next.1](https://github.com/MarkH817/generator-lionbyte/compare/v2.9.0...v3.0.0-next.1) (2021-12-10)
 
 ### Features
