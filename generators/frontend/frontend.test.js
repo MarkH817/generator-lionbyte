@@ -7,9 +7,11 @@ const genPath = require.resolve('./index')
 
 const frontendFiles = [
   '.babelrc',
+  'public/.gitkeep',
   'src/index.js',
   'src/images/.gitkeep',
   'src/styles/.gitkeep',
+  'webpack/paths.js',
   'webpack/postcss.config.js',
   'webpack/template.html',
   'webpack/webpack.common.js',

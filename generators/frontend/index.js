@@ -23,9 +23,11 @@ module.exports = class StaticSite extends Generator {
       { from: 'webpack/webpack.dev.js.ejs', to: 'webpack/webpack.dev.js' }
     ]
     const staticFiles = [
+      'public/.gitkeep',
       'src/images/.gitkeep',
       'src/styles/.gitkeep',
       'src/index.js',
+      'webpack/paths.js',
       'webpack/postcss.config.js',
       'webpack/template.html',
       'webpack/webpack.prod.js',
