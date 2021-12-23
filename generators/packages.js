@@ -7,12 +7,12 @@
 exports.getPackages = function getPackages(options) {
   /** @type {Array<string>} */
   const devDependencies = [
-    '@lionbyte/eslint-config@latest',
+    '@lionbyte/eslint-config@2',
     '@types/jest@27',
     '@types/node@latest',
-    'eslint@7',
+    'eslint@8',
     'jest@27',
-    'jest-runner-eslint@0.10',
+    'jest-runner-eslint@1',
     'prettier@2',
     'typescript@latest'
   ]
@@ -54,10 +54,10 @@ exports.getPackages = function getPackages(options) {
   if (options.react) {
     devDependencies.push(
       '@babel/preset-react@latest',
-      '@pmmmwh/react-refresh-webpack-plugin',
+      '@pmmmwh/react-refresh-webpack-plugin@latest',
       '@types/react@latest',
       '@types/react-dom@latest',
-      'react-refresh'
+      'react-refresh@latest'
     )
     dependencies.push('react@latest', 'react-dom@latest')
   }
