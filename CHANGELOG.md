@@ -1,3 +1,10 @@
+# [3.0.0-next.3](https://github.com/MarkH817/generator-lionbyte/compare/v3.0.0-next.2...v3.0.0-next.3) (2021-12-23)
+
+
+### Features
+
+* update to @lionbyte/eslint-config@2 and ESLint@8 in new projects ([459591f](https://github.com/MarkH817/generator-lionbyte/commit/459591f0aa75d25d531d0b97c37f43a63a805927))
+
 # [3.0.0-next.2](https://github.com/MarkH817/generator-lionbyte/compare/v3.0.0-next.1...v3.0.0-next.2) (2021-12-18)
 
 
